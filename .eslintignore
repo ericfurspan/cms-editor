@@ -1,3 +1,5 @@
 node_modules/*.js
 jest.config.js
+webpack.config.js
 build/
+registerServiceWorker.js
