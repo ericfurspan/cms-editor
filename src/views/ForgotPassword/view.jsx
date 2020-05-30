@@ -5,12 +5,12 @@ import {
   Col,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { BrandHeader, EmailSupport } from '../../components/design';
+import { PublicBrandHeader, EmailSupport } from '../../components/design';
 import { ForgotPasswordForm } from './components';
 
 const ForgotPasswordPage = () => (
   <>
-    <BrandHeader headerText="Reset Password" />
+    <PublicBrandHeader headerText="Reset Password" />
     <Container>
       <Row>
         <Col md={{ span: 4, offset: 4 }}>

@@ -1,29 +1,53 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache, concat,
+} from '@apollo/client';
+import history from './history';
 import AppRouter from './router';
+import Auth from './auth';
+import { AuthContext } from './context';
 
 class App {
   constructor() {
-    this.history = createBrowserHistory();
+    this.client = null;
+    this.auth = null;
+  }
+
+  initNetworkClient() {
+    const httpLink = new HttpLink({ uri: process.env.GQL_SERVER, credentials: 'include' });
+
+    // forward the authorization header
+    const authMiddleware = new ApolloLink((operation, forward) => {
+      const { token } = this.auth;
+      const bearerAuth = token ? `Authorization: Bearer ${token}` : '';
+      operation.setContext({ headers: { bearerAuth } });
+      return forward(operation);
+    });
+
+    // create networking client
     this.client = new ApolloClient({
       cache: new InMemoryCache(),
-      link: new HttpLink({
-        uri: process.env.GRAPHQL_SERVER || 'http://127.0.0.1:1337/graphql',
-      }),
+      credentials: 'include',
+      link: concat(authMiddleware, httpLink),
     });
+  }
+
+  initAuth() {
+    this.auth = new Auth();
   }
 
   entrypoint() {
     return (
-      <ApolloProvider client={this.client}>
-        <Router history={this.history}>
+      <AuthContext.Provider value={this.auth}>
+        <ApolloProvider client={this.client}>
           <React.Suspense fallback={null}>
-            <AppRouter />
+            <Router history={history}>
+              <AppRouter auth={this.auth} />
+            </Router>
           </React.Suspense>
-        </Router>
-      </ApolloProvider>
+        </ApolloProvider>
+      </AuthContext.Provider>
     );
   }
 }

@@ -1,1 +1,1 @@
-export { default as ForgotPasswordRoutes } from './routes';
+export { default as ForgotPassword } from './view';

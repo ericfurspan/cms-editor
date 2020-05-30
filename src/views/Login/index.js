@@ -1,1 +1,1 @@
-export { default as LoginRoutes } from './routes';
+export { default as Login } from './view';

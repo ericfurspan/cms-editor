@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const GET_BUSINESS = ({ id }) => gql`
-  {
-    business(id: ${id}) {
+export const GET_BUSINESS = gql`
+  query getBusiness($businessId: ID!) {
+    business(id: $businessId) {
       id
       name
       caption
@@ -17,6 +17,6 @@ export const GET_BUSINESS = ({ id }) => gql`
         alternativeText
       }
       news
-    }
+    }    
   }
 `;
