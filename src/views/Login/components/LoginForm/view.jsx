@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { AuthContext } from '../../../../app/context';
+import { AuthContext } from '../../../../main/context';
 
 const LoginForm = ({ submitLogin }) => {
   const auth = useContext(AuthContext);
