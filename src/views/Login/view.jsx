@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../queries';
 import { LoginForm } from './components';
-import { PublicBrandHeader, EmailSupport } from '../../components/design';
+import { PublicHeader, PublicFooter } from '../../components';
 
 const LoginPage = () => {
   const [ useLogin ] = useMutation(LOGIN);
 
   return (
     <>
-      <PublicBrandHeader />
+      <PublicHeader />
       <Container>
         <Row>
           <Col md={{ span: 4, offset: 4 }}>
@@ -20,12 +20,10 @@ const LoginPage = () => {
             <div className="text-center mt-3">
               <Link to="/forgot-password" className="text-white">Forgot password?</Link>
             </div>
-            <div className="text-center text-secondary mt-2">
-              <EmailSupport />
-            </div>
           </Col>
         </Row>
       </Container>
+      <PublicFooter />
     </>
   );
 };

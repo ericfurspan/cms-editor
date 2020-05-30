@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Login, ForgotPassword, Dashboard, TermsOfService, PrivacyPolicy } from '../views';
+import { Login, ForgotPassword, Dashboard, TermsOfService, PrivacyPolicy } from '../../views';
 
 const AppRouter = ({ auth }) => (
   <Switch>

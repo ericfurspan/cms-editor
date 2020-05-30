@@ -7,7 +7,7 @@
   "env": {
     "browser": true,
     "jest": true,
-    "node": true,
+    "node": true
   },
   "globals": {
     "cy": "readonly",

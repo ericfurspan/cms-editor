@@ -1,20 +1,24 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import {
   ApolloClient, ApolloProvider, ApolloLink, HttpLink, InMemoryCache, concat,
 } from '@apollo/client';
-import history from './history';
-import AppRouter from './router';
-import Auth from './auth';
-import { AuthContext } from './context';
+import AppRouter from './utils/router';
+import { Auth, Context } from './utils/auth';
+import '../style/main.scss';
 
-class App {
+class Application {
   constructor() {
     this.client = null;
     this.auth = null;
+    this.history = null;
   }
 
-  initNetworkClient() {
+  bootstrap() {
+    this.history = createBrowserHistory();
+    this.auth = new Auth({ history: this.history });
+
     const httpLink = new HttpLink({ uri: process.env.GQL_SERVER, credentials: 'include' });
 
     // forward the authorization header
@@ -33,23 +37,19 @@ class App {
     });
   }
 
-  initAuth() {
-    this.auth = new Auth();
-  }
-
   entrypoint() {
     return (
-      <AuthContext.Provider value={this.auth}>
+      <Context.Provider value={this.auth}>
         <ApolloProvider client={this.client}>
           <React.Suspense fallback={null}>
-            <Router history={history}>
+            <Router history={this.history}>
               <AppRouter auth={this.auth} />
             </Router>
           </React.Suspense>
         </ApolloProvider>
-      </AuthContext.Provider>
+      </Context.Provider>
     );
   }
 }
 
-export default App;
+export default Application;

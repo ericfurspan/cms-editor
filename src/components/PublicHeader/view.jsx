@@ -1,16 +1,14 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Navbar, Container, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const styles = {
-  content: { cursor: 'pointer' },
-};
+const styles = { content: { cursor: 'pointer' } };
 
-const PublicBrandHeader = () => (
-  <Container className="mb-3" onClick={() => window.location.reload()}>
-    <Row>
+const PublicHeader = () => (
+  <Navbar>
+    <Container className="mt-2 mb-3" onClick={() => window.location.replace('/')}>
       <Col className="text-center">
-        <Row className="align-items-center justify-content-flex-start mt-2 ml-2">
+        <Row className="align-items-center justify-content-flex-start">
           <Col style={styles.content} lg={{ span: 3, offset: 0 }}>
             <Row className="align-items-baseline">
               <FontAwesomeIcon color="var(--warning)" size="2x" icon={[ 'fas', 'tools' ]} />
@@ -22,8 +20,8 @@ const PublicBrandHeader = () => (
           </Col>
         </Row>
       </Col>
-    </Row>
-  </Container>
+    </Container>
+  </Navbar>
 );
 
-export default PublicBrandHeader;
+export default PublicHeader;

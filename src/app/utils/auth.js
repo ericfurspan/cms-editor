@@ -1,15 +1,19 @@
-import history from './history';
+import { createContext } from 'react';
 
-export default class Auth {
+const Context = createContext({});
+export { Context };
+
+export class Auth {
   token;
 
   loading;
 
-  constructor() {
+  constructor({ history }) {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.setAuth = this.setAuth.bind(this);
     this.clearAuth = this.clearAuth.bind(this);
     this.setLoading = this.setLoading.bind(this);
+    this.redirect = history.push.bind(this);
   }
 
   isAuthenticated() {
@@ -20,7 +24,7 @@ export default class Auth {
     this.token = jwt;
     this.user = user;
     localStorage.setItem('isLoggedIn', 'true');
-    history.push('/');
+    this.redirect('/');
   }
 
   clearAuth() {

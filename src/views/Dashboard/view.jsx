@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { GET_BUSINESS } from '../../queries';
-import { PublicBrandHeader } from '../../components/design';
+import { PublicHeader } from '../../components';
 
 const DashboardPage = () => {
   const { data, loading, error } = useQuery(GET_BUSINESS, { variables: { businessId: 1 } });
@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
   return (
     <>
-      <PublicBrandHeader headerText={business.name} />
+      <PublicHeader headerText={business.name} />
       <Container>
         <Row>
           <Col md={{ span: 4, offset: 4 }}>

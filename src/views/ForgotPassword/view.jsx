@@ -5,24 +5,23 @@ import {
   Col,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { PublicBrandHeader, EmailSupport } from '../../components/design';
+import { PublicHeader, PublicFooter } from '../../components';
 import { ForgotPasswordForm } from './components';
 
 const ForgotPasswordPage = () => (
   <>
-    <PublicBrandHeader headerText="Reset Password" />
+    <PublicHeader />
     <Container>
       <Row>
         <Col md={{ span: 4, offset: 4 }}>
+          <h2 className="text-white mb-2">Change Password</h2>
           <ForgotPasswordForm />
           <div className="text-center text-secondary mt-3">
             <Link to="/login" className="text-white">Return to Log in</Link>
           </div>
-          <div className="text-center text-secondary mt-2">
-            <EmailSupport />
-          </div>
         </Col>
       </Row>
+      <PublicFooter />
     </Container>
   </>
 );
