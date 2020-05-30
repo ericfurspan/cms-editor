@@ -25,7 +25,7 @@ const COMMON_PLUGINS = [
   /** Copies static assets to the build folder on completion of a webpack build */
   new CopyWebpackPlugin({
     patterns: [
-      { from: 'static/img/', to: 'img/', toType: 'dir', globOptions: { ignore: [ '*.DS_Store' ] } },
+      { from: 'static/**/*', globOptions: { ignore: [ '*.DS_Store', 'index.ejs' ] } },
     ],
   }),
   /**
