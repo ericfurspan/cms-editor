@@ -12,7 +12,7 @@ const TermsOfService = () => (
       <h1 className="mb-2 text-primary">Terms of Service</h1>
       <h2>Terms</h2>
       <p>
-        By accessing the website at
+        By accessing the website at&nbsp;
         <a href="https://cmseditor.netlify.app">https://cmseditor.netlify.app</a>
         , you are agreeing to be bound by these terms of service, all applicable laws and regulations,
         and agree that you are responsible for compliance with any applicable local laws. If you do not

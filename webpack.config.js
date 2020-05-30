@@ -65,6 +65,7 @@ const PROD_PLUGINS = [
   new GenerateSW({
     clientsClaim: true,
     skipWaiting: true,
+    exclude: [/_redirects/]
   }),
 ];
 
