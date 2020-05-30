@@ -6,7 +6,7 @@
     "build:dev": "webpack --mode=development --config ./webpack.config.js --debug",
     "start:dev": "webpack-dev-server --config ./webpack.config.js --mode=development --inline --progress",
     "run:dev": "yarn build:dev && yarn start:dev",
-    "build:prod": "NODE_ENV=production webpack --mode production --progress --colors -p --config ./webpack.config.js --display-entrypoints && cp ./express.js ./build/",
+    "build:prod": "NODE_ENV=production webpack --mode production --progress --colors -p --config webpack.config.js && cp express.js build/",
     "start:prod": "node --require 'dotenv/config' build/express.js",
     "execute:prod": "yarn build:prod && yarn start:prod",
     "test": "jest",
