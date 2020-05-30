@@ -26,7 +26,7 @@ const COMMON_PLUGINS = [
   new CopyWebpackPlugin({
     patterns: [
       { from: 'static/**/*', globOptions: { ignore: [ '*.DS_Store', 'index.ejs' ] } },
-      { from: '_redirects' },
+      { from: '_redirects', to: '_redirects', toType: 'file' },
     ],
   }),
   /**
