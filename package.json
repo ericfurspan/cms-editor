@@ -8,7 +8,7 @@
     "run:dev": "yarn build:dev && yarn start:dev",
     "build:prod": "NODE_ENV=production webpack --mode production --progress --colors -p --config webpack.config.js && cp express.js build/",
     "start:prod": "node --require 'dotenv/config' build/express.js",
-    "execute:prod": "yarn build:prod && yarn start:prod",
+    "run:prod": "yarn build:prod && yarn start:prod",
     "test": "jest",
     "lint": "eslint --ext .jsx --ext .js ./src"
   },
