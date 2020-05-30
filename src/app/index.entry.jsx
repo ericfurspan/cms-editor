@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { registerServiceWorker } from './sw';
-import App from './app.jsx';
+import Application from './application.jsx';
 import '../style/main.scss';
 
 /* add fontawesome libraries */
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 /* initialize the app and render to the DOM */
-const app = new App();
+const app = new Application();
 app.initAuth();
 app.initNetworkClient();
 ReactDOM.render(app.entrypoint(), document.getElementById('root'));
