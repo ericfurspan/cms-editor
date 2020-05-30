@@ -48,7 +48,7 @@ const COMMON_PLUGINS = [
    * A secure webpack plugin that supports dotenv and other
    *  environment variables and only exposes what you choose and use
    */
-  new Dotenv({ defaults: !inProduction }),
+  new Dotenv({ systemvars: true }),
 
   /** https://webpack.js.org/plugins/mini-css-extract-plugin/ */
   new MiniCssExtractPlugin({ filename: inProduction ? 'css/[name].[chunkhash:8].css' : 'css/[name].css' }),
