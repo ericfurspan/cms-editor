@@ -79,7 +79,7 @@ module.exports = () => ({
      * Entry defines the entrypoint for each of our applications, in this case
      * we have a single application - app - and we reference it here.
      */
-  entry: 'app/index.entry.jsx',
+  entry: 'main/index.entry.jsx',
 
   /**
      * Plugins are defined above. Here we merge common plugins
