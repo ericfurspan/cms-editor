@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Context as AuthContext } from '../../../../app/utils/auth';
+import React, { useState } from 'react';
+import { Button, Form, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const LoginForm = ({ submitLogin }) => {
-  const auth = useContext(AuthContext);
-
-  const [ formError, setFormError ] = useState(false);
-  const [ validated, setValidated ] = useState(false);
-  const [ formFields, setFormField ] = useState({ identifier: '', password: '', provider: 'local' });
+const LoginForm = ({ login }) => {
+  const [formError, setFormError] = useState(false);
+  const [validated, setValidated] = useState(false);
+  const [formFields, setFormField] = useState({
+    identifier: '',
+    password: '',
+    provider: 'local',
+  });
 
   /* Validates form and submits request */
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -19,30 +21,32 @@ const LoginForm = ({ submitLogin }) => {
     }
 
     try {
-      const { data } = await submitLogin({ variables: { loginPayload: formFields } });
+      await login({ variables: { loginPayload: formFields } });
       setFormError(false);
       setValidated(true);
-      const { jwt, user } = data.login;
-      auth.setAuth({ jwt, user });
     } catch (e) {
       setFormError(
-        `The username and password you entered did not match our records.
-        Please double-check and try again.`,
+        `${e.message}: The username and password you entered did not match our records.
+        Please double-check and try again.`
       );
     }
   };
 
   /* Update controlled field values */
-  const onChangeField = event => {
+  const onChangeField = (event) => {
     const { name, value } = event.target;
     setFormError(false);
     setFormField({ ...formFields, [name]: value });
   };
 
   return (
-    <Form onSubmit={handleSubmit} validated={validated}>
+    <Form
+      onSubmit={handleSubmit}
+      validated={validated}
+      className="text-secondary"
+    >
       <Form.Group controlId="identifier">
-        <Form.Label className="text-white-50">Username or Email</Form.Label>
+        <Form.Label>Username or Email</Form.Label>
         <Form.Control
           type="text"
           name="identifier"
@@ -53,7 +57,7 @@ const LoginForm = ({ submitLogin }) => {
         />
       </Form.Group>
       <Form.Group controlId="password">
-        <Form.Label className="text-white-50">Password</Form.Label>
+        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           name="password"
@@ -68,9 +72,16 @@ const LoginForm = ({ submitLogin }) => {
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Form.Group>
-        <Button variant="primary" type="submit" block>Log in</Button>
+      <Form.Group className="mt-2 m-1" as={Row}>
+        <Button variant="primary" type="submit" size="lg" block>
+          Login
+        </Button>
       </Form.Group>
+      <div className="text-center mt-2">
+        <Button variant="link" as={Link} to="/forgot-password">
+          Forgot password
+        </Button>
+      </div>
     </Form>
   );
 };

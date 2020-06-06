@@ -1,27 +1,37 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const styles = { nav: { fontSize: '0.875rem', margin: '0 1.5rem' } };
+const styles = {
+  footer: {
+    position: 'fixed',
+    bottom: 12,
+    left: 0,
+  },
+  copyright: { color: 'var(--white-50)' },
+  item: { fontSize: 12, padding: 0, marginLeft: '1rem' },
+};
 
 const PublicFooter = () => (
-  <Navbar fixed="bottom" bg="dark" style={styles.nav}>
-    <Nav>
-      <a href="mailto:admin@quanda.dev">
-        <FontAwesomeIcon size="xs" icon={[ 'fas', 'envelope' ]} />
-        <code>&nbsp;Need Help?</code>
-      </a>
-    </Nav>
-    <Nav className="ml-auto">
-      <Link to="privacy">
-        <code>Privacy Policy</code>
-      </Link>
-      <Link to="terms" className="ml-1">
-        <code>Terms of Service</code>
-      </Link>
-    </Nav>
-  </Navbar>
+  <Col lg={{ span: 6, offset: 3 }} style={styles.footer}>
+    <Row className="justify-content-center">
+      <span style={{ ...styles.item }}>© 2020 Eric Furspan</span>
+      <Button variant="link" as={Link} style={styles.item} to="/terms">
+        Terms of Service
+      </Button>
+      <Button variant="link" as={Link} style={styles.item} to="/privacy">
+        Privacy Policy
+      </Button>
+      <Button
+        variant="link"
+        as={Link}
+        style={styles.item}
+        to="mailto:admin@quanda.dev"
+      >
+        Support
+      </Button>
+    </Row>
+  </Col>
 );
 
 export default PublicFooter;

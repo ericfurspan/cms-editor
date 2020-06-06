@@ -1,29 +1,69 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Row, Col, Tab } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { GET_BUSINESS } from '../../queries';
-import { PublicHeader } from '../../components';
+import sortBy from 'lodash/sortBy';
+import { FETCH_BUSINESSES } from '../../graphql/business';
+import { AppHeader, LoadSpinner, ContentSearch } from '../../components';
+import { Navbar, Editor, Users, Home } from './components';
+
+const styles = { lightBorder: { borderRight: '1px solid var(--lighter)' } };
 
 const DashboardPage = () => {
-  const { data, loading, error } = useQuery(GET_BUSINESS, { variables: { businessId: 1 } });
+  const [activePaneKey, setActivePaneKey] = useState('editor');
+  const [availableContent, setAvailableContent] = useState([]);
+  const [activeContentData, setActiveContentData] = useState({});
 
-  if (loading) { return <p>Loading...</p>; }
-  if (error) { return <p>Error...</p>; }
+  const { loading } = useQuery(FETCH_BUSINESSES, {
+    onCompleted: (data) => {
+      const sorted = sortBy(data.businesses, 'name');
+      setAvailableContent(sorted);
+      setActiveContentData(sorted[0]);
+    },
+  });
 
-  const { business } = data;
+  if (loading) {
+    return <LoadSpinner />;
+  }
 
   return (
     <>
-      <PublicHeader headerText={business.name} />
-      <Container>
-        <Row>
-          <Col md={{ span: 4, offset: 4 }}>
-            <div className="text-center text-light mt-3">
-              Todo
-            </div>
+      <AppHeader />
+      <Col
+        md="2"
+        className="pt-1 pb-1 mr-0 bg-light"
+        style={styles.lightBorder}
+      >
+        <small className="text-muted">{activeContentData.__typename}</small>
+        <ContentSearch
+          availableContent={availableContent}
+          activeContent={activeContentData}
+          onSelectItem={(id) =>
+            setActiveContentData(availableContent.find((i) => i.id === id))
+          }
+        />
+      </Col>
+      <Tab.Container
+        id="dashboard-tabs-container"
+        activeKey={activePaneKey}
+        onSelect={setActivePaneKey}
+      >
+        <Row className="m-0" style={{ height: '100%' }}>
+          <Navbar style={styles.lightBorder} />
+          <Col md="8" className="pl-2">
+            <Tab.Content>
+              <Tab.Pane eventKey="home">
+                <Home />
+              </Tab.Pane>
+              <Tab.Pane eventKey="editor">
+                <Editor content={activeContentData} />
+              </Tab.Pane>
+              <Tab.Pane eventKey="users">
+                <Users />
+              </Tab.Pane>
+            </Tab.Content>
           </Col>
         </Row>
-      </Container>
+      </Tab.Container>
     </>
   );
 };

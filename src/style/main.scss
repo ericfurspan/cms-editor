@@ -1,5 +1,30 @@
-@import "custom";
+@import 'bootstrap';
 
-body {
-  background-color: #15212B;
+:root {
+  --blue: #1a92da;
+  --dark: #202429;
+  --gray: #6c757d;
+  --light: #f6f7f9;
+  --lighter: #ececec;
+  --white-50: #ffffff80;
+  --danger: #b00020;
+  --info: #63ffda;
+}
+
+body,
+#root {
+  height: 100%;
+}
+
+.dropleft .dropdown-toggle::before {
+  display: none;
+}
+
+.nav-link.active {
+  svg {
+    color: var(--blue);
+  }
+  span {
+    color: var(--dark);
+  }
 }
