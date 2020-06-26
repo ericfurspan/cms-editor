@@ -1,20 +1,14 @@
 import React from 'react';
-import { Row, Navbar, Button } from 'react-bootstrap';
-import { BusinessForm } from './Forms';
+import { BusinessForm } from '../../../../components';
+import { Container } from 'react-bootstrap';
 
-const Editor = ({ content }) => {
+const Editor = ({ content, onAfterUpdate }) => {
   return (
-    <>
-      <Navbar className="mb-2">
-        <Navbar.Brand className="mr-auto" as={Row}>
-          <h2>{content.name}</h2>
-        </Navbar.Brand>
-        <Button variant="success" type="submit">
-          Save
-        </Button>
-      </Navbar>
-      <BusinessForm business={content} />
-    </>
+    <Container>
+      {content.__typename === 'Business' && (
+        <BusinessForm business={content} onAfterUpdate={onAfterUpdate} />
+      )}
+    </Container>
   );
 };
 

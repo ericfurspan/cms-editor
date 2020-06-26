@@ -1,5 +1,6 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
-const Home = () => <h4>coming soon...</h4>;
+const Home = () => <Container>Coming soon...</Container>;
 
 export default Home;

@@ -1,5 +1,6 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
-const Users = () => <h4>coming soon...</h4>;
+const Users = () => <Container>Coming soon...</Container>;
 
 export default Users;
