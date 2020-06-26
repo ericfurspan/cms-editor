@@ -8,7 +8,7 @@ const ForgotPassword = () => (
     <PublicHeader />
     <Container className="mt-4">
       <Row className="m-1">
-        <Col md={{ span: 4, offset: 4 }}>
+        <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
           <h2 className="mb-2">Change Password</h2>
           <ForgotPasswordForm />
         </Col>

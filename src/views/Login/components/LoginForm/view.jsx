@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Row } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const LoginForm = ({ login }) => {
@@ -72,7 +72,7 @@ const LoginForm = ({ login }) => {
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Form.Group className="mt-2 m-1" as={Row}>
+      <Form.Group className="mt-2 m-1">
         <Button variant="primary" type="submit" size="lg" block>
           Login
         </Button>
