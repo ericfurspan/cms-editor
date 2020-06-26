@@ -8,7 +8,6 @@ import '../style/main.scss';
 library.add(fas);
 
 const app = new Application();
-app.bootstrap();
 ReactDOM.render(app.entrypoint(), document.getElementById('root'));
 
 if (process.env.NODE_ENV === 'production') {

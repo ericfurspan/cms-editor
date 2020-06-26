@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { IS_LOGGED_IN } from '../graphql/user';
+import { IS_LOGGED_IN, USER_ID } from '../graphql/user';
 
 const PrivacyPolicyRoute = React.lazy(() =>
   import(
@@ -49,6 +49,10 @@ const AppRouter = ({ handleLogout }) => {
     data: { isLoggedIn },
   } = useQuery(IS_LOGGED_IN);
 
+  const {
+    data: { uid },
+  } = useQuery(USER_ID);
+
   return (
     <Switch>
       <Route exact path="/terms" render={() => <TermsOfServiceRoute />} />
@@ -63,16 +67,10 @@ const AppRouter = ({ handleLogout }) => {
 
       <Route
         exact
-        path="/dashboard"
-        render={() =>
-          isLoggedIn ? <DashboardRoutes /> : <Redirect to="/login" />
-        }
-      />
-
-      <Route
-        exact
         path="/login"
-        render={() => (isLoggedIn ? <DashboardRoutes /> : <LoginRoutes />)}
+        render={() =>
+          isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <LoginRoutes />
+        }
       />
 
       <Route
@@ -86,7 +84,11 @@ const AppRouter = ({ handleLogout }) => {
 
       <Route
         render={() =>
-          isLoggedIn ? <Redirect to="/dashboard" /> : <Redirect to="/login" />
+          isLoggedIn && uid ? (
+            <DashboardRoutes uid={uid} />
+          ) : (
+            <Redirect to="/login" />
+          )
         }
       />
     </Switch>
