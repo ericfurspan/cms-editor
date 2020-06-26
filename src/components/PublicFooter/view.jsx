@@ -14,7 +14,7 @@ const styles = {
 
 const PublicFooter = () => (
   <Col lg={{ span: 6, offset: 3 }} style={styles.footer}>
-    <Row className="justify-content-center">
+    <Row className="justify-content-center align-items-center">
       <span style={{ ...styles.item }}>© 2020 Eric Furspan</span>
       <Button variant="link" as={Link} style={styles.item} to="/terms">
         Terms of Service

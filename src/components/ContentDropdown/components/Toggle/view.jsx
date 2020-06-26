@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Toggle = React.forwardRef(({ children, onClick }, ref) => (
   <Button
-    variant="outline"
+    variant="text"
+    as="span"
     ref={ref}
-    block
     type="button"
     onClick={(e) => onClick(e)}
   >
