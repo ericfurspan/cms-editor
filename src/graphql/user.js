@@ -16,6 +16,12 @@ export const READ_USER = gql`
   }
 `;
 
+export const USER_ID = gql`
+  query UserId {
+    uid @client(always: true)
+  }
+`;
+
 export const IS_LOGGED_IN = gql`
   query IsUserLoggedIn {
     isLoggedIn @client(always: true)

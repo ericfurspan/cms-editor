@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const FETCH_BUSINESSES = gql`
-  query FetchBusinesses {
-    businesses {
+  query FetchBusinesses($where: JSON!) {
+    businesses(where: $where) {
       id
       name
       caption
@@ -16,6 +16,18 @@ export const FETCH_BUSINESSES = gql`
         name
         url
         alternativeText
+      }
+    }
+  }
+`;
+
+export const UPDATE_BUSINESS = gql`
+  mutation UpdateBusiness($input: updateBusinessInput) {
+    updateBusiness(input: $input) {
+      business {
+        name
+        caption
+        mission_statement
       }
     }
   }
