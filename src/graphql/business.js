@@ -6,8 +6,10 @@ export const FETCH_BUSINESSES = gql`
       id
       name
       caption
-      contact_links
-      additional_links
+      business_email
+      social_media_links
+      payment_links
+      podcast_links
       business_hours
       mission_statement
       events
