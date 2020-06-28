@@ -16,7 +16,7 @@ const styles = {
 
 const LoadSpinner = () => (
   <div style={styles.container}>
-    <Spinner animation="border" style={styles.spinner} />
+    <Spinner animation="border" variant="primary" style={styles.spinner} />
   </div>
 );
 
