@@ -1,6 +1,7 @@
 import React from 'react';
-import { Col, Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Col, Nav, Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const styles = {
   wrapper: {
@@ -15,7 +16,7 @@ const styles = {
     height: '72px',
     borderBottom: '1px solid var(--gray)',
   },
-  navItem: { textAlign: 'center' },
+  centered: { textAlign: 'center' },
 };
 
 const navigationItems = [
@@ -52,7 +53,7 @@ const Navbar = ({ onSelectNavLink }) => (
           placement="right"
           overlay={<Tooltip>{navItem.tooltipText}</Tooltip>}
         >
-          <Nav.Item style={styles.navItem}>
+          <Nav.Item style={styles.centered}>
             <Nav.Link
               eventKey={navItem.eventKey}
               className={
@@ -65,6 +66,21 @@ const Navbar = ({ onSelectNavLink }) => (
           </Nav.Item>
         </OverlayTrigger>
       ))}
+      <Dropdown style={styles.centered} className="mt-8 pointer">
+        <Dropdown.Toggle id="user-dropdown" as="a">
+          <FontAwesomeIcon
+            icon={['fas', 'user-circle']}
+            size="2x"
+            color="var(--white-50)"
+          />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item as={Link} to="/logout">
+            Sign out
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </Nav>
   </Col>
 );

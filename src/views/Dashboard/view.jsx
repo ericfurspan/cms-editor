@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
-import { Row, Col, Tab, Container, Dropdown } from 'react-bootstrap';
+import { Row, Col, Tab, Container } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import sortBy from 'lodash/sortBy';
 import { FETCH_BUSINESSES } from '../../graphql/business';
 import { LoadSpinner, ContentDropdown } from '../../components';
 import { Navbar, Editor, Users, Home } from './components';
-import { Link } from 'react-router-dom';
-
-const styles = {
-  clickable: {
-    cursor: 'pointer',
-  },
-};
 
 const DashboardPage = ({ uid }) => {
   const [activePaneKey, setActivePaneKey] = useState('editor');
@@ -30,7 +22,7 @@ const DashboardPage = ({ uid }) => {
     },
   });
 
-  const afterUpdateContent = (updated) => {
+  const afterContentUpdate = (updated) => {
     const updatedContent = {
       ...activeContentData,
       ...updated,
@@ -52,37 +44,16 @@ const DashboardPage = ({ uid }) => {
         <Row noGutters>
           <Navbar onSelectNavLink={(key) => setActivePaneKey(key)} />
 
-          <Col className="bg-light">
-            <Row className="pt-1 pr-2 pb-2 pl-1 m-auto align-items-center justify-content-between">
-              {availableContent.length > 1 ? (
-                <ContentDropdown
-                  availableContent={availableContent}
-                  activeContent={activeContentData}
-                  onSelectItem={(id) => {
-                    const nextContent = availableContent.find(
-                      (i) => i.id === id
-                    );
-                    setActiveContentData(nextContent);
-                  }}
-                />
-              ) : (
-                <h4 className="text-start">{activeContentData.name}</h4>
-              )}
-              <Dropdown drop="down" style={styles.clickable}>
-                <Dropdown.Toggle id="user-dropdown" as="a">
-                  <FontAwesomeIcon
-                    icon={['fas', 'user-circle']}
-                    size="2x"
-                    color="var(--dark)"
-                  />
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/logout">
-                    Sign out
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
+          <Col className="bg-white">
+            <Row className="pt-1 pr-2 pb-0 pl-1 m-auto align-items-center justify-content-between">
+              <ContentDropdown
+                availableContent={availableContent}
+                activeContent={activeContentData}
+                onSelectItem={(id) => {
+                  const nextContent = availableContent.find((i) => i.id === id);
+                  setActiveContentData(nextContent);
+                }}
+              />
             </Row>
             <Tab.Content>
               <Tab.Pane eventKey="home">
@@ -91,7 +62,7 @@ const DashboardPage = ({ uid }) => {
               <Tab.Pane eventKey="editor">
                 <Editor
                   content={activeContentData}
-                  onAfterUpdate={afterUpdateContent}
+                  onUpdateComplete={afterContentUpdate}
                 />
               </Tab.Pane>
               <Tab.Pane eventKey="users">
