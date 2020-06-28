@@ -5,6 +5,7 @@
   --light-blue: #e8f0fe;
   --dark: #182F42;
   --gray: #6c757d;
+  --gray-lighter: #ced4da;
   --light: #f8f9fa;
   --lighter: #ececec;
   --white-50: #ffffff80;
@@ -29,6 +30,11 @@ h4 { font-size: 1.25rem; font-weight: 400; }
 h5 { font-size: 1rem; }
 h6 { font-size: 0.875rem; }
 
+label {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
 .dropdown .dropdown-toggle::after {
   display: none;
 }
@@ -37,4 +43,8 @@ h6 { font-size: 0.875rem; }
   svg {
     color: var(--info);
   }
+}
+
+.pointer {
+  cursor: pointer;
 }
