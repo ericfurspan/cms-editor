@@ -20,29 +20,35 @@ const ContentDropdown = ({
   onSelectItem,
 }) => (
   <Dropdown drop="down" style={styles.dropdown}>
-    <Dropdown.Toggle as={Toggle} id="content-search">
-      {activeContent.name}
+    <Dropdown.Toggle
+      id="content-dropdown-toggle"
+      as={Toggle}
+      hasMultipleContent={availableContent.length > 1}
+    >
+      <span>{activeContent.name}</span>
     </Dropdown.Toggle>
-    <Dropdown.Menu as={Menu}>
-      {availableContent.map((content) => (
-        <Dropdown.Item
-          key={content.id}
-          eventKey={content.id}
-          onSelect={onSelectItem}
-          active={activeContent.id === content.id}
-          name={content.name}
-        >
-          <div className="font-weight-bold" style={styles.dropdownItem}>
-            {content.name}
-            <span>
-              <Badge pill variant="dark" style={styles.dropdownBadge}>
-                {content.__typename}
-              </Badge>
-            </span>
-          </div>
-        </Dropdown.Item>
-      ))}
-    </Dropdown.Menu>
+    {availableContent.length > 1 && (
+      <Dropdown.Menu as={Menu}>
+        {availableContent.map((content) => (
+          <Dropdown.Item
+            key={content.id}
+            eventKey={content.id}
+            onSelect={onSelectItem}
+            active={activeContent.id === content.id}
+            name={content.name}
+          >
+            <div className="font-weight-bold" style={styles.dropdownItem}>
+              {content.name}
+              <span>
+                <Badge pill variant="dark" style={styles.dropdownBadge}>
+                  {content.__typename}
+                </Badge>
+              </span>
+            </div>
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    )}
   </Dropdown>
 );
 
