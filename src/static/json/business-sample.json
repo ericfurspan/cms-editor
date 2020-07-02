@@ -1,0 +1,54 @@
+{
+  "name": "Company Name",
+  "business_email": "hello@email.com",
+  "caption": "A short caption or tagline",
+  "mission_statement": "A company mission statement",
+  "business_hours": {
+    "Monday": "9:00-5:00",
+    "Tuesday": "9:00-5:00",
+    "Wednesday": "9:00-5:00",
+    "Thursday": "9:00-5:00",
+    "Friday": "9:00-5:00",
+    "Saturday": "9:00-5:00",
+    "Sunday": "9:00-5:00"
+  },
+  "social_media_links": {
+    "twitter": "https://link-to-twitter.com",
+    "youtube": "https://link-to-youtube.com",
+    "facebook": "https://link-to-facebook.com",
+    "instagram": "https://link-to-instagram.com"
+  },
+  "podcast_links": {
+    "apple": "https://link-to-apple-podcast.com",
+    "spotify": "https://link-to-spotify-podcast.com",
+    "anchorFm": "https://link-to-anchorfm-podcast.com"
+  },
+  "payment_links": {
+    "paypal": "https://link-to-paypal.com",
+    "gofundme": "https://link-to-gofundme.com"
+  },
+  "events": [
+    {
+      "date": "01/01/2020",
+      "name": "Event 1",
+      "description": "A description of Event 1"
+    },
+    {
+      "date": "05/05/2020",
+      "name": "Event 2",
+      "description": "A description of Event 2"
+    }
+  ],
+  "news": [
+    {
+      "title": "News article 1",
+      "source": "The source of news article 1",
+      "url": "https://link-to-article-1.com"
+    },
+    {
+      "title": "News article 2",
+      "source": "The source of news article 2",
+      "url": "https://link-to-article-2.com"
+    }
+  ]
+}
