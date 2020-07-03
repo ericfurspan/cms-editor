@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useMediaQuery } from 'beautiful-react-hooks';
-import BREAKPOINTS from '../../../../utils/breakpoints';
 import { navigationItems } from './config';
+import { animationVariants } from './animation';
 import {
-  animationVariants,
-  useAnimatedSidebar,
-  useAnimatedHamburger,
-} from './animation';
-import {
-  AnimatedStyledMenuBtn,
-  AnimatedStyledSidebar,
+  StyledMenuBtn,
+  StyledSidebar,
   StyledLogo,
   StyledNav,
   StyledNavItem,
@@ -22,8 +16,6 @@ import {
 
 const Navbar = ({ onSelectNavLink, activeKey }) => {
   const [isExpanded, setExpanded] = useState(false);
-  const isSmall = useMediaQuery(`(max-width: ${BREAKPOINTS.SMALL}`);
-  const isMedium = useMediaQuery(`(min-width: ${BREAKPOINTS.MEDIUM}`);
 
   const selectHandler = (key, e) => {
     setExpanded(false);
@@ -32,24 +24,15 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
 
   return (
     <>
-      <AnimatedStyledMenuBtn
-        forwardedAs={motion.div}
-        variants={animationVariants.hamburger}
-        animate={useAnimatedHamburger(isExpanded, isSmall)}
+      <StyledMenuBtn
         onClick={() => setExpanded(!isExpanded)}
-        initial={false}
         variant="transparent"
+        $isExpanded={isExpanded}
       >
         <FontAwesomeIcon icon={['fas', 'bars']} />
-      </AnimatedStyledMenuBtn>
+      </StyledMenuBtn>
 
-      <AnimatedStyledSidebar
-        forwardedAs={motion.div}
-        variants={animationVariants.sidebar}
-        animate={useAnimatedSidebar(isExpanded, isMedium, isSmall)}
-        initial={false}
-        transition={{ type: 'tween' }}
-      >
+      <StyledSidebar $isExpanded={isExpanded}>
         <StyledLogo>
           <FontAwesomeIcon icon={['fas', 'tools']} />
         </StyledLogo>
@@ -77,18 +60,16 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
               </StyledNavLink>
             </StyledNavItem>
           ))}
-          {!isSmall && (
-            <StyledExpander
-              $isExpanded={isExpanded}
-              onClick={() => setExpanded(!isExpanded)}
-            >
-              <FontAwesomeIcon
-                icon={['fas', isExpanded ? 'chevron-left' : 'chevron-right']}
-              />
-            </StyledExpander>
-          )}
+          <StyledExpander
+            $isExpanded={isExpanded}
+            onClick={() => setExpanded(!isExpanded)}
+          >
+            <FontAwesomeIcon
+              icon={['fas', isExpanded ? 'chevron-left' : 'chevron-right']}
+            />
+          </StyledExpander>
         </StyledNav>
-      </AnimatedStyledSidebar>
+      </StyledSidebar>
     </>
   );
 };

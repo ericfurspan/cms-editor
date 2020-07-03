@@ -1,16 +1,84 @@
 import styled from 'styled-components';
 import { Col, Nav, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'framer-motion';
+import BREAKPOINTS from '../../../../utils/breakpoints';
 
-export const AnimatedStyledSidebar = motion.custom(styled(Col)`
+export const StyledSidebar = styled(Col)`
   background-color: var(--dark);
-  max-width: 68px;
   color: var(--white-50);
   z-index: 1;
   height: 100%;
-  font-size: 1rem;
-`);
+
+  ${(props) =>
+    props.$isExpanded
+      ? `
+      left: 0px;
+      max-width: 208px;
+      text-align: start;
+      position: relative;
+
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+      left: 0px;
+      max-width: 208px;
+      text-align: start;
+      position: absolute;
+    }
+    @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+      left: 0px;
+      max-width: 208px;
+      text-align: start;
+      position: absolute;
+    }
+  `
+      : `
+      left: 0px;
+      max-width: 68px;
+      text-align: center;
+      position: relative;
+
+      @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+        left: 0px;
+        max-width: 68px;
+        text-align: center;
+        position: relative;
+      }
+
+      @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+        left: -208px;
+        position: absolute;
+      }
+  `}
+`;
+
+export const StyledMenuBtn = styled(Button)`
+  position: absolute;
+  left: 6px;
+  top: 12px;
+  width: auto;
+  height: auto;
+  display: none;
+  z-index: 1;
+  color: var(--gray);
+
+  & svg {
+    font-size: 21px;
+    vertical-align: middle;
+  }
+
+  ${(props) =>
+    props.$isExpanded
+      ? `
+      @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+        display: block;
+        left: 208px;
+      }
+    `
+      : `
+      @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+        display: block;
+      }
+  `}
+`;
 
 export const StyledLogo = styled.div`
   display: flex;
@@ -65,21 +133,4 @@ export const StyledExpander = styled.div`
     text-align: right;
     padding-right: 2rem;
   `}
-
-  & svg {
-    font-size: 18px;
-  }
 `;
-
-export const AnimatedStyledMenuBtn = motion.custom(styled(Button)`
-  position: absolute;
-  height: fit-content;
-  z-index: 1;
-  color: var(--gray);
-  margin-top: 12px;
-
-  & svg {
-    font-size: 21px;
-    vertical-align: middle;
-  }
-`);

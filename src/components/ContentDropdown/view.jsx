@@ -1,43 +1,58 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { useMediaQuery } from 'beautiful-react-hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import BREAKPOINTS from '../../utils/breakpoints';
 import { Toggle } from './components';
+import {
+  StyledMobileToggle,
+  StyledDefaultToggle,
+  StyledDropdownItem,
+} from './style';
 
 const ContentDropdown = ({
   activeContent,
   availableContent = [],
   onSelectItem,
 }) => {
-  const isSmall = useMediaQuery(`(max-width: ${BREAKPOINTS.SMALL}`);
+  const hasMultipleItems = availableContent.length > 1;
 
   return (
     <Dropdown drop="down">
       <Dropdown.Toggle
         id="content-dropdown-toggle"
         as={Toggle}
-        hasMultipleContent={availableContent.length > 1}
-        isSmall={isSmall}
+        hasMultipleItems={hasMultipleItems}
       >
-        {isSmall ? (
-          <FontAwesomeIcon icon={['fas', 'ellipsis-v']} size="lg" />
-        ) : (
+        <StyledDefaultToggle>
           <span>{activeContent.name}</span>
-        )}
+          {hasMultipleItems && (
+            <FontAwesomeIcon
+              size="1x"
+              icon={['fas', 'angle-down']}
+              className="ml-1"
+            />
+          )}
+        </StyledDefaultToggle>
+        <StyledMobileToggle>
+          {!hasMultipleItems ? (
+            <span>{activeContent.name}</span>
+          ) : (
+            <FontAwesomeIcon icon={['fas', 'ellipsis-v']} size="lg" />
+          )}
+        </StyledMobileToggle>
       </Dropdown.Toggle>
-      {availableContent.length > 1 && (
+
+      {hasMultipleItems && (
         <Dropdown.Menu>
           {availableContent.map((content) => (
-            <Dropdown.Item
+            <StyledDropdownItem
               key={content.id}
               eventKey={content.id}
               onSelect={onSelectItem}
               active={activeContent.id === content.id}
               name={content.name}
             >
-              <div style={{ padding: '0.5em 0' }}>{content.name}</div>
-            </Dropdown.Item>
+              {content.name}
+            </StyledDropdownItem>
           ))}
         </Dropdown.Menu>
       )}

@@ -47,7 +47,7 @@ const DashboardPage = ({ uid }) => {
   }
 
   return (
-    <Container fluid className="p-0">
+    <Container fluid className="p-0 h-100">
       <Tab.Container id="dashboard-tabs-container" activeKey={activePaneKey}>
         <StyledContainerRow noGutters>
           <Navbar

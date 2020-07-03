@@ -19,16 +19,13 @@
 
 html {
   font-size: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 600px) {
   html {
     font-size: 14px;
   }
-}
-
-@-ms-viewport {
-  width: device-width;
 }
 
 body,
@@ -95,7 +92,8 @@ button.close {
   }
 }
 
-.form-control, .react-json-view {
+input, .form-control, .react-json-view {
   border: 1px solid var(--gray-lightest) !important;
   background-color: var(--white) !important;
+  font-size: 16px !important;
 }

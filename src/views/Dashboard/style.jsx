@@ -3,18 +3,19 @@ import { Row, Tab, Col } from 'react-bootstrap';
 import BREAKPOINTS from '../../utils/breakpoints';
 
 export const StyledContainerRow = styled(Row)`
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 `;
 
 export const StyledContainerColumn = styled(Col)`
   background-color: var(--light);
-  height: 100vh;
+  height: 100%;
 `;
 
 export const StyledHeaderRow = styled(Row)`
-  margin: 0 1rem;
+  width: 100%;
   height: 56px;
+  margin: 0;
   border-bottom: 1px solid var(--gray-lighter);
   align-items: center;
   justify-content: space-between;

@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 
 export const StyledToggleButton = styled(Button)`
-  ${(props) => !props.$hasMultiple && 'cursor: default !important'};
   color: var(--gray-dark);
-  margin-right: 0.5rem;
+  margin: 0 0.5rem;
+
+  ${(props) => !props.$hasMultipleItems && 'cursor: default !important'};
+
+  & svg {
+    vertical-align: sub;
+  }
 `;
