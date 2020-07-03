@@ -72,6 +72,7 @@ export const StyledExpander = styled.div`
 `;
 
 export const AnimatedStyledMenuBtn = motion.custom(styled(Button)`
+  position: absolute;
   height: fit-content;
   z-index: 1;
   color: var(--gray);

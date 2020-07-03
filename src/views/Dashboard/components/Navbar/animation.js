@@ -38,17 +38,14 @@ export const animationVariants = {
   },
   hamburger: {
     visibleCollapsed: {
-      position: 'relative',
       display: 'block',
       left: 12,
     },
     visibleExpanded: {
       display: 'block',
-      position: 'absolute',
-      left: 216,
+      left: 208,
     },
     hidden: {
-      position: 'static',
       left: 0,
       display: 'none',
     },

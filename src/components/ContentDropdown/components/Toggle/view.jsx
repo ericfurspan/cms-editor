@@ -3,17 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledToggleButton } from './style';
 
 const Toggle = React.forwardRef(
-  ({ children, onClick, hasMultipleContent }, ref) => (
+  ({ children, onClick, hasMultipleContent, isSmall }, ref) => (
     <StyledToggleButton
-      variant="text"
+      variant="transparent"
       as="span"
       ref={ref}
-      type="button"
       $hasMultiple={hasMultipleContent}
       onClick={(e) => onClick(e)}
     >
       {children}
-      {hasMultipleContent && (
+      {hasMultipleContent && !isSmall && (
         <FontAwesomeIcon
           size="1x"
           icon={['fas', 'angle-down']}
