@@ -15,7 +15,7 @@ const Menu = React.forwardRef(
         <FormControl
           autoFocus
           className="mx-2 my-1 w-auto"
-          placeholder="Filter Collections..."
+          placeholder="Filter content..."
           onChange={(e) => setValue(e.target.value)}
           value={value}
         />

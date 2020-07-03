@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
-import { Row, Col, Tab, Container } from 'react-bootstrap';
+import { Tab, Container, Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import sortBy from 'lodash/sortBy';
 import { FETCH_BUSINESSES } from '../../graphql/business';
 import { LoadSpinner, ContentDropdown } from '../../components';
 import { Navbar, Editor, Users, Home } from './components';
+import {
+  StyledContainerRow,
+  StyledContainerColumn,
+  StyledHeaderRow,
+  StyledTabContent,
+} from './style';
 
 const DashboardPage = ({ uid }) => {
   const [activePaneKey, setActivePaneKey] = useState('editor');
@@ -12,7 +20,7 @@ const DashboardPage = ({ uid }) => {
   const [activeContentData, setActiveContentData] = useState({});
 
   // fetch all businesses associated with the current user.
-  // onComplete: set sorted businesses to state
+  // when complete, update state with sorted businesses.
   const { loading: businessesAreLoading } = useQuery(FETCH_BUSINESSES, {
     variables: { where: { users: { id: uid } } },
     onCompleted: ({ businesses }) => {
@@ -41,11 +49,14 @@ const DashboardPage = ({ uid }) => {
   return (
     <Container fluid className="p-0">
       <Tab.Container id="dashboard-tabs-container" activeKey={activePaneKey}>
-        <Row noGutters>
-          <Navbar onSelectNavLink={(key) => setActivePaneKey(key)} />
+        <StyledContainerRow noGutters>
+          <Navbar
+            onSelectNavLink={(key) => setActivePaneKey(key)}
+            activeKey={activePaneKey}
+          />
 
-          <Col className="bg-white">
-            <Row className="pt-1 pr-2 pb-0 pl-1 m-auto align-items-center justify-content-between">
+          <StyledContainerColumn>
+            <StyledHeaderRow>
               <ContentDropdown
                 availableContent={availableContent}
                 activeContent={activeContentData}
@@ -54,8 +65,22 @@ const DashboardPage = ({ uid }) => {
                   setActiveContentData(nextContent);
                 }}
               />
-            </Row>
-            <Tab.Content>
+              <Dropdown drop="down">
+                <Dropdown.Toggle id="profile-toggle" variant="transparent">
+                  <FontAwesomeIcon
+                    icon={['fas', 'user-circle']}
+                    size="2x"
+                    color="var(--gray-dark)"
+                  />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as={Link} to="/logout" id="drop-item-signout">
+                    Sign out
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </StyledHeaderRow>
+            <StyledTabContent>
               <Tab.Pane eventKey="home">
                 <Home />
               </Tab.Pane>
@@ -68,9 +93,9 @@ const DashboardPage = ({ uid }) => {
               <Tab.Pane eventKey="users">
                 <Users />
               </Tab.Pane>
-            </Tab.Content>
-          </Col>
-        </Row>
+            </StyledTabContent>
+          </StyledContainerColumn>
+        </StyledContainerRow>
       </Tab.Container>
     </Container>
   );

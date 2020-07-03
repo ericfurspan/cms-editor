@@ -7,7 +7,7 @@ const handleSubmit = (event) => {
 };
 
 const ForgotPasswordForm = () => (
-  <Form onSubmit={handleSubmit} className="text-secondary">
+  <Form onSubmit={handleSubmit} className="text-muted">
     <Form.Group controlId="formUsername">
       <Form.Label>Email Address</Form.Label>
       <Form.Control type="text" placeholder="email@example.com" />

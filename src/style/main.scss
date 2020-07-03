@@ -1,50 +1,97 @@
 @import 'bootstrap';
 
 :root {
-  --blue: #1a73e8;
-  --light-blue: #e8f0fe;
-  --dark: #182F42;
+  --blue: #1a91db;
+  --blue-darker: #2a4865;
+  --blue-lighter: #e8f0fe;
+  --dark: #10283E;
+  --darkest: #111e29;
   --gray: #6c757d;
-  --gray-lighter: #ced4da;
+  --gray-dark: #606060;
+  --gray-lighter: #ececec;
+  --gray-lightest: #ced4da;
+  --white: #ffffff;
   --light: #f8f9fa;
-  --lighter: #ececec;
   --white-50: #ffffff80;
   --danger: #b00020;
   --info: #64b5f6;
-  --special: #63ffda;
 }
 
-html { font-size: 100%; }
-@media screen and (max-width: 768px) { html { font-size: 15px; }}
-@media screen and (max-width: 600px) { html { font-size: 13px; }}
+html {
+  font-size: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
 
 body,
 #root {
   height: 100%;
+  background-color: var(--light);
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; font-weight: 400; }
-h5 { font-size: 1rem; }
-h6 { font-size: 0.875rem; }
-
-label {
-  font-weight: 500;
+h1, h2, h3, h4, h5, h6 {
+  color: var(--darkest);
+}
+h1 {
+  font-size: 2.75rem;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
   font-size: 0.875rem;
 }
-
-.dropdown .dropdown-toggle::after {
-  display: none;
+pre {
+  font-size: 0.75rem;
+}
+label {
+  font-size: 0.875rem;
+  font-weight: 300;
 }
 
-.nav-link.active {
-  svg {
-    color: var(--info);
+.dropdown,
+.dropup,
+.dropright {
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .dropdown-item.active, .dropdown-item:active {
+    color: var(--blue);
+    background-color: initial;
   }
 }
 
-.pointer {
-  cursor: pointer;
+.popover {
+  min-width: max-content;
+}
+
+button.close {
+  color: var(--white);
+  opacity: 1;
+  text-shadow: none;
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.form-control, .react-json-view {
+  border: 1px solid var(--gray-lightest) !important;
+  background-color: var(--white) !important;
 }

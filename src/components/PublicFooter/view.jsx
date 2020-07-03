@@ -1,37 +1,23 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-const styles = {
-  footer: {
-    position: 'fixed',
-    bottom: 8,
-    left: 0,
-  },
-  copyright: { color: 'var(--white-50)' },
-  item: { fontSize: '0.875rem', padding: 0, marginLeft: '0.75rem' },
-};
+import { FooterColumn, StyledFooterBtn } from './style';
 
 const PublicFooter = () => (
-  <Col lg={{ span: 6, offset: 3 }} style={styles.footer}>
+  <FooterColumn lg={{ span: 6, offset: 3 }}>
     <Row className="justify-content-center align-items-center m-0">
       <span>© 2020 Eric Furspan</span>
-      <Button variant="link" as={Link} style={styles.item} to="/terms">
+      <StyledFooterBtn variant="link" as={Link} to="/terms">
         Terms of Service
-      </Button>
-      <Button variant="link" as={Link} style={styles.item} to="/privacy">
+      </StyledFooterBtn>
+      <StyledFooterBtn variant="link" as={Link} to="/privacy">
         Privacy Policy
-      </Button>
-      <Button
-        variant="link"
-        as={Link}
-        style={styles.item}
-        to="mailto:admin@quanda.dev"
-      >
+      </StyledFooterBtn>
+      <StyledFooterBtn variant="link" as={Link} to="mailto:admin@quanda.dev">
         Support
-      </Button>
+      </StyledFooterBtn>
     </Row>
-  </Col>
+  </FooterColumn>
 );
 
 export default PublicFooter;

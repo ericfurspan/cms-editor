@@ -4,4 +4,3 @@ export { BrandLogo } from './BrandLogo';
 export { LoadSpinner } from './LoadSpinner';
 export { ContentDropdown } from './ContentDropdown';
 export { Notification } from './Notification';
-export * from './Forms';

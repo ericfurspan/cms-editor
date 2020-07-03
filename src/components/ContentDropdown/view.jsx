@@ -1,25 +1,13 @@
 import React from 'react';
-import { Dropdown, Badge } from 'react-bootstrap';
-import { Toggle, Menu } from './components';
-
-const styles = {
-  dropdown: { textAlign: 'start' },
-  dropdownItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '64px',
-    padding: '12px 0',
-    justifyContent: 'space-between',
-  },
-  dropdownBadge: { width: 'max-content' },
-};
+import { Dropdown } from 'react-bootstrap';
+import { Toggle } from './components';
 
 const ContentDropdown = ({
   activeContent,
   availableContent = [],
   onSelectItem,
 }) => (
-  <Dropdown drop="down" style={styles.dropdown}>
+  <Dropdown drop="down">
     <Dropdown.Toggle
       id="content-dropdown-toggle"
       as={Toggle}
@@ -28,7 +16,7 @@ const ContentDropdown = ({
       <span>{activeContent.name}</span>
     </Dropdown.Toggle>
     {availableContent.length > 1 && (
-      <Dropdown.Menu as={Menu}>
+      <Dropdown.Menu>
         {availableContent.map((content) => (
           <Dropdown.Item
             key={content.id}
@@ -37,14 +25,7 @@ const ContentDropdown = ({
             active={activeContent.id === content.id}
             name={content.name}
           >
-            <div className="font-weight-bold" style={styles.dropdownItem}>
-              {content.name}
-              <span>
-                <Badge pill variant="dark" style={styles.dropdownBadge}>
-                  {content.__typename}
-                </Badge>
-              </span>
-            </div>
+            <div style={{ padding: '0.5em 0' }}>{content.name}</div>
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>

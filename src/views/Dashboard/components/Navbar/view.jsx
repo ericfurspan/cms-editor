@@ -1,88 +1,96 @@
-import React from 'react';
-import { Col, Nav, Dropdown, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { useMediaQuery } from 'beautiful-react-hooks';
+import BREAKPOINTS from '../../../../utils/breakpoints';
+import { navigationItems } from './config';
+import {
+  animationVariants,
+  useAnimatedSidebar,
+  useAnimatedHamburger,
+} from './animation';
+import {
+  AnimatedStyledMenuBtn,
+  AnimatedStyledSidebar,
+  StyledLogo,
+  StyledNav,
+  StyledNavItem,
+  StyledNavLink,
+  StyledNavIcon,
+  StyledExpander,
+} from './style';
 
-const styles = {
-  wrapper: {
-    borderRight: '1px solid var(--lighter)',
-    backgroundColor: 'var(--dark)',
-    minHeight: '100vh',
-  },
-  logo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '72px',
-    borderBottom: '1px solid var(--gray)',
-  },
-  centered: { textAlign: 'center' },
-};
+const Navbar = ({ onSelectNavLink, activeKey }) => {
+  const [isExpanded, setExpanded] = useState(false);
+  const isSmall = useMediaQuery(`(max-width: ${BREAKPOINTS.SMALL}`);
+  const isMedium = useMediaQuery(`(min-width: ${BREAKPOINTS.MEDIUM}`);
 
-const navigationItems = [
-  {
-    eventKey: 'home',
-    faIconName: 'home',
-    tooltipText: 'Home',
-  },
-  {
-    eventKey: 'editor',
-    faIconName: 'pencil-alt',
-    tooltipText: 'Editor',
-  },
-  {
-    eventKey: 'users',
-    faIconName: 'users',
-    tooltipText: 'Users',
-  },
-];
+  const selectHandler = (key, e) => {
+    setExpanded(false);
+    onSelectNavLink(key, e);
+  };
 
-const Navbar = ({ onSelectNavLink }) => (
-  <Col xs="2" lg="1" style={styles.wrapper}>
-    <div style={styles.logo}>
-      <FontAwesomeIcon
-        color="var(--warning)"
-        icon={['fas', 'tools']}
-        size="lg"
-      />
-    </div>
-    <Nav className="flex-column">
-      {navigationItems.map((navItem, i) => (
-        <OverlayTrigger
-          key={navItem.eventKey}
-          placement="right"
-          overlay={<Tooltip>{navItem.tooltipText}</Tooltip>}
-        >
-          <Nav.Item style={styles.centered}>
-            <Nav.Link
-              eventKey={navItem.eventKey}
-              className={
-                i === 0 ? 'mt-2 mb-2 text-white-50' : 'mb-2 text-white-50'
-              }
-              onSelect={onSelectNavLink}
+  return (
+    <>
+      <AnimatedStyledMenuBtn
+        forwardedAs={motion.div}
+        variants={animationVariants.hamburger}
+        animate={useAnimatedHamburger(isExpanded, isSmall)}
+        onClick={() => setExpanded(!isExpanded)}
+        initial={false}
+        variant="transparent"
+      >
+        <FontAwesomeIcon icon={['fas', 'bars']} />
+      </AnimatedStyledMenuBtn>
+
+      <AnimatedStyledSidebar
+        forwardedAs={motion.div}
+        variants={animationVariants.sidebar}
+        animate={useAnimatedSidebar(isExpanded, isMedium, isSmall)}
+        initial={false}
+        transition={{ type: 'tween' }}
+      >
+        <StyledLogo>
+          <FontAwesomeIcon icon={['fas', 'tools']} />
+        </StyledLogo>
+
+        <StyledNav role="navigation">
+          {navigationItems.map((navItem) => (
+            <StyledNavItem key={navItem.eventKey}>
+              <StyledNavLink
+                eventKey={navItem.eventKey}
+                onSelect={selectHandler}
+                $isExpanded={isExpanded}
+                $isActiveLink={activeKey === navItem.eventKey}
+              >
+                <StyledNavIcon
+                  icon={['fas', navItem.faIconName]}
+                  $isExpanded={isExpanded}
+                  fixedWidth
+                />
+                <motion.span
+                  variants={animationVariants.sidebarItem}
+                  animate={isExpanded ? 'expanded' : 'collapsed'}
+                >
+                  {navItem.text}
+                </motion.span>
+              </StyledNavLink>
+            </StyledNavItem>
+          ))}
+          {!isSmall && (
+            <StyledExpander
+              $isExpanded={isExpanded}
+              onClick={() => setExpanded(!isExpanded)}
             >
-              <FontAwesomeIcon icon={['fas', navItem.faIconName]} size="lg" />
-            </Nav.Link>
-          </Nav.Item>
-        </OverlayTrigger>
-      ))}
-      <Dropdown style={styles.centered} className="mt-8 pointer">
-        <Dropdown.Toggle id="user-dropdown" as="a">
-          <FontAwesomeIcon
-            icon={['fas', 'user-circle']}
-            size="2x"
-            color="var(--white-50)"
-          />
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item as={Link} to="/logout">
-            Sign out
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </Nav>
-  </Col>
-);
+              <FontAwesomeIcon
+                icon={['fas', isExpanded ? 'chevron-left' : 'chevron-right']}
+              />
+            </StyledExpander>
+          )}
+        </StyledNav>
+      </AnimatedStyledSidebar>
+    </>
+  );
+};
 
 export default Navbar;

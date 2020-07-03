@@ -1,26 +1,26 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { StyledToggleButton } from './style';
 
 const Toggle = React.forwardRef(
   ({ children, onClick, hasMultipleContent }, ref) => (
-    <Button
+    <StyledToggleButton
       variant="text"
       as="span"
       ref={ref}
       type="button"
-      style={!hasMultipleContent ? { cursor: 'auto' } : {}}
+      $hasMultiple={hasMultipleContent}
       onClick={(e) => onClick(e)}
     >
       {children}
       {hasMultipleContent && (
         <FontAwesomeIcon
           size="1x"
-          icon={['fas', 'caret-down']}
+          icon={['fas', 'angle-down']}
           className="ml-1"
         />
       )}
-    </Button>
+    </StyledToggleButton>
   )
 );
 

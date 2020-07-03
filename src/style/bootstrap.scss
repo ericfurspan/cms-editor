@@ -1,14 +1,13 @@
 /* COLOR */
 $theme-colors: (
-  'primary': hsl(203, 79%, 48%),
-  'secondary': #0000008a,
-  'dark': #2d3f4e,
+  'primary' :#1a91db,
+  'secondary': #ced4da,
+  'dark': #10283E,
   'info': #64b5f6,
 );
 
 $font-size-base: 0.875rem;
-$font-family-base: system-ui, -apple-system, BlinkMacSystemFont,
-  'Segoe UI', Roboto, Ubuntu;
+$font-family-base: system-ui, -apple-system, BlinkMacSystemFont, sans-serif, Roboto, Ubuntu;
 
 /* SPACING */
 $spacer: 1rem;

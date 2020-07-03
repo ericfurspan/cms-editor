@@ -1,44 +1,25 @@
 import React from 'react';
-import { Toast } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { themeForType, iconForType } from './utils';
+import { iconForType } from './utils';
+import { StyledToast, StyledToastHeader } from './style';
 
-const styles = {
-  toastHeader: {
-    backgroundClip: 'unset',
-    backgroundColor: 'inherit',
-    color: 'white',
-    fontWeight: 'bold',
-  },
-};
-
-const Notification = ({ show, title, body, onClose, type }) => {
+const Notification = ({ show, config, onClose }) => {
   const dismissDelayMs = 3000;
 
   return (
     <div aria-live="polite" aria-atomic="true">
-      <Toast
+      <StyledToast
         show={show}
         onClose={onClose}
         delay={dismissDelayMs}
         autohide
-        className={themeForType(type)}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: '50%',
-          marginLeft: -125,
-          zIndex: 1,
-        }}
+        $type={config.type}
       >
-        <Toast.Header style={styles.toastHeader}>
-          <h4 className="mr-auto">{title}</h4>
-        </Toast.Header>
-        <Toast.Body className="text-white text-center">
-          <p>{body}</p>
-          <FontAwesomeIcon icon={['fas', iconForType(type)]} size="2x" />
-        </Toast.Body>
-      </Toast>
+        <StyledToastHeader>
+          <FontAwesomeIcon icon={['fas', iconForType(config.type)]} size="1x" />
+          <span className="ml-1 mt-0 mb-0 mr-auto">{config.message}</span>
+        </StyledToastHeader>
+      </StyledToast>
     </div>
   );
 };

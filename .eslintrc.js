@@ -1,8 +1,10 @@
 module.exports = {
   extends: [
+    'airbnb',
+    'prettier',
+    'prettier/react',
     'plugin:prettier/recommended',
     'plugin:react-hooks/recommended',
-    'prettier/react',
   ],
   parser: 'babel-eslint',
   env: {
@@ -14,6 +16,7 @@ module.exports = {
     it: 'readonly',
   },
   rules: {
+    'prettier/prettier': 'warn',
     'import/prefer-default-export': 0,
     'react/prop-types': 0,
     'spaced-comment': [2, 'always'],

@@ -40,11 +40,7 @@ const LoginForm = ({ login }) => {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      validated={validated}
-      className="text-secondary"
-    >
+    <Form onSubmit={handleSubmit} validated={validated} className="text-muted">
       <Form.Group controlId="identifier">
         <Form.Label>Username or Email</Form.Label>
         <Form.Control

@@ -1,23 +1,10 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
-
-const styles = {
-  container: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginLeft: '-1rem',
-  },
-  spinner: {
-    width: '4rem',
-    height: '4rem',
-  },
-};
+import { StyledSpinnerContainer, StyledSpinner } from './style';
 
 const LoadSpinner = () => (
-  <div style={styles.container}>
-    <Spinner animation="border" variant="primary" style={styles.spinner} />
-  </div>
+  <StyledSpinnerContainer>
+    <StyledSpinner animation="border" />
+  </StyledSpinnerContainer>
 );
 
 export default LoadSpinner;

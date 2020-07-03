@@ -1,13 +1,14 @@
 import React from 'react';
-import { Navbar, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { BrandLogo } from '..';
+import { StyledNavbar } from './style';
 
 const PublicHeader = () => (
-  <Navbar bg="dark">
+  <StyledNavbar>
     <Container fluid className="p-2">
       <BrandLogo withTitle withSubtitle />
     </Container>
-  </Navbar>
+  </StyledNavbar>
 );
 
 export default PublicHeader;
