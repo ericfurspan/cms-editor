@@ -73,7 +73,7 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/logout" id="drop-item-signout">
-                Sign out?
+                Sign out
               </Dropdown.Item>
             </Dropdown.Menu>
           </StyledUserDropdown>
