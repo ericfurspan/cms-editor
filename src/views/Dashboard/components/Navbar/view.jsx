@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { navigationItems } from './config';
 import { animationVariants } from './animation';
@@ -12,6 +14,7 @@ import {
   StyledNavLink,
   StyledNavIcon,
   StyledExpander,
+  StyledUserDropdown,
 } from './style';
 
 const Navbar = ({ onSelectNavLink, activeKey }) => {
@@ -29,15 +32,16 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
         variant="transparent"
         $isExpanded={isExpanded}
       >
-        <FontAwesomeIcon icon={['fas', 'bars']} />
+        <FontAwesomeIcon icon={['fas', isExpanded ? 'compress-alt' : 'bars']} />
       </StyledMenuBtn>
 
       <StyledSidebar $isExpanded={isExpanded}>
-        <StyledLogo>
+        <StyledLogo $isExpanded={isExpanded}>
           <FontAwesomeIcon icon={['fas', 'tools']} />
+          <span>CMS</span>
         </StyledLogo>
 
-        <StyledNav role="navigation">
+        <StyledNav role="navigation" $isExpanded={isExpanded}>
           {navigationItems.map((navItem) => (
             <StyledNavItem key={navItem.eventKey}>
               <StyledNavLink
@@ -60,6 +64,19 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
               </StyledNavLink>
             </StyledNavItem>
           ))}
+          <StyledUserDropdown drop="up" $isExpanded={isExpanded}>
+            <Dropdown.Toggle id="profile-toggle" variant="transparent">
+              <FontAwesomeIcon
+                icon={['fas', 'sign-out-alt']}
+                color="var(--white-50)"
+              />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/logout" id="drop-item-signout">
+                Sign out?
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </StyledUserDropdown>
           <StyledExpander
             $isExpanded={isExpanded}
             onClick={() => setExpanded(!isExpanded)}

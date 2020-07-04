@@ -1,18 +1,27 @@
 import React from 'react';
 import { Container, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BusinessForm } from './components';
-import { StyledHeader } from './style';
+import { StyledHeaderRow, StyledLastUpdated, StyledBadge } from './style';
 
 const Editor = ({ content, onUpdateComplete }) => {
+  const lastUpdated = new Date(content.updated_at).toDateString();
+
   return (
-    <Container fluid>
+    <Container>
       {content && content.id ? (
         content.__typename === 'Business' && (
-          <Col sm="12">
-            <StyledHeader>
-              <h1>Editor</h1>
-              <h4>View and update content</h4>
-            </StyledHeader>
+          <Col>
+            <StyledHeaderRow>
+              <h2>Editor</h2>
+              <StyledLastUpdated>
+                <div>
+                  <FontAwesomeIcon icon={['fas', 'calendar']} />
+                  <span>Last Updated</span>
+                </div>
+                <StyledBadge pill>{lastUpdated}</StyledBadge>
+              </StyledLastUpdated>
+            </StyledHeaderRow>
             <BusinessForm
               business={content}
               onUpdateComplete={onUpdateComplete}

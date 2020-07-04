@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 const businessFragment = gql`
   fragment BusinessFragment on Business {
     id
+    updated_at
     name
     caption
     logo {

@@ -2,11 +2,7 @@ import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Toggle } from './components';
-import {
-  StyledMobileToggle,
-  StyledDefaultToggle,
-  StyledDropdownItem,
-} from './style';
+import { StyledDropdownItem } from './style';
 
 const ContentDropdown = ({
   activeContent,
@@ -22,7 +18,7 @@ const ContentDropdown = ({
         as={Toggle}
         hasMultipleItems={hasMultipleItems}
       >
-        <StyledDefaultToggle>
+        <>
           <span>{activeContent.name}</span>
           {hasMultipleItems && (
             <FontAwesomeIcon
@@ -31,14 +27,7 @@ const ContentDropdown = ({
               className="ml-1"
             />
           )}
-        </StyledDefaultToggle>
-        <StyledMobileToggle>
-          {!hasMultipleItems ? (
-            <span>{activeContent.name}</span>
-          ) : (
-            <FontAwesomeIcon icon={['fas', 'ellipsis-v']} size="lg" />
-          )}
-        </StyledMobileToggle>
+        </>
       </Dropdown.Toggle>
 
       {hasMultipleItems && (

@@ -5,7 +5,6 @@ import {
   Col,
   InputGroup,
   Popover,
-  Tooltip,
   OverlayTrigger,
 } from 'react-bootstrap';
 import { Formik } from 'formik';
@@ -80,7 +79,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
         variables: {
           input: {
             where: { id: values.id },
-            data: omit(values, ['id', '__typename', 'logo']),
+            data: omit(values, ['id', '__typename', 'logo', 'updated_at']),
           },
         },
       });
@@ -115,10 +114,32 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
               <LoadSpinner />
             ) : (
               <>
-                <Form.Row className="mb-2">
+                <StyledActionButtonGroup>
+                  <StyledActionButton
+                    variant="success"
+                    type="submit"
+                    size="sm"
+                    disabled={!dirty}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'save']} />
+                    <span>Save</span>
+                  </StyledActionButton>
+                  <StyledActionButton
+                    variant="danger"
+                    type="button"
+                    size="sm"
+                    disabled={!dirty}
+                    onClick={() => onHandleReset(handleReset)}
+                  >
+                    <FontAwesomeIcon icon={['fas', 'undo-alt']} />
+                    <span>Undo</span>
+                  </StyledActionButton>
+                </StyledActionButtonGroup>
+                <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
-                    md={{ span: 4, offset: 1 }}
+                    md={{ span: 5 }}
+                    className="mb-4"
                     controlId="name"
                   >
                     <OverlayTrigger
@@ -140,7 +161,8 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                   <Form.Group
                     as={Col}
-                    md={{ span: 4, offset: 1 }}
+                    md={{ span: 6, offset: 1 }}
+                    className="mb-4"
                     controlId="business_email"
                   >
                     <OverlayTrigger
@@ -167,10 +189,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                 </Form.Row>
 
-                <Form.Row className="mb-2">
+                <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
-                    md={{ span: 4, offset: 4 }}
+                    md={{ span: 4 }}
+                    className="mb-4"
                     controlId="caption"
                   >
                     <OverlayTrigger
@@ -190,11 +213,10 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       onChange={handleChange}
                     />
                   </Form.Group>
-                </Form.Row>
-                <Form.Row className="mb-2">
                   <Form.Group
                     as={Col}
-                    md={{ span: 8, offset: 2 }}
+                    md={{ span: 7, offset: 1 }}
+                    className="mb-4"
                     controlId="mission_statement"
                   >
                     <OverlayTrigger
@@ -216,10 +238,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     />
                   </Form.Group>
                 </Form.Row>
-                <Form.Row className="mb-2">
+                <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 5 }}
+                    className="mb-4"
                     controlId="business_hours"
                   >
                     <OverlayTrigger
@@ -245,7 +268,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
 
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 6, offset: 1 }}
                     controlId="social_media_links"
                   >
                     <OverlayTrigger
@@ -269,10 +292,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                 </Form.Row>
 
-                <Form.Row className="mb-2">
+                <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 5 }}
+                    className="mb-4"
                     controlId="podcast_links"
                   >
                     <OverlayTrigger
@@ -297,7 +321,8 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
 
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 6, offset: 1 }}
+                    className="mb-4"
                     controlId="payment_links"
                   >
                     <OverlayTrigger
@@ -321,10 +346,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                 </Form.Row>
 
-                <Form.Row className="mb-2">
+                <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 5 }}
+                    className="mb-4"
                     controlId="events"
                   >
                     <OverlayTrigger
@@ -353,7 +379,8 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
 
                   <Form.Group
                     as={Col}
-                    lg={{ span: 4, offset: 1 }}
+                    lg={{ span: 6, offset: 1 }}
+                    className="mb-4"
                     controlId="news"
                   >
                     <OverlayTrigger
@@ -381,31 +408,6 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                 </Form.Row>
               </>
-            )}
-
-            {dirty && (
-              <StyledActionButtonGroup>
-                <OverlayTrigger
-                  placement="left"
-                  overlay={<Tooltip>Undo current changes.</Tooltip>}
-                >
-                  <StyledActionButton
-                    variant="danger"
-                    type="button"
-                    onClick={() => onHandleReset(handleReset)}
-                  >
-                    <FontAwesomeIcon icon={['fas', 'undo-alt']} />
-                  </StyledActionButton>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  placement="left"
-                  overlay={<Tooltip>Save current changes.</Tooltip>}
-                >
-                  <StyledActionButton variant="success" type="submit">
-                    <FontAwesomeIcon icon={['fas', 'save']} />
-                  </StyledActionButton>
-                </OverlayTrigger>
-              </StyledActionButtonGroup>
             )}
             <Notification
               config={notificationConfig}

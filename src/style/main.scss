@@ -67,8 +67,9 @@ label {
 
 .dropdown,
 .dropup,
+.dropleft,
 .dropright {
-  .dropdown-toggle::after {
+  .dropdown-toggle::before, .dropdown-toggle::after {
     display: none;
   }
 
@@ -90,6 +91,13 @@ button.close {
   &:hover {
     color: var(--white);
   }
+}
+
+.btn.disabled, button:disabled {
+  background-color: var(--gray-lighter) !important;
+  border-color: var(--gray-lightest) !important;
+  color: var(--gray) !important;
+  cursor: not-allowed;
 }
 
 input, .form-control, .react-json-view {

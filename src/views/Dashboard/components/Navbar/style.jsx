@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Col, Nav, Button } from 'react-bootstrap';
+import { Col, Nav, Button, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BREAKPOINTS from '../../../../utils/breakpoints';
 
@@ -8,24 +8,25 @@ export const StyledSidebar = styled(Col)`
   color: var(--white-50);
   z-index: 1;
   height: 100%;
+  transition: all 0.4s ease;
 
   ${(props) =>
     props.$isExpanded
       ? `
       left: 0px;
-      max-width: 208px;
+      max-width: 224px;
       text-align: start;
       position: relative;
 
-    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
       left: 0px;
-      max-width: 208px;
+      max-width: 224px;
       text-align: start;
       position: absolute;
     }
-    @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
       left: 0px;
-      max-width: 208px;
+      max-width: 100%;
       text-align: start;
       position: absolute;
     }
@@ -44,7 +45,7 @@ export const StyledSidebar = styled(Col)`
       }
 
       @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-        left: -208px;
+        left: -100%;
         position: absolute;
       }
   `}
@@ -52,25 +53,27 @@ export const StyledSidebar = styled(Col)`
 
 export const StyledMenuBtn = styled(Button)`
   position: absolute;
-  left: 6px;
-  top: 12px;
-  width: auto;
-  height: auto;
+  top: 7px;
+  width: 42px;
+  height: 42px;
   display: none;
-  z-index: 1;
+  z-index: 2;
   color: var(--gray);
+  transition: color 1.2s ease;
 
   & svg {
-    font-size: 21px;
+    font-size: 18px;
     vertical-align: middle;
   }
 
   ${(props) =>
     props.$isExpanded
       ? `
+      color: var(--white-50) !important;
+  
       @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
         display: block;
-        left: 208px;
+        top: 8px;
       }
     `
       : `
@@ -85,17 +88,49 @@ export const StyledLogo = styled.div`
   justify-content: center;
   align-items: center;
   height: 56px;
+  color: var(--white);
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  padding-right: 0;
 
-  & svg {
+  svg {
     color: var(--warning);
     font-size: 18px;
   }
+
+  span {
+    display: none;
+  }
+
+  ${(props) =>
+    props.$isExpanded &&
+    `
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+      justify-content: flex-end;
+      padding-right: 0.75rem;
+
+      span {
+        display: block;
+        margin-left: 0.5rem;
+      }
+    }
+  `}
 `;
 
 export const StyledNav = styled(Nav)`
   border-top: 1px solid var(--darkest);
   padding-top: 1rem;
   flex-direction: column;
+
+  ${(props) =>
+    props.$isExpanded &&
+    `
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+      align-items: center;
+      padding-top: 4rem;
+      font-size: 1.25rem;
+    }
+  `}
 `;
 
 export const StyledNavItem = styled(Nav.Item)`
@@ -109,7 +144,6 @@ export const StyledNavLink = styled(Nav.Link)`
   color: var(--white-50);
   margin: auto;
   padding: 0.75rem 1rem;
-  font-weight: 500;
 
   ${(props) => !props.$isExpanded && `width: fit-content`};
   ${(props) => props.$isActiveLink && `color: var(--info)`};
@@ -132,5 +166,27 @@ export const StyledExpander = styled.div`
     `
     text-align: right;
     padding-right: 2rem;
+  `}
+
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    display: none;
+  }
+`;
+
+export const StyledUserDropdown = styled(Dropdown)`
+  position: absolute;
+  bottom: 6rem;
+  width: 100%;
+
+  ${(props) =>
+    props.$isExpanded &&
+    `
+    text-align: center;
+
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+      svg {
+        font-size: 2rem;
+      }
+    }
   `}
 `;

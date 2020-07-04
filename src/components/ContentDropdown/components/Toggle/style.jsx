@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 
 export const StyledToggleButton = styled(Button)`
-  color: var(--gray-dark);
-  margin: 0 0.5rem;
+  h1 {
+    color: var(--darkest);
+    font-size: 0.875rem;
+    margin: 0;
+  }
 
   ${(props) => !props.$hasMultipleItems && 'cursor: default !important'};
 

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Tab, Container, Dropdown } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Tab, Container } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import sortBy from 'lodash/sortBy';
 import { FETCH_BUSINESSES } from '../../graphql/business';
@@ -54,7 +52,6 @@ const DashboardPage = ({ uid }) => {
             onSelectNavLink={(key) => setActivePaneKey(key)}
             activeKey={activePaneKey}
           />
-
           <StyledContainerColumn>
             <StyledHeaderRow>
               <ContentDropdown
@@ -65,20 +62,6 @@ const DashboardPage = ({ uid }) => {
                   setActiveContentData(nextContent);
                 }}
               />
-              <Dropdown drop="down">
-                <Dropdown.Toggle id="profile-toggle" variant="transparent">
-                  <FontAwesomeIcon
-                    icon={['fas', 'user-circle']}
-                    size="2x"
-                    color="var(--gray-dark)"
-                  />
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item as={Link} to="/logout" id="drop-item-signout">
-                    Sign out
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
             </StyledHeaderRow>
             <StyledTabContent>
               <Tab.Pane eventKey="home">

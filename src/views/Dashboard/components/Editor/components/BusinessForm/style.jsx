@@ -15,19 +15,19 @@ export const StyledJSONField = styled(ReactJson).attrs(() => ({
 }))``;
 
 export const StyledActionButtonGroup = styled.div`
-  position: fixed;
-  bottom: 16px;
-  right: 24px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
 `;
 
 export const StyledActionButton = styled(Button)`
-  width: 56px;
-  height: 56px;
-  font-size: 21px;
-  border-radius: 100%;
   margin-left: 1.25rem;
+  min-width: 96px;
+
+  & svg {
+    margin-right: 0.75rem;
+  }
 `;
 
 export const StyledPopoverTitle = styled(Popover.Title)`
