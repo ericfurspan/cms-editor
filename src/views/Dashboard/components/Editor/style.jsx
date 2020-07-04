@@ -8,22 +8,25 @@ export const StyledHeaderRow = styled(Row)`
   justify-content: space-between;
 `;
 
-export const StyledLastUpdated = styled.pre`
+export const StyledLastUpdated = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   margin: 0;
+  font-size: 0.875rem;
+  font-family: SFMono-Regular, monospace;
 
   svg {
     margin-right: 0.375rem;
-    color: var(--dark);
+    color: var(--blue-darker);
   }
 `;
 
 export const StyledBadge = styled(Badge)`
-  background-color: var(--dark);
+  background-color: var(--blue-darker);
   color: var(--white);
   font-weight: 300;
-  margin: 0.25rem 0 0 1rem;
+  font-size: 85%;
+  margin: 0 0 0.25rem 1rem;
   letter-spacing: 0.5px;
 `;

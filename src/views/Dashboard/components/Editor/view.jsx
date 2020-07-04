@@ -15,11 +15,11 @@ const Editor = ({ content, onUpdateComplete }) => {
             <StyledHeaderRow>
               <h2>Editor</h2>
               <StyledLastUpdated>
+                <StyledBadge pill>Last Updated</StyledBadge>
                 <div>
                   <FontAwesomeIcon icon={['fas', 'calendar']} />
-                  <span>Last Updated</span>
+                  <span>{lastUpdated}</span>
                 </div>
-                <StyledBadge pill>{lastUpdated}</StyledBadge>
               </StyledLastUpdated>
             </StyledHeaderRow>
             <BusinessForm

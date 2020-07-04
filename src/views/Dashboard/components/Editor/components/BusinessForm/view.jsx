@@ -269,6 +269,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   <Form.Group
                     as={Col}
                     lg={{ span: 6, offset: 1 }}
+                    className="mb-4"
                     controlId="social_media_links"
                   >
                     <OverlayTrigger
