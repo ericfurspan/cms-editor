@@ -107,6 +107,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
         isValidating,
         values,
         dirty,
+        errors,
       }) => {
         return (
           <Form noValidate onSubmit={handleSubmit}>
@@ -157,7 +158,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       name="name"
                       value={values.name}
                       onChange={handleChange}
+                      isInvalid={!!errors.name}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.name}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group
                     as={Col}
@@ -184,7 +189,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                         name="business_email"
                         value={values.business_email || ''}
                         onChange={handleChange}
+                        isInvalid={!!errors.business_email}
                       />
+                      <Form.Control.Feedback type="invalid">
+                        {errors.business_email}
+                      </Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
                 </Form.Row>
@@ -211,7 +220,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       name="caption"
                       value={values.caption || ''}
                       onChange={handleChange}
+                      isInvalid={!!errors.caption}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.caption}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group
                     as={Col}
@@ -235,7 +248,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       rows="6"
                       value={values.mission_statement || ''}
                       onChange={handleChange}
+                      isInvalid={!!errors.mission_statement}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.mission_statement}
+                    </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
                 <Form.Row className="justify-content-around">
@@ -260,8 +277,12 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       name="business_hours"
                       src={values.business_hours || {}}
                       sortKeys
+                      onAdd={() => true}
                       onEdit={(edited) => {
                         setFieldValue('business_hours', edited.updated_src);
+                      }}
+                      onDelete={(deleted) => {
+                        setFieldValue('business_hours', deleted.updated_src);
                       }}
                     />
                   </Form.Group>
@@ -286,8 +307,15 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     <StyledJSONField
                       name="social_media_links"
                       src={values.social_media_links || {}}
+                      onAdd={() => true}
                       onEdit={(edited) => {
                         setFieldValue('social_media_links', edited.updated_src);
+                      }}
+                      onDelete={(deleted) => {
+                        setFieldValue(
+                          'social_media_links',
+                          deleted.updated_src
+                        );
                       }}
                     />
                   </Form.Group>
@@ -314,8 +342,12 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     <StyledJSONField
                       name="podcast_links"
                       src={values.podcast_links || {}}
+                      onAdd={() => true}
                       onEdit={(edited) => {
                         setFieldValue('podcast_links', edited.updated_src);
+                      }}
+                      onDelete={(deleted) => {
+                        setFieldValue('podcast_links', deleted.updated_src);
                       }}
                     />
                   </Form.Group>
@@ -340,8 +372,12 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     <StyledJSONField
                       name="payment_links"
                       src={values.payment_links || {}}
+                      onAdd={() => true}
                       onEdit={(edited) => {
                         setFieldValue('payment_links', edited.updated_src);
+                      }}
+                      onDelete={(deleted) => {
+                        setFieldValue('payment_links', deleted.updated_src);
                       }}
                     />
                   </Form.Group>
