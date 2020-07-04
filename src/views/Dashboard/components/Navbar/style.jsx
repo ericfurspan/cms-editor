@@ -63,7 +63,7 @@ export const StyledMenuBtn = styled(Button)`
 
   & svg {
     font-size: 18px;
-    vertical-align: middle;
+    vertical-align: sub;
   }
 
   ${(props) =>

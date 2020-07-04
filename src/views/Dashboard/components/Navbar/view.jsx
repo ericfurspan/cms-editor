@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -24,6 +24,19 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
     setExpanded(false);
     onSelectNavLink(key, e);
   };
+
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        setExpanded(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   return (
     <>
