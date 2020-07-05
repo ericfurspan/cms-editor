@@ -65,7 +65,7 @@ const PrivacyPolicy = () => (
         </li>
         <li>
           <strong>Website</strong> refers to cmseditor, accessible from
-          https://cmseditor.netlify.app
+          https://cms.quanda.dev
         </li>{' '}
         <li>
           <strong>Service</strong> refers to the Website.
