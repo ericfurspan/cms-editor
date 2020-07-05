@@ -6,6 +6,7 @@ export const StyledJSONField = styled(ReactJson).attrs(() => ({
   displayDataTypes: false,
   enableClipboard: false,
   iconStyle: 'triangle',
+  collapsed: true,
   style: {
     padding: '0.75rem',
     borderRadius: '0.25rem',
