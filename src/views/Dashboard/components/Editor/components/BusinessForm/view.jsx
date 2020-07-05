@@ -255,10 +255,9 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
-                <Form.Row className="justify-content-around">
+                <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 5 }}
                     className="mb-4"
                     controlId="business_hours"
                   >
@@ -286,10 +285,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       }}
                     />
                   </Form.Group>
+                </Form.Row>
 
+                <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 6, offset: 1 }}
                     className="mb-4"
                     controlId="social_media_links"
                   >
@@ -324,7 +324,6 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 5 }}
                     className="mb-4"
                     controlId="podcast_links"
                   >
@@ -351,10 +350,11 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       }}
                     />
                   </Form.Group>
+                </Form.Row>
 
+                <Form.Row>
                   <Form.Group
                     as={Col}
-                    lg={{ span: 6, offset: 1 }}
                     className="mb-4"
                     controlId="payment_links"
                   >
@@ -384,12 +384,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 </Form.Row>
 
                 <Form.Row>
-                  <Form.Group
-                    as={Col}
-                    lg={{ span: 5 }}
-                    className="mb-4"
-                    controlId="events"
-                  >
+                  <Form.Group as={Col} className="mb-4" controlId="events">
                     <OverlayTrigger
                       placement="auto-start"
                       overlay={createPopoverContent({
@@ -413,13 +408,10 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       }}
                     />
                   </Form.Group>
+                </Form.Row>
 
-                  <Form.Group
-                    as={Col}
-                    lg={{ span: 6, offset: 1 }}
-                    className="mb-4"
-                    controlId="news"
-                  >
+                <Form.Row>
+                  <Form.Group as={Col} className="mb-4" controlId="news">
                     <OverlayTrigger
                       placement="auto-start"
                       overlay={createPopoverContent({
