@@ -5,7 +5,7 @@ import { BusinessForm } from './components';
 import { StyledHeaderRow, StyledLastUpdated, StyledBadge } from './style';
 
 const Editor = ({ content, onUpdateComplete }) => {
-  const lastUpdated = new Date(content.updated_at).toDateString();
+  const lastUpdated = new Date(content.updated_at).toLocaleString();
 
   return (
     <Container>
@@ -16,7 +16,7 @@ const Editor = ({ content, onUpdateComplete }) => {
               <h2>Editor</h2>
               <StyledLastUpdated>
                 <span>
-                  <FontAwesomeIcon icon={['fas', 'calendar-check']} />
+                  <FontAwesomeIcon icon={['fas', 'history']} />
                   <StyledBadge pill>Last Updated</StyledBadge>
                 </span>
                 <span>{lastUpdated}</span>
