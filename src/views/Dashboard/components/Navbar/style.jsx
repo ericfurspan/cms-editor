@@ -54,6 +54,7 @@ export const StyledSidebar = styled(Col)`
 export const StyledMenuBtn = styled(Button)`
   position: absolute;
   top: 7px;
+  left: 7px;
   width: 42px;
   height: 42px;
   display: none;
@@ -62,7 +63,7 @@ export const StyledMenuBtn = styled(Button)`
   transition: color 1.2s ease;
 
   & svg {
-    font-size: 18px;
+    font-size: 21px;
     vertical-align: sub;
   }
 
@@ -107,7 +108,7 @@ export const StyledLogo = styled.div`
     `
     @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
       justify-content: flex-end;
-      padding-right: 0.75rem;
+      padding-right: 1rem;
 
       span {
         display: block;
@@ -178,10 +179,15 @@ export const StyledUserDropdown = styled(Dropdown)`
   bottom: 6rem;
   width: 100%;
 
+  svg {
+    font-size: 1.5rem;
+  }
+
   ${(props) =>
     props.$isExpanded &&
     `
     text-align: center;
+
 
     @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
       svg {

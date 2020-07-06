@@ -15,7 +15,7 @@ export const StyledContainerColumn = styled(Col)`
 export const StyledHeaderRow = styled(Row)`
   width: 100%;
   height: 56px;
-  padding: 0 1rem;
+  padding: 0 0.375rem;
   margin: 0;
   border-bottom: 1px solid var(--gray-lighter);
   align-items: center;

@@ -13,12 +13,13 @@ export const StyledLastUpdated = styled.div`
   align-items: flex-end;
   flex-direction: column;
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-family: SFMono-Regular, monospace;
 
   svg {
     margin-right: 0.375rem;
     color: var(--blue-darker);
+    vertical-align: middle;
   }
 `;
 

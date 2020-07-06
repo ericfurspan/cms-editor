@@ -45,7 +45,7 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
         variant="transparent"
         $isExpanded={isExpanded}
       >
-        <FontAwesomeIcon icon={['fas', isExpanded ? 'compress-alt' : 'bars']} />
+        <FontAwesomeIcon icon={['fas', 'bars']} />
       </StyledMenuBtn>
 
       <StyledSidebar $isExpanded={isExpanded}>
@@ -80,7 +80,7 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
           <StyledUserDropdown drop="up" $isExpanded={isExpanded}>
             <Dropdown.Toggle id="profile-toggle" variant="transparent">
               <FontAwesomeIcon
-                icon={['fas', 'sign-out-alt']}
+                icon={['fas', 'user-circle']}
                 color="var(--white-50)"
               />
             </Dropdown.Toggle>
