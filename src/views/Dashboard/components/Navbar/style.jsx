@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BREAKPOINTS from '../../../../utils/breakpoints';
 
 export const StyledSidebar = styled(Col)`
-  background-color: var(--dark);
-  color: var(--white-50);
+  background-color: var(--primary);
+  color: var(--gray);
   z-index: 1;
   height: 100%;
   transition: all 0.4s ease;
@@ -59,8 +59,7 @@ export const StyledMenuBtn = styled(Button)`
   height: 42px;
   display: none;
   z-index: 2;
-  color: var(--gray);
-  transition: color 1.2s ease;
+  color: var(--gray-dark);
 
   & svg {
     font-size: 21px;
@@ -70,7 +69,7 @@ export const StyledMenuBtn = styled(Button)`
   ${(props) =>
     props.$isExpanded
       ? `
-      color: var(--white-50) !important;
+      color: var(--gray) !important;
   
       @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
         display: block;
@@ -119,7 +118,7 @@ export const StyledLogo = styled.div`
 `;
 
 export const StyledNav = styled(Nav)`
-  border-top: 1px solid var(--darkest);
+  border-top: 1px solid var(--primary-dark);
   padding-top: 1rem;
   flex-direction: column;
 
@@ -142,12 +141,12 @@ export const StyledNavItem = styled(Nav.Item)`
 export const StyledNavLink = styled(Nav.Link)`
   display: flex;
   align-items: center;
-  color: var(--white-50);
+  color: var(--gray);
   margin: auto;
   padding: 0.75rem 1rem;
 
   ${(props) => !props.$isExpanded && `width: fit-content`};
-  ${(props) => props.$isActiveLink && `color: var(--info)`};
+  ${(props) => props.$isActiveLink && `color: var(--white)`};
 `;
 
 export const StyledNavIcon = styled(FontAwesomeIcon)`
@@ -156,27 +155,9 @@ export const StyledNavIcon = styled(FontAwesomeIcon)`
   margin-right: ${(props) => (props.$isExpanded ? '1rem' : 'auto')};
 `;
 
-export const StyledExpander = styled.div`
-  position: absolute;
-  bottom: 24px;
-  width: 100%;
-  cursor: pointer;
-
-  ${(props) =>
-    props.$isExpanded &&
-    `
-    text-align: right;
-    padding-right: 2rem;
-  `}
-
-  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-    display: none;
-  }
-`;
-
 export const StyledUserDropdown = styled(Dropdown)`
   position: absolute;
-  bottom: 6rem;
+  bottom: 2rem;
   width: 100%;
 
   svg {

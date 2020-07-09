@@ -8,7 +8,7 @@ export const StyledToast = styled(Toast)`
   margin-left: -112.5;
   min-width: 225;
   z-index: 1;
-  background-color: var(--light);
+  background-color: var(--gray-light);
 
   ${(props) =>
     props.$type === 'success' &&

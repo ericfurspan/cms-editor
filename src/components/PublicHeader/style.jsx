@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Navbar, Row } from 'react-bootstrap';
 
 export const StyledNavbar = styled(Navbar)`
-  background-color: var(--dark);
+  background-color: var(--primary);
+  padding: 1.5rem;
 `;
 
 export const StyledBrandRow = styled(Row)`

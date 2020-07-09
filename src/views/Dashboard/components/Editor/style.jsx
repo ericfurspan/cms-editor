@@ -1,32 +1,36 @@
 import styled from 'styled-components';
 import { Badge, Row } from 'react-bootstrap';
+import BREAKPOINTS from '../../../../utils/breakpoints';
 
 export const StyledHeaderRow = styled(Row)`
-  padding: 1rem 0 4rem 0;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-`;
-
-export const StyledLastUpdated = styled.div`
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  margin: 0;
-  font-size: 1.125rem;
-  font-family: SFMono-Regular, monospace;
+  padding: 1rem;
 
   svg {
     margin-right: 0.375rem;
-    color: var(--blue-darker);
-    vertical-align: middle;
+    margin-left: 0.2rem;
+  }
+`;
+
+export const StyledMetadata = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+    width: 100%;
+    margin-top: 2rem;
+    align-items: flex-start;
   }
 `;
 
 export const StyledBadge = styled(Badge)`
-  background-color: var(--blue-darker);
-  color: var(--white);
-  font-weight: 300;
-  margin: 0 0 0.25rem 0;
-  letter-spacing: 0.5px;
+  background-color: ${(props) => props.bg};
+  color: ${(props) => props.fg || 'initial'};
+  margin: 0.375rem 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0.375em 0.75em;
 `;

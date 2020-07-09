@@ -5,7 +5,7 @@ import { StyledNavbar, StyledBrandRow, StyledBrandTitle } from './style';
 
 const PublicHeader = () => (
   <StyledNavbar>
-    <Container fluid className="p-2">
+    <Container fluid className="p-1">
       <Col>
         <StyledBrandRow onClick={() => window.location.replace('/')}>
           <FontAwesomeIcon

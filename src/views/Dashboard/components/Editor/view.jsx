@@ -2,25 +2,36 @@ import React from 'react';
 import { Container, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BusinessForm } from './components';
-import { StyledHeaderRow, StyledLastUpdated, StyledBadge } from './style';
+import { StyledHeaderRow, StyledMetadata, StyledBadge } from './style';
 
 const Editor = ({ content, onUpdateComplete }) => {
-  const lastUpdated = new Date(content.updated_at).toLocaleString();
+  const lastUpdated = new Date(content.updated_at)
+    .toLocaleString()
+    .replace(',', ' at');
 
   return (
-    <Container>
+    <Container fluid>
       {content && content.id ? (
         content.__typename === 'Business' && (
           <Col>
             <StyledHeaderRow>
-              <h2>Editor</h2>
-              <StyledLastUpdated>
-                <span>
-                  <FontAwesomeIcon icon={['fas', 'history']} />
-                  <StyledBadge pill>Last Updated</StyledBadge>
+              <span>
+                <h1>Edit {content.__typename}</h1>
+                <span className="text-muted">
+                  <FontAwesomeIcon icon={['fas', 'edit']} />
+                  Manage your content
                 </span>
-                <span>{lastUpdated}</span>
-              </StyledLastUpdated>
+              </span>
+              <StyledMetadata>
+                <StyledBadge pill bg="var(--primary-light)" fg="var(--white)">
+                  <FontAwesomeIcon icon={['fas', 'file-alt']} />
+                  {content.name}
+                </StyledBadge>
+                <StyledBadge pill bg="var(--gray-light)">
+                  <FontAwesomeIcon icon={['fas', 'history']} />
+                  last updated: {lastUpdated}
+                </StyledBadge>
+              </StyledMetadata>
             </StyledHeaderRow>
             <BusinessForm
               business={content}
@@ -29,9 +40,11 @@ const Editor = ({ content, onUpdateComplete }) => {
           </Col>
         )
       ) : (
-        <h4 className="text-center">
-          You have not been assigned any content to edit.
-        </h4>
+        <Col>
+          <p className="text-center">
+            You have not yet been assigned to any content.
+          </p>
+        </Col>
       )}
     </Container>
   );

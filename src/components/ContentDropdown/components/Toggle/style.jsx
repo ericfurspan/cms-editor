@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 
 export const StyledToggleButton = styled(Button)`
   h1 {
-    color: var(--darkest);
     font-size: 0.875rem;
     margin: 0;
   }

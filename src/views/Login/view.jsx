@@ -25,10 +25,10 @@ const LoginPage = () => {
   return (
     <>
       <PublicHeader />
-      <Container className="mt-4">
+      <Container className="mt-5">
         <Row className="m-1">
           <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
-            <h2 className="mb-2">Login</h2>
+            <h2 className="mb-4">Login</h2>
             <LoginForm login={login} />
           </Col>
         </Row>

@@ -68,13 +68,13 @@ const LoginForm = ({ login }) => {
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Form.Group className="mt-2 m-1">
-        <Button variant="primary" type="submit" size="lg" block>
+      <Form.Group className="mt-4 m-1">
+        <Button variant="outline-primary" type="submit" size="lg" block>
           Login
         </Button>
       </Form.Group>
-      <div className="text-center mt-2">
-        <Button variant="link" as={Link} to="/forgot-password">
+      <div className="text-center mt-4">
+        <Button variant="light" as={Link} to="/forgot-password">
           Forgot password
         </Button>
       </div>

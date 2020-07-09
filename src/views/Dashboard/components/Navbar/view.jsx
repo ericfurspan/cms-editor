@@ -13,7 +13,6 @@ import {
   StyledNavItem,
   StyledNavLink,
   StyledNavIcon,
-  StyledExpander,
   StyledUserDropdown,
 } from './style';
 
@@ -54,7 +53,7 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
           <span>CMS</span>
         </StyledLogo>
 
-        <StyledNav role="navigation" $isExpanded={isExpanded}>
+        <StyledNav role="navigation" $isExpanded={isExpanded} variant="pills">
           {navigationItems.map((navItem) => (
             <StyledNavItem key={navItem.eventKey}>
               <StyledNavLink
@@ -81,7 +80,7 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
             <Dropdown.Toggle id="profile-toggle" variant="transparent">
               <FontAwesomeIcon
                 icon={['fas', 'user-circle']}
-                color="var(--white-50)"
+                color="var(--gray)"
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -90,14 +89,6 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </StyledUserDropdown>
-          <StyledExpander
-            $isExpanded={isExpanded}
-            onClick={() => setExpanded(!isExpanded)}
-          >
-            <FontAwesomeIcon
-              icon={['fas', isExpanded ? 'chevron-left' : 'chevron-right']}
-            />
-          </StyledExpander>
         </StyledNav>
       </StyledSidebar>
     </>

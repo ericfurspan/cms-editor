@@ -1,0 +1,36 @@
+
+/* custom colors */
+$primary: #391898;
+$primary-light: #7b58de;
+$primary-dark: #221152;
+$secondary: #e2e6ea;
+$info: #64b5f6;
+$danger:#b00020;
+$success: #6DBB1A;
+$warning: #ffc107;
+$link: #06c;
+$gray: #cccccc;
+$gray-light: #f8f9fa;
+$gray-dark: #606060;
+$white: #ffffff;
+$black: #212121;
+
+/* set theme variables, overriding any existing Bootstrap variables */
+$theme-colors: (
+  "primary": $primary,
+  "primary-light": $primary-light,
+  "primary-dark": $primary-dark,
+  "secondary": $secondary,
+  "info": $info,
+  "link": $link,
+  "danger": $danger,
+  "success": $success,
+  "warning": $warning,
+  "gray": $gray,
+  "gray-light": $gray-light,
+  "gray-dark": $gray-dark,
+  "white": $white,
+  "black": $black,
+);
+
+@import '~bootstrap/scss/bootstrap';

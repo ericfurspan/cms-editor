@@ -8,16 +8,16 @@ export const StyledContainerRow = styled(Row)`
 `;
 
 export const StyledContainerColumn = styled(Col)`
-  background-color: var(--light);
+  background-color: var(--gray-light);
   height: 100%;
 `;
 
 export const StyledHeaderRow = styled(Row)`
   width: 100%;
   height: 56px;
-  padding: 0 0.375rem;
+  padding: 0 0.75rem;
   margin: 0;
-  border-bottom: 1px solid var(--gray-lighter);
+  border-bottom: 1px solid var(--secondary);
   align-items: center;
   justify-content: flex-start;
 

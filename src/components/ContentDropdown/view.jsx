@@ -24,7 +24,7 @@ const ContentDropdown = ({
             <FontAwesomeIcon
               size="1x"
               icon={['fas', 'angle-down']}
-              className="ml-1"
+              className="ml-3"
             />
           )}
         </>

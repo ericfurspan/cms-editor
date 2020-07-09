@@ -1,21 +1,4 @@
-@import 'bootstrap';
-
-:root {
-  --blue: #1a91db;
-  --blue-darker: #2a4865;
-  --blue-lighter: #e8f0fe;
-  --dark: #10283E;
-  --darkest: #111e29;
-  --gray: #6c757d;
-  --gray-dark: #606060;
-  --gray-lighter: #ececec;
-  --gray-lightest: #ced4da;
-  --white: #ffffff;
-  --light: #f8f9fa;
-  --white-50: #ffffff80;
-  --danger: #b00020;
-  --info: #64b5f6;
-}
+@import 'theme';
 
 html {
   font-size: 100%;
@@ -31,12 +14,11 @@ html {
 body,
 #root {
   height: 100%;
-  background-color: var(--light);
+  color: var(--black);
+  background-color: var(--gray-light);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif, Roboto, Ubuntu;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--darkest);
-}
 h1 {
   font-size: 2.75rem;
 }
@@ -63,6 +45,19 @@ pre {
 label {
   font-size: 0.875rem;
 }
+a {
+  color: var(--link);
+}
+
+.nav-pills .nav-link {
+  &:active, &.active {
+    background-color: var(--primary-light);
+  }
+
+  &:hover:not(.active) {
+    color: var(--primary-light);
+  }
+}
 
 .dropdown,
 .dropup,
@@ -73,7 +68,7 @@ label {
   }
 
   .dropdown-item.active, .dropdown-item:active {
-    color: var(--blue);
+    color: var(--primary);
     background-color: initial;
   }
 }
@@ -82,25 +77,22 @@ label {
   min-width: max-content;
 }
 
-button.close {
-  color: var(--white);
-  opacity: 1;
-  text-shadow: none;
-
-  &:hover {
-    color: var(--white);
-  }
-}
-
 .btn.disabled, button:disabled {
-  background-color: var(--gray-lighter) !important;
-  border-color: var(--gray-lightest) !important;
-  color: var(--gray) !important;
   cursor: not-allowed;
 }
 
-input, .form-control, .react-json-view {
-  border: 1px solid var(--gray-lightest) !important;
-  background-color: var(--white) !important;
-  font-size: 16px !important;
+.input-group > .form-control {
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
 }
+
+input, .form-control, .react-json-view {
+  border: 1px solid var(--secondary);
+  font-size: 16px !important;
+
+  &:focus {
+    box-shadow: none;
+    border-color: var(--gray-dark);
+  }
+}
+

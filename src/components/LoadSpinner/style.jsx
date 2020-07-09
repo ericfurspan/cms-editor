@@ -13,5 +13,5 @@ export const StyledSpinner = styled(Spinner)`
   width: 4rem;
   height: 4rem;
 
-  color: var(--blue);
+  color: var(--primary);
 `;

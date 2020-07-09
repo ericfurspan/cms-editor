@@ -15,6 +15,7 @@ import { LoadSpinner, Notification } from '../../../../../../components';
 import sampleContent from '../../../../../../static/json/business-sample.json';
 import { validationSchema } from './utils';
 import {
+  StyledForm,
   StyledJSONField,
   StyledActionButtonGroup,
   StyledActionButton,
@@ -38,7 +39,6 @@ const createPopoverContent = ({ type, accessor, stringify }) => (
 
 const createPopoverTarget = () => (
   <StyledPopoverTarget tabIndex="0">
-    <span>type</span>&nbsp;
     <FontAwesomeIcon icon={['fas', 'info-circle']} />
   </StyledPopoverTarget>
 );
@@ -110,36 +110,35 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
         errors,
       }) => {
         return (
-          <Form noValidate onSubmit={handleSubmit}>
+          <StyledForm noValidate onSubmit={handleSubmit}>
             {isSubmitting || isValidating ? (
               <LoadSpinner />
             ) : (
               <>
                 <StyledActionButtonGroup>
                   <StyledActionButton
-                    variant="success"
-                    type="submit"
-                    size="sm"
-                    disabled={!dirty}
-                  >
-                    <FontAwesomeIcon icon={['fas', 'save']} />
-                    <span>Save</span>
-                  </StyledActionButton>
-                  <StyledActionButton
-                    variant="danger"
+                    variant="secondary"
                     type="button"
                     size="sm"
                     disabled={!dirty}
                     onClick={() => onHandleReset(handleReset)}
                   >
-                    <FontAwesomeIcon icon={['fas', 'undo-alt']} />
-                    <span>Undo</span>
+                    <span>Reset</span>
+                  </StyledActionButton>
+                  <StyledActionButton
+                    variant="success"
+                    type="submit"
+                    size="sm"
+                    $wide
+                    disabled={!dirty}
+                  >
+                    <span>Save</span>
                   </StyledActionButton>
                 </StyledActionButtonGroup>
                 <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
-                    md={{ span: 5 }}
+                    lg={{ span: 5 }}
                     className="mb-4"
                     controlId="name"
                   >
@@ -166,7 +165,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                   <Form.Group
                     as={Col}
-                    md={{ span: 6, offset: 1 }}
+                    lg={{ span: 6, offset: 1 }}
                     className="mb-4"
                     controlId="business_email"
                   >
@@ -201,7 +200,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
-                    md={{ span: 4 }}
+                    lg={{ span: 4 }}
                     className="mb-4"
                     controlId="caption"
                   >
@@ -228,7 +227,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                   <Form.Group
                     as={Col}
-                    md={{ span: 7, offset: 1 }}
+                    lg={{ span: 7, offset: 1 }}
                     className="mb-4"
                     controlId="mission_statement"
                   >
@@ -443,7 +442,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
               show={showNotification}
               onClose={() => setShowNotification(false)}
             />
-          </Form>
+          </StyledForm>
         );
       }}
     </Formik>
