@@ -19,7 +19,6 @@ export const StyledJSONField = styled(ReactJson).attrs(() => ({
     padding: '0.75rem',
     borderRadius: '0.25rem',
     fontSize: '0.875rem',
-    overflow: 'auto',
   },
 }))``;
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Navbar, Row } from 'react-bootstrap';
 
 export const StyledNavbar = styled(Navbar)`
-  background-color: var(--primary);
+  background-color: var(--primary-dark);
   padding: 1.5rem;
 `;
 

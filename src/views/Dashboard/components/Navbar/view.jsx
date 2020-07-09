@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { navigationItems } from './config';
 import { animationVariants } from './animation';
 import {
   StyledMenuBtn,
   StyledSidebar,
+  StyledSwipeRegion,
   StyledLogo,
   StyledNav,
   StyledNavItem,
@@ -16,10 +18,16 @@ import {
   StyledUserDropdown,
 } from './style';
 
-const Navbar = ({ onSelectNavLink, activeKey }) => {
+const Navbar = ({ onSelectNavLink, activeKey, activeContentName }) => {
   const [isExpanded, setExpanded] = useState(false);
 
-  const selectHandler = (key, e) => {
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => setExpanded(false),
+    onSwipedRight: () => setExpanded(true),
+    preventDefaultTouchmoveEvent: true,
+  });
+
+  const selectNavLinkHandler = (key, e) => {
     setExpanded(false);
     onSelectNavLink(key, e);
   };
@@ -50,15 +58,17 @@ const Navbar = ({ onSelectNavLink, activeKey }) => {
       <StyledSidebar $isExpanded={isExpanded}>
         <StyledLogo $isExpanded={isExpanded}>
           <FontAwesomeIcon icon={['fas', 'tools']} />
-          <span>CMS</span>
+          <span>{activeContentName}</span>
         </StyledLogo>
 
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <StyledSwipeRegion {...swipeHandlers} $isExpanded={isExpanded} />
         <StyledNav role="navigation" $isExpanded={isExpanded} variant="pills">
           {navigationItems.map((navItem) => (
             <StyledNavItem key={navItem.eventKey}>
               <StyledNavLink
                 eventKey={navItem.eventKey}
-                onSelect={selectHandler}
+                onSelect={selectNavLinkHandler}
                 $isExpanded={isExpanded}
                 $isActiveLink={activeKey === navItem.eventKey}
               >

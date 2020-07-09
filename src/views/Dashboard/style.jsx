@@ -23,6 +23,7 @@ export const StyledHeaderRow = styled(Row)`
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
     justify-content: flex-end;
+    background-color: var(--primary-dark);
   }
 `;
 

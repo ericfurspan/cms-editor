@@ -143,7 +143,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     controlId="name"
                   >
                     <OverlayTrigger
-                      placement="bottom-start"
+                      placement="auto-start"
                       overlay={createPopoverContent({
                         type: 'String',
                         accessor: 'name',

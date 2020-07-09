@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BREAKPOINTS from '../../../../utils/breakpoints';
 
 export const StyledSidebar = styled(Col)`
-  background-color: var(--primary);
+  background-color: var(--primary-dark);
   color: var(--gray);
   z-index: 1;
   height: 100%;
@@ -51,6 +51,16 @@ export const StyledSidebar = styled(Col)`
   `}
 `;
 
+export const StyledSwipeRegion = styled.div`
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: ${(props) => (props.$isExpanded ? 'inherit' : '4%')};
+    z-index: -1;
+  }
+`;
+
 export const StyledMenuBtn = styled(Button)`
   position: absolute;
   top: 7px;
@@ -59,7 +69,7 @@ export const StyledMenuBtn = styled(Button)`
   height: 42px;
   display: none;
   z-index: 2;
-  color: var(--gray-dark);
+  color: var(--white) !important;
 
   & svg {
     font-size: 21px;
@@ -68,9 +78,7 @@ export const StyledMenuBtn = styled(Button)`
 
   ${(props) =>
     props.$isExpanded
-      ? `
-      color: var(--gray) !important;
-  
+      ? `  
       @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
         display: block;
         top: 8px;

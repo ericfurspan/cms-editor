@@ -51,6 +51,7 @@ const DashboardPage = ({ uid }) => {
           <Navbar
             onSelectNavLink={(key) => setActivePaneKey(key)}
             activeKey={activePaneKey}
+            activeContentName={activeContentData.name}
           />
           <StyledContainerColumn>
             <StyledHeaderRow>
