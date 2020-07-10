@@ -44,6 +44,7 @@ pre {
 }
 label {
   font-size: 0.875rem;
+  font-weight: 500;
 }
 a {
   color: var(--link);
@@ -87,12 +88,20 @@ a {
 }
 
 input, .form-control, .react-json-view {
-  border: 1px solid var(--secondary);
-  font-size: 16px !important;
+  background-color: inherit !important;
+  border: 0;
+  border-bottom: 1px solid var(--gray);
+  border-radius: 0;
 
-  &:focus {
+  &:focus, :active {
     box-shadow: none;
-    border-color: var(--gray-dark);
+    border-bottom: 0;
+    outline: var(--primary) solid 2px;
+    color: inherit;
+
+    &::placeholder {
+      color: var(--gray);
+      font-style: italic;
+    }
   }
 }
-

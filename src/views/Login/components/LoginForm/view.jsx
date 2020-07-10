@@ -40,23 +40,23 @@ const LoginForm = ({ login }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} validated={validated} className="text-muted">
+    <Form onSubmit={handleSubmit} validated={validated}>
       <Form.Group controlId="identifier">
-        <Form.Label>Username or Email</Form.Label>
         <Form.Control
           type="text"
+          label="Username or Email test"
           name="identifier"
-          placeholder="Username or Email"
+          placeholder="Email or Username"
           onChange={onChangeField}
           isInvalid={formError}
           required
         />
       </Form.Group>
       <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           name="password"
+          label="Password"
           placeholder="Password"
           onChange={onChangeField}
           isInvalid={formError}
@@ -69,12 +69,17 @@ const LoginForm = ({ login }) => {
         )}
       </Form.Group>
       <Form.Group className="mt-4 m-1">
-        <Button variant="outline-primary" type="submit" size="lg" block>
+        <Button variant="primary" type="submit" block>
           Login
         </Button>
       </Form.Group>
-      <div className="text-center mt-4">
-        <Button variant="light" as={Link} to="/forgot-password">
+      <div className="text-center mt-5">
+        <Button
+          variant="outline-secondary"
+          as={Link}
+          to="/forgot-password"
+          size="sm"
+        >
           Forgot password
         </Button>
       </div>

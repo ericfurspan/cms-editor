@@ -4,18 +4,24 @@ import { PublicHeader, PublicFooter } from '../../components';
 import { ForgotPasswordForm } from './components';
 
 const ForgotPassword = () => (
-  <>
+  <Col
+    style={{
+      height: '100%',
+      backgroundColor: 'var(--primary-dark)',
+      color: 'var(--white)',
+    }}
+  >
     <PublicHeader />
     <Container className="mt-5">
       <Row className="m-1">
         <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
-          <h2 className="mb-4">Change Password</h2>
+          <h3 className="mb-4 text-center">Change Password</h3>
           <ForgotPasswordForm />
         </Col>
       </Row>
     </Container>
     <PublicFooter />
-  </>
+  </Col>
 );
 
 export default ForgotPassword;

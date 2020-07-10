@@ -3,10 +3,9 @@ import { Toast } from 'react-bootstrap';
 
 export const StyledToast = styled(Toast)`
   position: fixed;
-  top: 1rem;
+  top: 10%;
   left: 50%;
-  margin-left: -112.5;
-  min-width: 225;
+  min-width: 128px;
   z-index: 1;
   background-color: var(--gray-light);
 

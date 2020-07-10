@@ -5,8 +5,8 @@ import { StyledFooterColumn, StyledFooterBtn } from './style';
 
 const PublicFooter = () => (
   <StyledFooterColumn lg={{ span: 6, offset: 3 }}>
-    <Row className="justify-content-around align-items-center m-0">
-      <span>© 2020 Eric Furspan</span>
+    <Row className="justify-content-between align-items-center m-0">
+      <span style={{ color: 'var(--gray)' }}>© 2020 Eric Furspan</span>
       <StyledFooterBtn variant="link" as={Link} to="/terms">
         Terms of Service
       </StyledFooterBtn>

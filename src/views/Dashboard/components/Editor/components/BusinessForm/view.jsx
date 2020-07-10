@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import {
-  Form,
-  Col,
-  InputGroup,
-  Popover,
-  OverlayTrigger,
-} from 'react-bootstrap';
+import { Form, Col, Popover, OverlayTrigger } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import omit from 'lodash/omit';
@@ -179,21 +173,16 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                       {createPopoverTarget()}
                     </OverlayTrigger>
                     <Form.Label>Contact Email</Form.Label>
-                    <InputGroup>
-                      <InputGroup.Prepend>
-                        <InputGroup.Text>@</InputGroup.Text>
-                      </InputGroup.Prepend>
-                      <Form.Control
-                        type="text"
-                        name="business_email"
-                        value={values.business_email || ''}
-                        onChange={handleChange}
-                        isInvalid={!!errors.business_email}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {errors.business_email}
-                      </Form.Control.Feedback>
-                    </InputGroup>
+                    <Form.Control
+                      type="text"
+                      name="business_email"
+                      value={values.business_email || ''}
+                      onChange={handleChange}
+                      isInvalid={!!errors.business_email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.business_email}
+                    </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
 
@@ -244,7 +233,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     <Form.Control
                       as="textarea"
                       name="mission_statement"
-                      rows="6"
+                      rows="5"
                       value={values.mission_statement || ''}
                       onChange={handleChange}
                       isInvalid={!!errors.mission_statement}

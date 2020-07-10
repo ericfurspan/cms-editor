@@ -3,7 +3,7 @@ import { Col, Button } from 'react-bootstrap';
 
 export const StyledFooterColumn = styled(Col)`
   position: fixed;
-  bottom: 1rem;
+  bottom: 1.25rem;
   left: 0;
   font-size: 0.75rem;
 `;

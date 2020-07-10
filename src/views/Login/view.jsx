@@ -23,18 +23,24 @@ const LoginPage = () => {
   });
 
   return (
-    <>
+    <Col
+      style={{
+        height: '100%',
+        backgroundColor: 'var(--primary-dark)',
+        color: 'var(--white)',
+      }}
+    >
       <PublicHeader />
       <Container className="mt-5">
         <Row className="m-1">
           <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
-            <h2 className="mb-4">Login</h2>
+            <h3 className="mb-4 text-center">Login to CMS</h3>
             <LoginForm login={login} />
           </Col>
         </Row>
       </Container>
       <PublicFooter />
-    </>
+    </Col>
   );
 };
 
