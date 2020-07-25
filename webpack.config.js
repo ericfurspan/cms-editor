@@ -49,8 +49,6 @@ const DEV_PLUGINS = [new webpack.HotModuleReplacementPlugin()];
 /** Production plugins */
 const PROD_PLUGINS = [
   new GenerateSW({
-    clientsClaim: true,
-    skipWaiting: true,
     exclude: [/_redirects/],
   }),
 ];
