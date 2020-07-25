@@ -8,7 +8,6 @@ export const StyledContainerRow = styled(Row)`
 `;
 
 export const StyledContainerColumn = styled(Col)`
-  background-color: var(--gray-light);
   height: 100%;
 `;
 
@@ -17,12 +16,15 @@ export const StyledHeaderRow = styled(Row)`
   height: 56px;
   padding: 0 0.75rem;
   margin: 0;
-  border-bottom: 1px solid var(--secondary);
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid
+    var(
+      ${(props) => (props.theme.mode === 'light' ? '--secondary' : '--primary')}
+    );
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-    justify-content: flex-end;
+    justify-content: center;
     background-color: var(--primary-dark);
   }
 `;

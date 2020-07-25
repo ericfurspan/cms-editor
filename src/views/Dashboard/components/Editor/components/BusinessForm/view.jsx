@@ -16,6 +16,8 @@ import {
   StyledPopoverTitle,
   StyledPopoverContent,
   StyledPopoverTarget,
+  StyledLastUpdate,
+  StyledTopBar,
 } from './style';
 
 const createPopoverContent = ({ type, accessor, stringify }) => (
@@ -32,7 +34,7 @@ const createPopoverContent = ({ type, accessor, stringify }) => (
 );
 
 const createPopoverTarget = () => (
-  <StyledPopoverTarget tabIndex="0">
+  <StyledPopoverTarget>
     <FontAwesomeIcon icon={['fas', 'info-circle']} />
   </StyledPopoverTarget>
 );
@@ -85,6 +87,10 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     }
   };
 
+  const lastUpdated = new Date(business.updated_at)
+    .toLocaleString()
+    .replace(',', ' at');
+
   return (
     <Formik
       validationSchema={validationSchema}
@@ -109,26 +115,32 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
               <LoadSpinner />
             ) : (
               <>
-                <StyledActionButtonGroup>
-                  <StyledActionButton
-                    variant="secondary"
-                    type="button"
-                    size="sm"
-                    disabled={!dirty}
-                    onClick={() => onHandleReset(handleReset)}
-                  >
-                    <span>Reset</span>
-                  </StyledActionButton>
-                  <StyledActionButton
-                    variant="success"
-                    type="submit"
-                    size="sm"
-                    $wide
-                    disabled={!dirty}
-                  >
-                    <span>Save</span>
-                  </StyledActionButton>
-                </StyledActionButtonGroup>
+                <StyledTopBar>
+                  <StyledLastUpdate pill>
+                    Last updated {lastUpdated}
+                  </StyledLastUpdate>
+                  <StyledActionButtonGroup>
+                    <StyledActionButton
+                      variant="secondary"
+                      type="button"
+                      size="sm"
+                      disabled={!dirty}
+                      onClick={() => onHandleReset(handleReset)}
+                    >
+                      <span>Reset</span>
+                    </StyledActionButton>
+                    <StyledActionButton
+                      variant="success"
+                      type="submit"
+                      size="sm"
+                      $wide
+                      disabled={!dirty}
+                    >
+                      <span>Save</span>
+                    </StyledActionButton>
+                  </StyledActionButtonGroup>
+                </StyledTopBar>
+
                 <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
@@ -185,6 +197,25 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Form.Row>
+
+                <Form.Group>
+                  <Form.File
+                    name="logo"
+                    label="Logo"
+                    onChange={({
+                      target: {
+                        validity,
+                        files: [file],
+                      },
+                    }) => {
+                      if (validity.valid) {
+                        setFieldValue('logo', file);
+                      }
+                    }}
+                    feedback={errors.logo}
+                    id="business_logo"
+                  />
+                </Form.Group>
 
                 <Form.Row className="justify-content-around">
                   <Form.Group

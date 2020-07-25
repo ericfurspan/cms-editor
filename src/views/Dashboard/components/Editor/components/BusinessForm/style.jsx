@@ -1,20 +1,26 @@
 import styled from 'styled-components';
 import ReactJson from 'react-json-view';
-import { Button, Popover, Form } from 'react-bootstrap';
+import { Button, Popover, Form, Badge } from 'react-bootstrap';
 
 export const StyledForm = styled(Form)`
-  background-color: var(--white);
   padding: 1.5rem;
-  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05),
-    0 2px 4px 0 rgba(63, 63, 68, 0.15);
+
+  ${(props) =>
+    props.theme.mode === 'light'
+      ? `
+    box-shadow: 0 0 0 1px rgba(63,63,68,0.1), 0 2px 16px 0 rgba(63,63,68,0.2);
+  `
+      : `
+    background-color: var(--primary-light);
+  `}
 `;
 
-export const StyledJSONField = styled(ReactJson).attrs(() => ({
+export const StyledJSONField = styled(ReactJson).attrs((props) => ({
   displayDataTypes: false,
   enableClipboard: false,
   iconStyle: 'triangle',
   collapsed: true,
-  theme: 'grayscale:inverted',
+  theme: props.theme.mode === 'light' ? 'grayscale:inverted' : 'grayscale',
   style: {
     padding: '0.75rem',
     borderRadius: '0.25rem',
@@ -26,7 +32,6 @@ export const StyledActionButtonGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-bottom: 2rem;
 `;
 
 export const StyledActionButton = styled(Button)`
@@ -63,4 +68,19 @@ export const StyledPopoverTarget = styled(Form.Text)`
     color: var(--info);
     font-size: 0.875rem;
   }
+`;
+
+export const StyledTopBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  min-height: 72px;
+`;
+
+export const StyledLastUpdate = styled(Badge)`
+  background-color: transparent;
+  font-family: monospace;
+  font-size: 1rem;
 `;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Badge, Row } from 'react-bootstrap';
-import BREAKPOINTS from '../../../../utils/breakpoints';
 
 export const StyledHeaderRow = styled(Row)`
   display: flex;
@@ -17,20 +16,18 @@ export const StyledHeaderRow = styled(Row)`
 export const StyledMetadata = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-
-  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
-    width: 100%;
-    margin-top: 2rem;
-    align-items: flex-start;
-  }
+  align-items: flex-start;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: 48px;
 `;
 
-export const StyledBadge = styled(Badge)`
-  background-color: ${(props) => props.bg};
-  color: ${(props) => props.fg || 'initial'};
-  margin: 0.375rem 0;
-  font-size: 0.875rem;
-  font-weight: 400;
-  padding: 0.375em 0.75em;
+export const StyledContentHeader = styled(Badge)`
+  background-color: var(
+    ${(props) =>
+      props.theme.mode === 'dark' ? '--secondary' : '--primary-light'}
+  );
+  color: var(
+    ${(props) => (props.theme.mode === 'dark' ? '--primary-light' : '--white')}
+  );
 `;

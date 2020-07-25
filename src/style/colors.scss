@@ -1,8 +1,8 @@
 
 /* custom colors */
-$primary: #391898;
-$primary-light: #7b58de;
-$primary-dark: #221152;
+// $primary: #391898;
+// $primary-light: #7b58de;
+// $primary-dark: #221152;
 $secondary: #e2e6ea;
 $info: #64b5f6;
 $danger:#b00020;
@@ -15,7 +15,14 @@ $gray-dark: #606060;
 $white: #ffffff;
 $black: #212121;
 
-/* set theme variables, overriding any existing Bootstrap variables */
+$blue: #1C78C0;
+$blue-light: #8ED6FB;
+
+$primary: #211F3B;
+$primary-dark: #25233F;
+$primary-light: #282644;
+
+/* sets css variables, overriding any from Bootstrap */
 $theme-colors: (
   "primary": $primary,
   "primary-light": $primary-light,

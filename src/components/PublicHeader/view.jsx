@@ -1,10 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { StyledBrandRow } from './style';
+import {
+  StyledBrandRow,
+  StyledBrandIcon,
+  StyledDiamond,
+  StyledLogo,
+} from './style';
 
 const PublicHeader = () => (
-  <StyledBrandRow onClick={() => window.location.replace('/')}>
-    <FontAwesomeIcon color="var(--warning)" icon={['fas', 'tools']} size="lg" />
+  <StyledBrandRow>
+    <StyledLogo onClick={() => window.location.replace('/')}>
+      <StyledBrandIcon>
+        <FontAwesomeIcon icon={['fas', 'tools']} />
+      </StyledBrandIcon>
+      <StyledDiamond />
+    </StyledLogo>
   </StyledBrandRow>
 );
 

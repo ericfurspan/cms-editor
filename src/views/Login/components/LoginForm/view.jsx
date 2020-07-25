@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { StyledSubmitBtn } from './style';
 
 const LoginForm = ({ login }) => {
   const [formError, setFormError] = useState(false);
@@ -42,22 +43,22 @@ const LoginForm = ({ login }) => {
   return (
     <Form onSubmit={handleSubmit} validated={validated}>
       <Form.Group controlId="identifier">
+        <Form.Label>Email or Username</Form.Label>
         <Form.Control
           type="text"
-          label="Username or Email test"
+          label="Username or Email"
           name="identifier"
-          placeholder="Email or Username"
           onChange={onChangeField}
           isInvalid={formError}
           required
         />
       </Form.Group>
       <Form.Group controlId="password">
+        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           name="password"
           label="Password"
-          placeholder="Password"
           onChange={onChangeField}
           isInvalid={formError}
           required
@@ -69,17 +70,12 @@ const LoginForm = ({ login }) => {
         )}
       </Form.Group>
       <Form.Group className="mt-4 m-1">
-        <Button variant="primary" type="submit" block>
+        <StyledSubmitBtn type="submit" block size="lg">
           Login
-        </Button>
+        </StyledSubmitBtn>
       </Form.Group>
       <div className="text-center mt-5">
-        <Button
-          variant="outline-secondary"
-          as={Link}
-          to="/forgot-password"
-          size="sm"
-        >
+        <Button variant="secondary" as={Link} to="/forgot-password" size="sm">
           Forgot password
         </Button>
       </div>

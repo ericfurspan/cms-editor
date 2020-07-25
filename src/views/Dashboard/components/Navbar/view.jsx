@@ -10,7 +10,7 @@ import {
   StyledMenuBtn,
   StyledSidebar,
   StyledSwipeRegion,
-  StyledLogo,
+  StyledHeader,
   StyledNav,
   StyledNavItem,
   StyledNavLink,
@@ -56,10 +56,10 @@ const Navbar = ({ onSelectNavLink, activeKey, activeContentName }) => {
       </StyledMenuBtn>
 
       <StyledSidebar $isExpanded={isExpanded}>
-        <StyledLogo $isExpanded={isExpanded}>
+        <StyledHeader $isExpanded={isExpanded}>
           <FontAwesomeIcon icon={['fas', 'tools']} />
           <span>{activeContentName}</span>
-        </StyledLogo>
+        </StyledHeader>
 
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <StyledSwipeRegion {...swipeHandlers} $isExpanded={isExpanded} />
@@ -88,10 +88,7 @@ const Navbar = ({ onSelectNavLink, activeKey, activeContentName }) => {
           ))}
           <StyledUserDropdown drop="up" $isExpanded={isExpanded}>
             <Dropdown.Toggle id="profile-toggle" variant="transparent">
-              <FontAwesomeIcon
-                icon={['fas', 'user-circle']}
-                color="var(--gray)"
-              />
+              <FontAwesomeIcon icon={['fas', 'user-circle']} />
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/logout" id="drop-item-signout">

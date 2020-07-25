@@ -1,16 +1,10 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { PublicHeader, PublicFooter } from '../../components';
+import { PublicHeader } from '../../components';
 import { ForgotPasswordForm } from './components';
 
 const ForgotPassword = () => (
-  <Col
-    style={{
-      height: '100%',
-      backgroundColor: 'var(--primary-dark)',
-      color: 'var(--white)',
-    }}
-  >
+  <Col>
     <PublicHeader />
     <Container className="mt-5">
       <Row className="m-1">
@@ -20,7 +14,6 @@ const ForgotPassword = () => (
         </Col>
       </Row>
     </Container>
-    <PublicFooter />
   </Col>
 );
 

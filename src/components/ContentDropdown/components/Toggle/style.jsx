@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 import BREAKPOINTS from '../../../../utils/breakpoints';
 
-export const StyledToggleButton = styled(Button)`
+export const StyledToggleButton = styled(Button).attrs((props) => ({
+  variant: props.theme.mode === 'light' ? 'outline-primary' : 'primary',
+}))`
   h1 {
     font-size: 0.875rem;
     margin: 0;

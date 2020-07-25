@@ -13,5 +13,7 @@ export const StyledSpinner = styled(Spinner)`
   width: 4rem;
   height: 4rem;
 
-  color: var(--primary);
+  color: var(
+    ${(props) => (props.theme.mode === 'light' ? '--primary' : '--white')}
+  );
 `;

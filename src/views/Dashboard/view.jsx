@@ -48,6 +48,7 @@ const DashboardPage = ({ uid }) => {
     <Container fluid className="p-0 h-100">
       <Tab.Container id="dashboard-tabs-container" activeKey={activePaneKey}>
         <StyledContainerRow noGutters>
+          {/* navbar */}
           <Navbar
             onSelectNavLink={(key) => setActivePaneKey(key)}
             activeKey={activePaneKey}
@@ -55,6 +56,7 @@ const DashboardPage = ({ uid }) => {
           />
           <StyledContainerColumn>
             <StyledHeaderRow>
+              {/* content header dropdown */}
               <ContentDropdown
                 availableContent={availableContent}
                 activeContent={activeContentData}
@@ -64,6 +66,7 @@ const DashboardPage = ({ uid }) => {
                 }}
               />
             </StyledHeaderRow>
+            {/* main content */}
             <StyledTabContent>
               <Tab.Pane eventKey="home">
                 <Home />

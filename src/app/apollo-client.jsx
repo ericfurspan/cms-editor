@@ -1,11 +1,6 @@
 /* eslint-disable no-console */
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  InMemoryCache,
-  from,
-} from '@apollo/client';
+import { ApolloClient, ApolloLink, InMemoryCache, from } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
 import { onError } from '@apollo/link-error';
 import { IS_LOGGED_IN, USER_ID } from '../graphql/user';
 
@@ -31,7 +26,14 @@ const createApolloClient = () => {
   });
 
   /* HTTP link handler */
-  const httpLink = new HttpLink({
+  // const httpLink = new HttpLink({
+  //   uri: process.env.GQL_SERVER,
+  //   credentials: 'include',
+  // });
+
+  // an httpLink with upload support
+  // eslint-disable-next-line new-cap
+  const uploadLink = new createUploadLink({
     uri: process.env.GQL_SERVER,
     credentials: 'include',
   });
@@ -50,7 +52,7 @@ const createApolloClient = () => {
   return new ApolloClient({
     cache: apolloCache,
     credentials: 'include',
-    link: from([authLink, errorLink, httpLink]),
+    link: from([authLink, errorLink, uploadLink]),
     resolvers: {
       Query: {
         isLoggedIn: () => {
