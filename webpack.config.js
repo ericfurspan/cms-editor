@@ -23,10 +23,9 @@ const inProduction = process.env.NODE_ENV === 'production';
 const COMMON_PLUGINS = [
   new CopyWebpackPlugin({
     patterns: [
-      {
-        from: 'static/**/*',
-        globOptions: { ignore: ['*.DS_Store', 'index.ejs'] },
-      },
+      { from: 'static/img/*', toType: 'dir' },
+      { from: 'static/json/*', toType: 'dir' },
+      { from: 'robots.txt', to: 'robots.txt', toType: 'file' },
       { from: '_redirects', to: '_redirects', toType: 'file' },
     ],
   }),
