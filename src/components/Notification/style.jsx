@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { Toast } from 'react-bootstrap';
 
 export const StyledToast = styled(Toast)`
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  min-width: 128px;
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  min-width: 192px;
   z-index: 1;
-  background-color: var(--gray-light);
 
   ${(props) =>
     props.$type === 'success' &&
@@ -26,4 +25,5 @@ export const StyledToastHeader = styled(Toast.Header)`
   background-clip: unset;
   background-color: inherit;
   color: var(--white);
+  font-weight: 500;
 `;

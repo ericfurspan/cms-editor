@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { StyledSubmitBtn } from './style';
+import { StyledSubmitBtn, StyledLinkButton } from './style';
 
 const ForgotPasswordForm = () => {
   const [emailSubmitted, setEmailSubmitted] = useState(false);
@@ -35,9 +35,9 @@ const ForgotPasswordForm = () => {
         </StyledSubmitBtn>
       </Form.Group>
       <div className="text-center mt-5">
-        <Button variant="secondary" as={Link} to="/login" size="sm">
-          Back to Login
-        </Button>
+        <Link to="/login">
+          <StyledLinkButton size="sm">Back to Login</StyledLinkButton>
+        </Link>
       </div>
     </Form>
   );

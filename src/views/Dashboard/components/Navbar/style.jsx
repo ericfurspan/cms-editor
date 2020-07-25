@@ -32,6 +32,7 @@ export const StyledSidebar = styled(Col)`
       max-width: 100%;
       text-align: start;
       position: absolute;
+      border-right: none;
     }
   `
       : `
@@ -173,6 +174,9 @@ export const StyledNavLink = styled(Nav.Link)`
     color: var(
       ${props.theme.mode === 'light' ? '--primary-dark' : '--gray'}
     );
+    @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+      border-radius: 0 !important;
+    }
   `};
   ${(props) => props.$isActiveLink && `color: var(--white)`};
 `;
@@ -190,16 +194,21 @@ export const StyledUserDropdown = styled(Dropdown)`
 
   svg {
     font-size: 1.5rem;
-    color: var(--gray);
+    color: var(
+      ${(props) => (props.theme.mode === 'light' ? '--gray' : '--gray')}
+    );
   }
 
   ${(props) =>
     props.$isExpanded &&
     `
     text-align: center;
-    color: var(
-      ${props.theme.mode === 'light' ? '--gray-dark' : '--gray'}
-    );
+
+    svg {
+      color: var(
+        ${props.theme.mode === 'light' ? '--gray-dark' : '--gray'}
+      );
+    }
 
     @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
       svg {

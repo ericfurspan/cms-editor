@@ -7,7 +7,7 @@ const ThemeToggle = ({ onToggleTheme }) => {
       aria-label="Toggle theme"
       size="sm"
       name="theme-toggle"
-      variant="outline-primary"
+      variant="transparent"
       onClick={() => onToggleTheme()}
     >
       <StyledThemeToggleIcon size="lg" icon={['fas', 'adjust']} />

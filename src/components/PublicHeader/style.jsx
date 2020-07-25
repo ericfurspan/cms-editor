@@ -10,6 +10,7 @@ export const StyledBrandRow = styled.div`
 export const StyledLogo = styled.div`
   display: inline-block;
   position: relative;
+  cursor: pointer;
 
   svg {
     color: ${(props) =>
@@ -31,15 +32,14 @@ export const StyledBrandIcon = styled.div`
 `;
 
 export const StyledDiamond = styled.div`
-  display: inline-block;
   border-style: solid;
   border-color: transparent transparent
     ${(props) =>
       props.theme.mode === 'light' ? 'var(--primary)' : 'var(--white)'}
     transparent;
-  border-width: 0 25px 25px 25px;
+  border-width: 0 20px 20px 20px;
   height: 0;
-  width: 50px;
+  width: 40px;
   box-sizing: content-box;
   position: relative;
   margin: 0 0 42px 0;
@@ -47,15 +47,15 @@ export const StyledDiamond = styled.div`
   &:after {
     content: '';
     position: absolute;
-    top: 25px;
-    left: -25px;
+    top: 20px;
+    left: -20px;
     width: 0;
     height: 0;
     border-style: solid;
     border-color: ${(props) =>
         props.theme.mode === 'light' ? 'var(--primary)' : 'var(--white)'}
       transparent transparent transparent;
-    border-width: 70px 50px 0 50px;
+    border-width: 60px 40px 0 40px;
   }
 `;
 

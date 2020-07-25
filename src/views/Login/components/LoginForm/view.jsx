@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { StyledSubmitBtn } from './style';
+import { StyledSubmitBtn, StyledLinkButton } from './style';
 
 const LoginForm = ({ login }) => {
   const [formError, setFormError] = useState(false);
@@ -75,9 +75,9 @@ const LoginForm = ({ login }) => {
         </StyledSubmitBtn>
       </Form.Group>
       <div className="text-center mt-5">
-        <Button variant="secondary" as={Link} to="/forgot-password" size="sm">
-          Forgot password
-        </Button>
+        <Link to="/forgot-password">
+          <StyledLinkButton size="sm">Forgot password</StyledLinkButton>
+        </Link>
       </div>
     </Form>
   );

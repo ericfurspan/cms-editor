@@ -114,7 +114,8 @@ const GlobalStyle = createGlobalStyle`
     border-style: solid;
     border-width: 1px;
     padding: 6px 12px;
-
+    font-size: max(16px, 1em);
+  
     &:focus {
       color: inherit;
       background-color: inherit;

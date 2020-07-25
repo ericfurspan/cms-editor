@@ -4,6 +4,7 @@ import { Button, Popover, Form, Badge } from 'react-bootstrap';
 
 export const StyledForm = styled(Form)`
   padding: 1.5rem;
+  position: relative;
 
   ${(props) =>
     props.theme.mode === 'light'
@@ -76,11 +77,12 @@ export const StyledTopBar = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 2rem;
-  min-height: 72px;
+  min-height: 78px;
 `;
 
 export const StyledLastUpdate = styled(Badge)`
   background-color: transparent;
   font-family: monospace;
   font-size: 1rem;
+  white-space: normal;
 `;
