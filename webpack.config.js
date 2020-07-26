@@ -48,6 +48,7 @@ const DEV_PLUGINS = [new webpack.HotModuleReplacementPlugin()];
 /** Production plugins */
 const PROD_PLUGINS = [
   new GenerateSW({
+    cleanupOutdatedCaches: true,
     exclude: [/_redirects/],
   }),
 ];
