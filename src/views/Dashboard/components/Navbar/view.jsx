@@ -52,7 +52,7 @@ const Navbar = ({ onSelectNavLink, activeKey, activeContentName }) => {
         variant="transparent"
         $isExpanded={isExpanded}
       >
-        <FontAwesomeIcon icon={['fas', 'bars']} />
+        <FontAwesomeIcon icon={['fas', isExpanded ? 'times' : 'bars']} />
       </StyledMenuBtn>
 
       <StyledSidebar $isExpanded={isExpanded}>
