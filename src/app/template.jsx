@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { ThemeProvider } from 'styled-components';
@@ -23,6 +23,15 @@ const Application = () => {
     localStorage.removeItem('uid');
     client.resetStore();
   };
+
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setThemeMode('dark');
+    }
+  }, []);
 
   return (
     <ApolloProvider client={client}>
