@@ -20,7 +20,8 @@ export const StyledHeaderRow = styled(Row)`
   justify-content: space-between;
   border-bottom: 1px solid
     var(
-      ${(props) => (props.theme.mode === 'light' ? '--secondary' : '--primary')}
+      ${(props) =>
+        props.theme.mode === 'light' ? '--secondary' : '--primary-lightest'}
     );
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {

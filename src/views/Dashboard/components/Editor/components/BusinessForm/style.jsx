@@ -13,6 +13,7 @@ export const StyledForm = styled(Form)`
   `
       : `
     background-color: var(--primary-light);
+    border: 1px solid var(--primary-lightest);
   `}
 `;
 
@@ -82,7 +83,14 @@ export const StyledTopBar = styled.div`
 
 export const StyledLastUpdate = styled(Badge)`
   background-color: transparent;
+  color: var(--info-dark);
   font-family: monospace;
   font-size: 1rem;
   white-space: normal;
+`;
+
+export const StyledFileSubmitBtn = styled(Button)`
+  & svg {
+    margin-right: 0.375rem;
+  }
 `;

@@ -8,7 +8,7 @@ const Toggle = React.forwardRef(
       $hasMultipleItems={hasMultipleItems}
       onClick={(e) => onClick(e)}
     >
-      <h1>{toggleTarget}</h1>
+      <h2>{toggleTarget}</h2>
     </StyledToggleButton>
   )
 );

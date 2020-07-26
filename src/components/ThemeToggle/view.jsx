@@ -10,7 +10,7 @@ const ThemeToggle = ({ onToggleTheme }) => {
       variant="transparent"
       onClick={() => onToggleTheme()}
     >
-      <StyledThemeToggleIcon size="lg" icon={['fas', 'adjust']} />
+      <StyledThemeToggleIcon size="lg" icon={['fas', 'sun']} />
     </StyledThemeToggleBtn>
   );
 };

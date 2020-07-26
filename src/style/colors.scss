@@ -3,29 +3,29 @@
 $primary: #211F3B;
 $primary-dark: #25233F;
 $primary-light: #282644;
-// $primary: #391898;
-// $primary-light: #7b58de;
-// $primary-dark: #221152;
-
+$primary-lightest: #34334e;
 $secondary: #e2e6ea;
-$info: #64b5f6;
+$info: #75AFCC;
+$info-dark: cadetblue;
 $danger:#b00020;
 $success: #6DBB1A;
 $warning: #ffc107;
 $link: #06c;
 $gray: #cccccc;
 $gray-light: #f8f9fa;
-$gray-dark: #606060;
+$gray-dark: #909090;
 $white: #ffffff;
 $black: #212121;
 
 /* sets css variables, overriding any from Bootstrap */
 $theme-colors: (
   "primary": $primary,
-  "primary-light": $primary-light,
   "primary-dark": $primary-dark,
+  "primary-light": $primary-light,
+  "primary-lightest": $primary-lightest,
   "secondary": $secondary,
   "info": $info,
+  "info-dark": $info-dark,
   "link": $link,
   "danger": $danger,
   "success": $success,

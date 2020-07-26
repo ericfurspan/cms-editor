@@ -7,28 +7,23 @@ export const StyledSidebar = styled(Col)`
   background-color: var(--primary-dark);
   border-right: 1px solid var(--primary);
   z-index: 1;
-  height: 100%;
-  transition: all 0.4s ease;
+  height: 100vh;
 
   ${(props) =>
     props.$isExpanded
       ? `
+      transition: top 0.2s ease;
+
       background-color: var(
         ${props.theme.mode === 'light' ? '--white' : '--primary-dark'}
       );
-      left: 0px;
+      top: 0px;
       max-width: 224px;
       text-align: start;
       position: relative;
 
-    @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
-      left: 0px;
-      max-width: 224px;
-      text-align: start;
-      position: absolute;
-    }
     @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-      left: 0px;
+      top: 0px;
       max-width: 100%;
       text-align: start;
       position: absolute;
@@ -36,20 +31,14 @@ export const StyledSidebar = styled(Col)`
     }
   `
       : `
-      left: 0px;
+      top: 0px;
       max-width: 68px;
       text-align: center;
       position: relative;
 
-      @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
-        left: 0px;
-        max-width: 68px;
-        text-align: center;
-        position: relative;
-      }
-
       @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-        left: -100%;
+        max-width: 100%;
+        top: -100%;
         position: absolute;
       }
   `}

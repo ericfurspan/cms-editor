@@ -9,22 +9,22 @@ const Editor = ({ content, onUpdateComplete }) => {
     <Container fluid>
       {content && content.id ? (
         content.__typename === 'Business' && (
-          <Col>
+          <div>
             <StyledHeaderRow>
-              <h1>{content.name}</h1>
               <StyledMetadata>
                 <StyledContentHeader>
                   <FontAwesomeIcon icon={['fas', 'pencil-alt']} size="sm" />
-                  Edit mode
+                  Editor
                 </StyledContentHeader>
               </StyledMetadata>
+              <h1>{content.name}</h1>
             </StyledHeaderRow>
 
             <BusinessForm
               business={content}
               onUpdateComplete={onUpdateComplete}
             />
-          </Col>
+          </div>
         )
       ) : (
         <Col>

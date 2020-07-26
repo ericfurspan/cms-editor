@@ -57,6 +57,7 @@ const GlobalStyle = createGlobalStyle`
   label {
     font-size: 0.875rem;
     font-weight: 500;
+    color: var(--gray-dark);
   }
   a {
     color: var(--link);
@@ -69,6 +70,7 @@ const GlobalStyle = createGlobalStyle`
   .nav-pills .nav-link {
     &:active, &.active {
       background-color: var(--primary);
+      border: 1px solid var(--primary-lightest);
     }
 
     &:hover:not(.active) {
@@ -85,8 +87,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .dropdown-item.active, .dropdown-item:active {
-      color: var(--primary);
-      background-color: initial;
+      color: var(--white);
+      background-color: var(--primary-lightest);
     }
   }
 
@@ -105,12 +107,11 @@ const GlobalStyle = createGlobalStyle`
 
   input, .form-control, .react-json-view {
     color: inherit;
-    background-color: var(${(props) =>
-      props.theme.mode === 'light' ? '--white' : '--primary'});
+    background: transparent !important;
     box-shadow: none !important;
     border-radius: 0;
     border-color: var(${(props) =>
-      props.theme.mode === 'light' ? '--gray' : '--primary-light'});
+      props.theme.mode === 'light' ? '--gray' : '--primary-lightest'});
     border-style: solid;
     border-width: 1px;
     padding: 6px 12px;
@@ -118,12 +119,20 @@ const GlobalStyle = createGlobalStyle`
   
     &:focus {
       color: inherit;
-      background-color: inherit;
+      background-color: var(${(props) =>
+        props.theme.mode === 'light' ? '--white' : '--primary'});
       border-width: 2px;
+      border-color: var(--primary-lightest);
     }
   }
 
   input[type=file] {
+    border: 0;
+    background: transparent;
+  }
+
+  .img-thumbnail {
+    background-color: inherit;
     border: 0;
   }
 `;

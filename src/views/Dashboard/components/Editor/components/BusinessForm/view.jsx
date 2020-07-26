@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Form, Col, Popover, OverlayTrigger } from 'react-bootstrap';
+import { Form, Col, Popover, OverlayTrigger, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import omit from 'lodash/omit';
-import { UPDATE_BUSINESS } from '../../../../../../graphql/business';
+import { UPDATE_BUSINESS, UPLOAD_FILE } from '../../../../../../graphql';
 import { LoadSpinner, Notification } from '../../../../../../components';
 import sampleContent from '../../../../../../static/json/business-sample.json';
 import { validationSchema } from './utils';
@@ -18,12 +18,16 @@ import {
   StyledPopoverTarget,
   StyledLastUpdate,
   StyledTopBar,
+  StyledFileSubmitBtn,
 } from './style';
 
 const createPopoverContent = ({ type, accessor, stringify }) => (
   <Popover id={accessor}>
     <StyledPopoverTitle>
-      type: &nbsp;<code>{type}</code>
+      <small>data type:</small>{' '}
+      <i>
+        <code>{type}</code>
+      </i>
     </StyledPopoverTitle>
     <StyledPopoverContent as="pre">
       {stringify
@@ -42,9 +46,9 @@ const createPopoverTarget = () => (
 const BusinessForm = ({ business, onUpdateComplete }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationConfig, setNotificationConfig] = useState({});
+  const [selectedLogoBlob, setSelectedLogoBlob] = useState({});
 
-  /* gql update mutation */
-  const [updateBusiness, { loading: mutationLoading }] = useMutation(
+  const [updateBusiness, { loading: businessMutationLoading }] = useMutation(
     UPDATE_BUSINESS,
     {
       onCompleted: (data) => {
@@ -53,7 +57,17 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     }
   );
 
-  if (mutationLoading) {
+  const [uploadFile, { loading: uploadMutationLoading }] = useMutation(
+    UPLOAD_FILE,
+    {
+      onCompleted: (data) => {
+        onUpdateComplete({ logo: data.upload });
+      },
+    }
+  );
+
+  const isLoading = uploadMutationLoading || businessMutationLoading;
+  if (isLoading) {
     return <LoadSpinner />;
   }
 
@@ -68,8 +82,43 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     }
   };
 
-  /* execute update mutation */
-  const executeMutation = (values) => {
+  const handleSelectLogo = (event) => {
+    const {
+      files: [file],
+    } = event.target;
+    const blob = URL.createObjectURL(file);
+
+    setSelectedLogoBlob({ url: blob, name: file.name });
+  };
+
+  const handleUploadSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const inputNode = document.getElementById('business_logo_input');
+    const { validity, files } = inputNode;
+
+    if (validity.valid) {
+      try {
+        uploadFile({
+          variables: {
+            file: files[0],
+            ref: 'business',
+            refId: business.id,
+            field: 'logo',
+          },
+        });
+        setSelectedLogoBlob({});
+        setNotificationConfig({ type: 'success', message: 'Saved changes' });
+      } catch (e) {
+        setNotificationConfig({ type: 'error', message: e.message });
+      } finally {
+        setShowNotification(true);
+      }
+    }
+  };
+
+  const handleBusinessSubmit = (values) => {
     try {
       updateBusiness({
         variables: {
@@ -96,7 +145,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
       validationSchema={validationSchema}
       initialValues={business}
       enableReinitialize
-      onSubmit={executeMutation}
+      onSubmit={handleBusinessSubmit}
     >
       {({
         handleSubmit,
@@ -117,7 +166,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
               <>
                 <StyledTopBar>
                   <StyledLastUpdate pill>
-                    Last updated {lastUpdated}
+                    Last updated on {lastUpdated}
                   </StyledLastUpdate>
                   <StyledActionButtonGroup>
                     <StyledActionButton
@@ -145,7 +194,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   <Form.Group
                     as={Col}
                     lg={{ span: 5 }}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="name"
                   >
                     <OverlayTrigger
@@ -172,7 +221,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   <Form.Group
                     as={Col}
                     lg={{ span: 6, offset: 1 }}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="business_email"
                   >
                     <OverlayTrigger
@@ -198,30 +247,58 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   </Form.Group>
                 </Form.Row>
 
-                <Form.Group>
-                  <Form.File
-                    name="logo"
-                    label="Logo"
-                    onChange={({
-                      target: {
-                        validity,
-                        files: [file],
-                      },
-                    }) => {
-                      if (validity.valid) {
-                        setFieldValue('logo', file);
-                      }
-                    }}
-                    feedback={errors.logo}
-                    id="business_logo"
-                  />
-                </Form.Group>
+                <Form.Row className="justify-content-center align-items-baseline">
+                  <Form.Group className="mb-5">
+                    <Form.File
+                      name="logo"
+                      label="Logo"
+                      onChange={handleSelectLogo}
+                      feedback={errors.logo}
+                      id="business_logo_input"
+                      className="d-inline-block mr-2"
+                    />
+                    <Form.Text>
+                      Supported file types: JPEG, PNG, GIF, SVG
+                    </Form.Text>
+                  </Form.Group>
+                  {(values.logo || selectedLogoBlob.url) && (
+                    <Figure className="text-center">
+                      <Figure.Image
+                        src={
+                          selectedLogoBlob.url
+                            ? selectedLogoBlob.url
+                            : `${process.env.API_URL}${values.logo.url}`
+                        }
+                        alt="Logo image"
+                        width={125}
+                        height={125}
+                        rounded
+                        thumbnail={Boolean(selectedLogoBlob.url)}
+                      />
+                      {selectedLogoBlob.url ? (
+                        <StyledFileSubmitBtn
+                          type="submit"
+                          size="sm"
+                          block
+                          onClick={handleUploadSubmit}
+                          variant="success"
+                          disabled={!selectedLogoBlob.url}
+                        >
+                          <FontAwesomeIcon icon={['fas', 'file-upload']} />
+                          Upload logo
+                        </StyledFileSubmitBtn>
+                      ) : (
+                        <Figure.Caption>Current logo</Figure.Caption>
+                      )}
+                    </Figure>
+                  )}
+                </Form.Row>
 
                 <Form.Row className="justify-content-around">
                   <Form.Group
                     as={Col}
                     lg={{ span: 4 }}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="caption"
                   >
                     <OverlayTrigger
@@ -248,7 +325,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                   <Form.Group
                     as={Col}
                     lg={{ span: 7, offset: 1 }}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="mission_statement"
                   >
                     <OverlayTrigger
@@ -277,7 +354,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row>
                   <Form.Group
                     as={Col}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="business_hours"
                   >
                     <OverlayTrigger
@@ -309,7 +386,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row>
                   <Form.Group
                     as={Col}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="social_media_links"
                   >
                     <OverlayTrigger
@@ -343,7 +420,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row>
                   <Form.Group
                     as={Col}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="podcast_links"
                   >
                     <OverlayTrigger
@@ -374,7 +451,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 <Form.Row>
                   <Form.Group
                     as={Col}
-                    className="mb-4"
+                    className="mb-5"
                     controlId="payment_links"
                   >
                     <OverlayTrigger
@@ -403,7 +480,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 </Form.Row>
 
                 <Form.Row>
-                  <Form.Group as={Col} className="mb-4" controlId="events">
+                  <Form.Group as={Col} className="mb-5" controlId="events">
                     <OverlayTrigger
                       placement="auto-start"
                       overlay={createPopoverContent({
@@ -430,7 +507,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
                 </Form.Row>
 
                 <Form.Row>
-                  <Form.Group as={Col} className="mb-4" controlId="news">
+                  <Form.Group as={Col} className="mb-5" controlId="news">
                     <OverlayTrigger
                       placement="auto-start"
                       overlay={createPopoverContent({
