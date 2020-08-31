@@ -11,7 +11,7 @@ const validationSchema = yup.object().shape({
 });
 
 const LogoField = ({ initialValues, onSubmit }) => {
-  const [selectedFileBlob, setSelectedFileBlob] = useState({});
+  const [selectedImageBlob, setSelectedImageBlob] = useState({});
 
   const handleFileInput = (event) => {
     const {
@@ -19,7 +19,7 @@ const LogoField = ({ initialValues, onSubmit }) => {
     } = event.target;
     const blob = URL.createObjectURL(file);
 
-    setSelectedFileBlob({ url: blob, name: file.name });
+    setSelectedImageBlob({ url: blob, name: file.name });
   };
 
   return (
@@ -31,15 +31,22 @@ const LogoField = ({ initialValues, onSubmit }) => {
     >
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
+        const blobPreview = selectedImageBlob.url && selectedImageBlob;
 
-        const blobPreview = selectedFileBlob.url && selectedFileBlob;
+        let remoteImage = false;
+        if (values.logo) {
+          remoteImage =
+            process.env.NODE_ENV !== 'production'
+              ? `${process.env.API_URL}${values.logo.url}`
+              : values.logo.url;
+        }
 
         const handleSubmit = (event) => {
           event.preventDefault();
           event.stopPropagation();
           const fileInput = event.target.elements.logo;
           onSubmit('logo', fileInput);
-          setSelectedFileBlob({});
+          setSelectedImageBlob({});
         };
 
         return (
@@ -51,7 +58,7 @@ const LogoField = ({ initialValues, onSubmit }) => {
               >
                 <Form.Row className="w-100 align-items-center">
                   <Col as={Form.Label}>Logo</Col>
-                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedFileBlob({})} />}
+                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
                 <Form.File name="logo" label="Logo" custom className="h-100 w-100 text-center">
                   {blobPreview ? (
@@ -69,7 +76,7 @@ const LogoField = ({ initialValues, onSubmit }) => {
                         <>
                           <Figure.Image
                             alt="Logo image"
-                            src={`${process.env.API_URL}${values.logo.url}`}
+                            src={remoteImage}
                             width={150}
                             height={150}
                             rounded

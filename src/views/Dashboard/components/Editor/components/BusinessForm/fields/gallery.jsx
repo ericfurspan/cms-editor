@@ -11,7 +11,7 @@ const validationSchema = yup.object().shape({
 });
 
 const GalleryField = ({ initialValues, onSubmit }) => {
-  const [selectedFileBlob, setSelectedFileBlob] = useState({});
+  const [selectedImageBlob, setSelectedImageBlob] = useState({});
 
   const handleFileInput = (event) => {
     const {
@@ -19,7 +19,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
     } = event.target;
     const blob = URL.createObjectURL(file);
 
-    setSelectedFileBlob({ url: blob, name: file.name });
+    selectedImageBlob({ url: blob, name: file.name });
   };
 
   return (
@@ -30,15 +30,27 @@ const GalleryField = ({ initialValues, onSubmit }) => {
     >
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
-        const blobPreview = selectedFileBlob.url && selectedFileBlob;
-        const galleryPreview = values.gallery.length > 0 && values.gallery;
+        const blobPreview = selectedImageBlob.url && selectedImageBlob;
+        const remoteImages =
+          values.gallery.length > 0
+            ? values.gallery.map((img) => {
+                const src =
+                  process.env.NODE_ENV === 'production'
+                    ? img.url
+                    : `${process.env.API_URL}${img.url}`;
+                return {
+                  src,
+                  ...img,
+                };
+              })
+            : false;
 
         const handleSubmit = (event) => {
           event.preventDefault();
           event.stopPropagation();
           const fileInput = event.target.elements.gallery;
           onSubmit('gallery', fileInput);
-          setSelectedFileBlob({});
+          setSelectedImageBlob({});
         };
 
         return (
@@ -52,7 +64,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                   <Col as={Form.Label} className="p-0">
                     Gallery
                   </Col>
-                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedFileBlob({})} />}
+                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
                 <Form.File
                   name="gallery"
@@ -70,17 +82,8 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                     />
                   ) : (
                     <>
-                      {galleryPreview && (
-                        <ImageCarousel
-                          images={galleryPreview.map((img) => ({
-                            src: `${process.env.API_URL}${img.url}`,
-                            ...img,
-                          }))}
-                        />
-                      )}
-                      {!galleryPreview && (
-                        <Form.Text className="m-4">Click to select a file</Form.Text>
-                      )}
+                      {remoteImages && <ImageCarousel images={remoteImages} />}
+                      {!remoteImages && <Form.Text>Click to select a file</Form.Text>}
                     </>
                   )}
                   <StyledAbsContainer
