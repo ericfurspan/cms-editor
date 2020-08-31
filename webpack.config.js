@@ -23,7 +23,6 @@ const inProduction = process.env.NODE_ENV === 'production';
 const COMMON_PLUGINS = [
   new CopyWebpackPlugin({
     patterns: [
-      { from: 'static/fonts/*', toType: 'dir' },
       { from: 'static/img/*', toType: 'dir' },
       { from: 'static/json/*', toType: 'dir' },
       { from: 'robots.txt', to: 'robots.txt', toType: 'file' },
