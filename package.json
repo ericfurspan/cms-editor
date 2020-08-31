@@ -6,9 +6,9 @@
     "build:dev": "webpack --mode=development --config ./webpack.config.js --debug",
     "start:dev": "webpack-dev-server --config ./webpack.config.js --mode=development --inline --progress",
     "run:dev": "npm run build:dev && npm run start:dev",
-    "build:prod": "NODE_ENV=production webpack --mode production --progress --colors -p --config webpack.config.js && cp express.js build/",
-    "start:prod": "node --require 'dotenv/config' build/express.js",
-    "run:prod": "npm run build:prod && npm run start:prod",
+    "build:": "NODE_ENV=production webpack --mode production --progress --colors -p --config webpack.config.js && cp express.js build/",
+    "start": "node --require 'dotenv/config' build/express.js",
+    "go": "npm run build && npm run start",
     "test": "jest",
     "lint": "eslint --ext .jsx --ext .js ./src",
     "prettier": "prettier --write ."
