@@ -70,7 +70,7 @@ const LoginForm = ({ login }) => {
         )}
       </Form.Group>
       <Form.Group className="mt-4 m-1">
-        <StyledSubmitBtn type="submit" block>
+        <StyledSubmitBtn type="submit" size="lg" block>
           Login
         </StyledSubmitBtn>
       </Form.Group>

@@ -30,7 +30,7 @@ const ForgotPasswordForm = () => {
         )}
       </Form.Group>
       <Form.Group className="mt-4 m-1">
-        <StyledSubmitBtn type="submit" block>
+        <StyledSubmitBtn type="submit" size="lg" block>
           Send Email
         </StyledSubmitBtn>
       </Form.Group>
