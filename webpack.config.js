@@ -97,7 +97,7 @@ module.exports = () => ({
       },
     ],
   },
-  watch: true,
+  watch: !inProduction,
   optimization: {
     splitChunks: {
       cacheGroups: {
