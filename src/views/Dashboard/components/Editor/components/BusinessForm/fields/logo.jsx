@@ -33,11 +33,11 @@ const LogoField = ({ initialValues, onSubmit }) => {
         const isLoading = isSubmitting || isValidating;
         const blobPreview = selectedImageBlob.url && selectedImageBlob;
 
-        let remoteImage = false;
+        let remoteImage;
         if (values.logo) {
           remoteImage =
             process.env.NODE_ENV !== 'production'
-              ? `${process.env.API_URL}${values.logo.url}`
+              ? process.env.API_URL + values.logo.url
               : values.logo.url;
         }
 

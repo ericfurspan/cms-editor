@@ -19,7 +19,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
     } = event.target;
     const blob = URL.createObjectURL(file);
 
-    selectedImageBlob({ url: blob, name: file.name });
+    setSelectedImageBlob({ url: blob, name: file.name });
   };
 
   return (
@@ -30,20 +30,14 @@ const GalleryField = ({ initialValues, onSubmit }) => {
     >
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
-        const blobPreview = selectedImageBlob.url ? selectedImageBlob : false;
+        const blobPreview = selectedImageBlob.url && selectedImageBlob;
         const remoteImages =
-          !blobPreview && values.gallery.length > 0
-            ? values.gallery.map((img) => {
-                const src =
-                  process.env.NODE_ENV === 'production'
-                    ? img.url
-                    : `${process.env.API_URL}${img.url}`;
-                return {
-                  src,
-                  ...img,
-                };
-              })
-            : false;
+          values.gallery.length > 0 &&
+          values.gallery.map((img) => {
+            const src =
+              process.env.NODE_ENV !== 'production' ? process.env.API_URL + img.url : img.url;
+            return { src, ...img };
+          });
 
         const handleSubmit = (event) => {
           event.preventDefault();
