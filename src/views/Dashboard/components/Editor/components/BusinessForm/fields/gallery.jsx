@@ -30,9 +30,9 @@ const GalleryField = ({ initialValues, onSubmit }) => {
     >
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
-        const blobPreview = selectedImageBlob.url && selectedImageBlob;
+        const blobPreview = selectedImageBlob.url ? selectedImageBlob : false;
         const remoteImages =
-          values.gallery.length > 0
+          !blobPreview && values.gallery.length > 0
             ? values.gallery.map((img) => {
                 const src =
                   process.env.NODE_ENV === 'production'
