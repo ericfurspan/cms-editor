@@ -1,20 +1,46 @@
 import styled from 'styled-components';
 import ReactJson from 'react-json-view';
-import { Button, Popover, Form, Badge } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Form } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BREAKPOINTS from '../../../../../../utils/breakpoints';
 
-export const StyledForm = styled(Form)`
-  padding: 1.5rem;
+export const StyledWrapper = styled.div`
+  padding: 3rem;
   position: relative;
 
+  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
+    padding: 1.5rem;
+    margin: 0;
+  }
+`;
+
+export const StyledForm = styled(Form)``;
+
+export const StyledFormButton = styled(Button)`
+  margin: ${(props) => (props.$noMargin ? '0' : '0 0 0 0.5rem')};
+  min-width: ${(props) => (props.$iconOnly ? '36px' : '64px')};
   ${(props) =>
-    props.theme.mode === 'light'
-      ? `
-    box-shadow: 0 0 0 1px rgba(63,63,68,0.1), 0 2px 16px 0 rgba(63,63,68,0.2);
-  `
-      : `
-    background-color: var(--primary-light);
-    border: 1px solid var(--primary-lightest);
+    props.$color &&
+    `
+    color: ${props.$color};
   `}
+`;
+
+export const StyledFormIcon = styled(FontAwesomeIcon).attrs((props) => ({
+  icon: ['fas', props.$iconName],
+  size: props.$size || 'sm',
+}))`
+  margin-right: ${(props) => (props.$noSiblings ? '0' : '0.375rem')};
+`;
+
+export const StyledAbsContainer = styled.div`
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
 `;
 
 export const StyledJSONField = styled(ReactJson).attrs((props) => ({
@@ -45,52 +71,19 @@ export const StyledActionButton = styled(Button)`
   }
 `;
 
-export const StyledPopoverTitle = styled(Popover.Title)`
-  color: var(--gray-dark);
-  background-color: var(--gray-light);
-`;
-
-export const StyledPopoverContent = styled(Popover.Content)`
-  padding: 0.75rem;
-  color: var(--primary-dark);
-  margin-bottom: 0;
-`;
-
-export const StyledPopoverTarget = styled(Form.Text)`
-  position: absolute;
-  right: 0.5rem;
-  cursor: help;
-  outline: 0;
-
-  & span {
-    font-weight: 200;
-  }
-
-  & svg {
-    color: var(--info);
-    font-size: 0.875rem;
-  }
-`;
-
-export const StyledTopBar = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  min-height: 78px;
-`;
-
-export const StyledLastUpdate = styled(Badge)`
-  background-color: transparent;
-  color: var(--info-dark);
-  font-family: monospace;
-  font-size: 1rem;
-  white-space: normal;
-`;
-
 export const StyledFileSubmitBtn = styled(Button)`
   & svg {
     margin-right: 0.375rem;
+  }
+`;
+
+export const StyledColGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${(props) => props.cols}, minmax(auto, 300px));
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+
+  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+    display: inline;
   }
 `;

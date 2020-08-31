@@ -1,39 +1,46 @@
 import React from 'react';
-import { Container, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  StyledContentWrapper,
+  StyledContentBanner,
+  StyledMetaContainer,
+  StyledMeta,
+} from '../../style';
 import { BusinessForm } from './components';
-import { StyledHeaderRow, StyledMetadata, StyledContentHeader } from './style';
+import { ContentLoader } from '../../../../components';
 
 const Editor = ({ content, onUpdateComplete }) => {
-  return (
-    <Container fluid>
-      {content && content.id ? (
-        content.__typename === 'Business' && (
-          <div>
-            <StyledHeaderRow>
-              <StyledMetadata>
-                <StyledContentHeader>
-                  <FontAwesomeIcon icon={['fas', 'pencil-alt']} size="sm" />
-                  Editor
-                </StyledContentHeader>
-              </StyledMetadata>
-              <h1>{content.name}</h1>
-            </StyledHeaderRow>
+  const lastUpdated = new Date(content.updated_at).toDateString();
 
-            <BusinessForm
-              business={content}
-              onUpdateComplete={onUpdateComplete}
-            />
-          </div>
-        )
+  return (
+    <StyledContentWrapper
+      lg={{ span: 8, offset: 2 }}
+      xl={{ span: 6, offset: 3 }}
+      $withShadow
+      $marginTop
+    >
+      {content && content.id ? (
+        <>
+          <StyledContentBanner>
+            <StyledMetaContainer>
+              <StyledMeta>
+                <h6>Type:</h6>
+                <span>{content.__typename}</span>
+              </StyledMeta>
+              <StyledMeta>
+                <h6>Latest edit:</h6>
+                <span>{lastUpdated}</span>
+              </StyledMeta>
+            </StyledMetaContainer>
+          </StyledContentBanner>
+
+          {content.__typename === 'Business' && (
+            <BusinessForm business={content} onUpdateComplete={onUpdateComplete} />
+          )}
+        </>
       ) : (
-        <Col>
-          <p className="text-center">
-            You have not yet been assigned to any content.
-          </p>
-        </Col>
+        <ContentLoader />
       )}
-    </Container>
+    </StyledContentWrapper>
   );
 };
 

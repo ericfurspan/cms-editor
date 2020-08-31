@@ -1,0 +1,9 @@
+export { default as Name } from './name';
+export { default as Email } from './email';
+export { default as Logo } from './logo';
+export { default as Caption } from './caption';
+export { default as Description } from './description';
+export { default as Hours } from './hours';
+export { default as WebLink } from './weblink';
+export { default as Gallery } from './gallery';
+export { default as News } from './news';

@@ -1,9 +1,9 @@
 {
   "name": "Company Name",
-  "business_email": "hello@email.com",
+  "email": "hello@email.com",
   "caption": "A short caption or tagline",
-  "mission_statement": "A company mission statement",
-  "business_hours": {
+  "description": "A company mission statement",
+  "operating_hours": {
     "Monday": "9:00-5:00",
     "Tuesday": "9:00-5:00",
     "Wednesday": "9:00-5:00",
@@ -12,7 +12,7 @@
     "Saturday": "9:00-5:00",
     "Sunday": "9:00-5:00"
   },
-  "social_media_links": {
+  "web_links": {
     "twitter": "https://link-to-twitter.com",
     "youtube": "https://link-to-youtube.com",
     "facebook": "https://link-to-facebook.com",

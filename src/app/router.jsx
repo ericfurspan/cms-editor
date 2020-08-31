@@ -59,18 +59,12 @@ const AppRouter = ({ handleLogout }) => {
 
       <Route exact path="/privacy" render={() => <PrivacyPolicyRoute />} />
 
-      <Route
-        exact
-        path="/forgot-password"
-        render={() => <ForgotPasswordRoute />}
-      />
+      <Route exact path="/forgot-password" render={() => <ForgotPasswordRoute />} />
 
       <Route
         exact
         path="/login"
-        render={() =>
-          isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <LoginRoutes />
-        }
+        render={() => (isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <LoginRoutes />)}
       />
 
       <Route
@@ -84,11 +78,7 @@ const AppRouter = ({ handleLogout }) => {
 
       <Route
         render={() =>
-          isLoggedIn && uid ? (
-            <DashboardRoutes uid={uid} />
-          ) : (
-            <Redirect to="/login" />
-          )
+          isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <Redirect to="/login" />
         }
       />
     </Switch>

@@ -20,6 +20,8 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/prop-types': 0,
     'spaced-comment': [2, 'always'],
-    'no-underscore-dangle': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'react/no-array-index-key': 0,
+    'no-underscore-dangle': ['error', { allow: ['__typename'] }],
   },
 };

@@ -23,6 +23,7 @@ const inProduction = process.env.NODE_ENV === 'production';
 const COMMON_PLUGINS = [
   new CopyWebpackPlugin({
     patterns: [
+      { from: 'static/fonts/*', toType: 'dir' },
       { from: 'static/img/*', toType: 'dir' },
       { from: 'static/json/*', toType: 'dir' },
       { from: 'robots.txt', to: 'robots.txt', toType: 'file' },
@@ -87,8 +88,8 @@ module.exports = () => ({
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jpg|gif)$/,
-        use: [{ loader: 'file-loader' }],
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
       },
       {
         test: /\.(graphql|gql)$/,
@@ -97,6 +98,7 @@ module.exports = () => ({
       },
     ],
   },
+  watch: true,
   optimization: {
     splitChunks: {
       cacheGroups: {

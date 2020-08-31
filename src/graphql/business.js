@@ -6,23 +6,37 @@ const businessFragment = gql`
     updated_at
     name
     caption
+    description
+    email
+    web_links
+    events
+    news
     logo {
       name
       url
       alternativeText
+      width
     }
-    business_email
-    social_media_links
-    payment_links
-    podcast_links
-    business_hours
-    mission_statement
-    events
-    news
     gallery {
       name
       url
       alternativeText
+    }
+    operating_hours {
+      monday_start
+      monday_end
+      tuesday_start
+      tuesday_end
+      wednesday_start
+      wednesday_end
+      thursday_start
+      thursday_end
+      friday_start
+      friday_end
+      saturday_start
+      saturday_end
+      sunday_start
+      sunday_end
     }
   }
 `;

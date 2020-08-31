@@ -1,6 +1,17 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { StyledContentWrapper, StyledContentBanner } from '../../style';
 
-const Home = () => <Container>Coming soon...</Container>;
+const Home = () => {
+  return (
+    <StyledContentWrapper
+      lg={{ span: 8, offset: 2 }}
+      xl={{ span: 6, offset: 3 }}
+      $withShadow
+      $marginTop
+    >
+      <StyledContentBanner className="p-4">Coming soon</StyledContentBanner>
+    </StyledContentWrapper>
+  );
+};
 
 export default Home;

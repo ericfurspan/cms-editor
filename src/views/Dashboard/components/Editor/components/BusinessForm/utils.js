@@ -1,16 +1,5 @@
-import * as yup from 'yup';
+import upperFirst from 'lodash/upperFirst';
 
-export const validationSchema = yup.object({
-  name: yup.string().required(),
-  business_email: yup.string().email().nullable().default(''),
-  caption: yup.string().nullable().default(''),
-  mission_statement: yup.string().nullable().default(''),
-  logo: yup.object().nullable(),
-  business_hours: yup.object().nullable(),
-  social_media_links: yup.object().nullable(),
-  podcast_links: yup.object().nullable(),
-  payment_links: yup.object().nullable(),
-  gallery: yup.array().nullable(),
-  news: yup.array().nullable(),
-  events: yup.array().nullable(),
-});
+export const cleanLabel = (string) => upperFirst(string).replace('_', ' ');
+export const cleanOperatingHourLabel = (label) =>
+  upperFirst(label.replace('_start', '').replace('_end', ''));

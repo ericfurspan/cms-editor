@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Router } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { ThemeModeContext } from '../components/ThemeToggle/context';
 import AppRouter from './router';
 import createApolloClient from './apollo-client';
-import { LoadSpinner, ThemeToggle } from '../components';
+import { LoadSpinner } from '../components';
 import history from './history';
 import GlobalStyle from '../style/global';
 import '../style/colors.scss';
+import '../style/fonts.scss';
 
 const Application = () => {
   const client = createApolloClient();
-  const [themeMode, setThemeMode] = useState('light');
 
+  const [themeMode, setThemeMode] = useState('light');
   const toggleTheme = () => {
     const nextTheme = themeMode === 'light' ? 'dark' : 'light';
     setThemeMode(nextTheme);
@@ -24,24 +26,16 @@ const Application = () => {
     client.resetStore();
   };
 
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setThemeMode('dark');
-    }
-  }, []);
-
   return (
     <ApolloProvider client={client}>
       <React.Suspense fallback={<LoadSpinner />}>
         <Router history={history}>
-          <ThemeProvider theme={{ mode: themeMode }}>
-            <GlobalStyle />
-            <ThemeToggle onToggleTheme={toggleTheme} />
-            <AppRouter handleLogout={logout} />
-          </ThemeProvider>
+          <ThemeModeContext.Provider value={{ themeMode, toggleTheme }}>
+            <StyledThemeProvider theme={{ mode: themeMode }}>
+              <GlobalStyle />
+              <AppRouter handleLogout={logout} />
+            </StyledThemeProvider>
+          </ThemeModeContext.Provider>
         </Router>
       </React.Suspense>
     </ApolloProvider>

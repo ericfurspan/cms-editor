@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { USER_ID, LOGIN, IS_LOGGED_IN } from '../../graphql/user';
 import { LoginForm } from './components';
-import { PublicHeader } from '../../components';
 
 const LoginPage = () => {
   const [login] = useMutation(LOGIN, {
@@ -24,7 +23,6 @@ const LoginPage = () => {
 
   return (
     <Col>
-      <PublicHeader />
       <Container className="mt-5">
         <Row className="m-1">
           <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>

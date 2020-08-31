@@ -1,37 +1,59 @@
 import styled from 'styled-components';
-import { Row, Tab, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import BREAKPOINTS from '../../utils/breakpoints';
 
-export const StyledContainerRow = styled(Row)`
+export const StyledPageWrapper = styled(Row)`
   height: 100%;
   overflow: hidden;
 `;
 
-export const StyledContainerColumn = styled(Col)`
-  height: 100%;
-`;
+export const StyledContentWrapper = styled(Col)`
+  padding: 0;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  background-color:
+    ${(props) => (props.theme.mode === 'light' ? 'var(--white)' : 'inherit')};
+  ${(props) =>
+    props.$withShadow === true &&
+    `
+    border: ${props.theme.mode === 'light' ? '0' : '1px solid var(--primary-light)'};
+    box-shadow: ${
+      props.theme.mode === 'light'
+        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+        : '0 2px 4px 0 rgba(31,45,61,.07);'
+    };
+  `}
 
-export const StyledHeaderRow = styled(Row)`
-  width: 100%;
-  height: 56px;
-  padding: 0 0.75rem;
-  margin: 0;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid
-    var(
-      ${(props) =>
-        props.theme.mode === 'light' ? '--secondary' : '--primary-lightest'}
-    );
-
-  @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
-    justify-content: center;
-    background-color: var(--primary-dark);
+  @media only screen and (max-width: ${BREAKPOINTS.LARGE}) {
+    border: 0;
   }
 `;
 
-export const StyledTabContent = styled(Tab.Content)`
-  height: 100%;
-  overflow: auto;
-  padding-bottom: 4rem;
+export const StyledContentBanner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+  padding: 1rem 0;
+`;
+
+export const StyledMetaContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const StyledMeta = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  white-space: normal;
+
+  h6 {
+    font-weight: 400;
+    margin: 0 0.375rem;
+    margin-bottom: 0;
+  }
 `;

@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import { Tab, Container } from 'react-bootstrap';
+import { Tab, Col } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import sortBy from 'lodash/sortBy';
 import { FETCH_BUSINESSES } from '../../graphql/business';
-import { LoadSpinner, ContentDropdown } from '../../components';
-import { Navbar, Editor, Users, Home } from './components';
-import {
-  StyledContainerRow,
-  StyledContainerColumn,
-  StyledHeaderRow,
-  StyledTabContent,
-} from './style';
+import { Navbar, LoadSpinner } from '../../components';
+import { Editor, Users, Home } from './components';
+import { StyledPageWrapper } from './style';
 
 const DashboardPage = ({ uid }) => {
   const [activePaneKey, setActivePaneKey] = useState('editor');
@@ -28,63 +23,52 @@ const DashboardPage = ({ uid }) => {
     },
   });
 
-  const afterContentUpdate = (updated) => {
-    const updatedContent = {
-      ...activeContentData,
-      ...updated,
-    };
-    const updatedAvailable = availableContent.map((obj) =>
-      obj.id === updatedContent.id ? updatedContent : obj
+  const refreshContent = (updated) => {
+    const newActive = { ...activeContentData, ...updated };
+    const newAvailable = availableContent.map((obj) =>
+      obj.id === newActive.id ? newActive : obj
     );
-    setActiveContentData(updatedContent);
-    setAvailableContent(sortBy(updatedAvailable, 'name'));
+    setActiveContentData(newActive);
+    setAvailableContent(sortBy(newAvailable, 'name'));
   };
 
-  if (businessesAreLoading) {
-    return <LoadSpinner />;
-  }
+  const isLoading = businessesAreLoading;
 
   return (
-    <Container fluid className="p-0 h-100">
+    <Col className="p-0 h-100">
       <Tab.Container id="dashboard-tabs-container" activeKey={activePaneKey}>
-        <StyledContainerRow noGutters>
-          {/* navbar */}
+        <StyledPageWrapper noGutters>
           <Navbar
             onSelectNavLink={(key) => setActivePaneKey(key)}
             activeKey={activePaneKey}
-            activeContentName={activeContentData.name}
+            activeContent={activeContentData}
+            availableContent={availableContent}
+            onSelectNewContent={(id) => {
+              const nextContent = availableContent.find((i) => i.id === id);
+              setActiveContentData(nextContent);
+            }}
           />
-          <StyledContainerColumn>
-            <StyledHeaderRow>
-              {/* content header dropdown */}
-              <ContentDropdown
-                availableContent={availableContent}
-                activeContent={activeContentData}
-                onSelectItem={(id) => {
-                  const nextContent = availableContent.find((i) => i.id === id);
-                  setActiveContentData(nextContent);
-                }}
-              />
-            </StyledHeaderRow>
-            {/* main content */}
-            <StyledTabContent>
-              <Tab.Pane eventKey="home">
-                <Home />
-              </Tab.Pane>
-              <Tab.Pane eventKey="editor">
-                <Editor
-                  content={activeContentData}
-                  onUpdateComplete={afterContentUpdate}
-                />
-              </Tab.Pane>
-              <Tab.Pane eventKey="users">
-                <Users />
-              </Tab.Pane>
-            </StyledTabContent>
-          </StyledContainerColumn>
-        </StyledContainerRow>
+          {/* primary content */}
+          <Col className="h-100 pt-5" role="main">
+            {isLoading ? (
+              <LoadSpinner />
+            ) : (
+              <Tab.Content className="h-100 pt-5 overflow-auto">
+                <Tab.Pane eventKey="home">
+                  <Home />
+                </Tab.Pane>
+                <Tab.Pane eventKey="editor">
+                  <Editor content={activeContentData} onUpdateComplete={refreshContent} />
+                </Tab.Pane>
+                <Tab.Pane eventKey="users">
+                  <Users />
+                </Tab.Pane>
+              </Tab.Content>
+            )}
+          </Col>
+        </StyledPageWrapper>
       </Tab.Container>
-    </Container>
+    </Col>
   );
 };
 

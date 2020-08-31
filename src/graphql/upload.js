@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const UPLOAD_FILE = gql`
+export const UPLOAD_SINGLE_FILE = gql`
   mutation($file: Upload!, $refId: ID!, $ref: String, $field: String) {
     upload(file: $file, refId: $refId, ref: $ref, field: $field) {
       url

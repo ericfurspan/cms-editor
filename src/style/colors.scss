@@ -1,40 +1,49 @@
-
 /* custom colors */
-$primary: #211F3B;
-$primary-dark: #25233F;
-$primary-light: #282644;
-$primary-lightest: #34334e;
-$secondary: #e2e6ea;
-$info: #75AFCC;
-$info-dark: cadetblue;
-$danger:#b00020;
-$success: #6DBB1A;
+$primary: #151f2b;
+$primary-light: #253341;
+$primary-dark: #151f2b;
+$primary-darkest: #19172c;
+$secondary: #edeff1;
+$info: #1c90da;
+$info-dark: #5771ce;
+$danger: #b00020;
+$success: #008000;
 $warning: #ffc107;
 $link: #06c;
-$gray: #cccccc;
-$gray-light: #f8f9fa;
-$gray-dark: #909090;
+$gray: #8493a5;
+$gray-light: #dadce0;
+$gray-lightest: #f4f8fb;
+$gray-dark: #606060;
+$gray-darkest: #303030;
 $white: #ffffff;
+$white-darker: #f9fafc;
 $black: #212121;
+$brand-light: #8ffbdb;
 
 /* sets css variables, overriding any from Bootstrap */
 $theme-colors: (
-  "primary": $primary,
-  "primary-dark": $primary-dark,
-  "primary-light": $primary-light,
-  "primary-lightest": $primary-lightest,
-  "secondary": $secondary,
-  "info": $info,
-  "info-dark": $info-dark,
-  "link": $link,
-  "danger": $danger,
-  "success": $success,
-  "warning": $warning,
-  "gray": $gray,
-  "gray-light": $gray-light,
-  "gray-dark": $gray-dark,
-  "white": $white,
-  "black": $black,
+  'primary': $primary,
+  'primary-light': $primary-light,
+  'primary-dark': $primary-dark,
+  'primary-darkest': $primary-darkest,
+  'secondary': $secondary,
+  'light': $white-darker,
+  'dark': $gray-dark,
+  'info': $info,
+  'info-dark': $info-dark,
+  'link': $link,
+  'danger': $danger,
+  'success': $success,
+  'warning': $warning,
+  'gray': $gray,
+  'gray-light': $gray-light,
+  'gray-lightest': $gray-lightest,
+  'gray-dark': $gray-dark,
+  'gray-darkest': $gray-darkest,
+  'white': $white,
+  'white-darker': $white-darker,
+  'black': $black,
+  'brand-light': $brand-light,
 );
 
 @import '~bootstrap/scss/bootstrap';
