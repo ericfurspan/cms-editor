@@ -8,7 +8,7 @@ import { ContentDropdown } from './components';
 import {
   StyledNavHeader,
   StyledNavToggle,
-  StyledToggleButton,
+  StyledMenuButton,
   StyledSidebar,
   StyledNav,
   StyledNavItem,
@@ -34,23 +34,25 @@ const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableC
     <>
       {/* top aligned header bar */}
       <StyledNavHeader $isExpanded={isExpanded}>
-        {/* left-side */}
         <StyledNavToggle $isExpanded={isExpanded}>
-          <StyledToggleButton onClick={() => setExpanded(!isExpanded)} variant="transparent">
+          {/* left-side */}
+          <StyledMenuButton onClick={() => setExpanded(!isExpanded)} variant="transparent">
             <FontAwesomeIcon icon={['fas', 'bars']} />
-          </StyledToggleButton>
+          </StyledMenuButton>
           <span id="brand-name">CMS</span>
 
           {/* right-side */}
           <Row className="align-items-center">
-            <ContentDropdown
-              activeContent={activeContent}
-              availableContent={availableContent}
-              onSelectItem={onSelectNewContent}
-            />
+            {availableContent.length > 1 && (
+              <ContentDropdown
+                activeContent={activeContent}
+                availableContent={availableContent}
+                onSelectItem={onSelectNewContent}
+              />
+            )}
             <Dropdown drop="up">
               <Dropdown.Toggle id="profile-toggle" variant="transparent">
-                <FontAwesomeIcon icon={['fas', 'cog']} fixedWidth size="sm" />
+                <FontAwesomeIcon icon={['fas', 'cog']} fixedWidth />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item className="pl-3">
@@ -58,12 +60,7 @@ const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableC
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item as={Link} to="/logout">
-                  <FontAwesomeIcon
-                    icon={['fas', 'sign-out-alt']}
-                    className="mr-2"
-                    fixedWidth
-                    size="sm"
-                  />
+                  <FontAwesomeIcon icon={['fas', 'sign-out-alt']} className="mr-2" />
                   <span>Sign out</span>
                 </Dropdown.Item>
               </Dropdown.Menu>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ToggleButton = React.forwardRef(({ onClick }, ref) => (
   <Button variant="transparent" ref={ref} onClick={(e) => onClick(e)}>
-    <FontAwesomeIcon icon={['fas', 'layer-group']} />
+    <FontAwesomeIcon icon={['fas', 'layer-group']} fixedWidth />
   </Button>
 ));
 
@@ -24,7 +24,7 @@ const ContentDropdown = ({ activeContent, availableContent = [], onSelectItem })
           >
             <span>{content.name}</span>
             {activeContent.id === content.id && (
-              <FontAwesomeIcon icon={['fas', 'check-circle']} className="ml-1 text-light" />
+              <FontAwesomeIcon icon={['fas', 'check-circle']} className="ml-4 text-light" />
             )}
           </Dropdown.Item>
         ))}

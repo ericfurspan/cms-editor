@@ -52,51 +52,55 @@ const NewsField = ({ initialValues, onSubmit }) => {
                             <Form.Row className="align-items-baseline" key={index}>
                               <Col xs={3}>
                                 <Form.Group controlId={`news.${index}.title`}>
-                                  <Field
-                                    as={Form.Control}
-                                    type="text"
-                                    size="sm"
-                                    name={`news.${index}.title`}
-                                    label="Title"
-                                    placeholder="Title"
-                                    isInvalid={
-                                      errors.news &&
-                                      errors.news[index] &&
-                                      errors.news[index].title
-                                    }
-                                  />
-                                  <Form.Control.Feedback type="invalid">
-                                    {errors.news &&
-                                      errors.news[index] &&
-                                      errors.news[index].title}
-                                  </Form.Control.Feedback>
+                                  <InputGroup size="sm">
+                                    <Field
+                                      as={Form.Control}
+                                      type="text"
+                                      size="sm"
+                                      name={`news.${index}.title`}
+                                      label="Title"
+                                      placeholder="Title"
+                                      isInvalid={
+                                        errors.news &&
+                                        errors.news[index] &&
+                                        errors.news[index].title
+                                      }
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                      {errors.news &&
+                                        errors.news[index] &&
+                                        errors.news[index].title}
+                                    </Form.Control.Feedback>
+                                  </InputGroup>
                                 </Form.Group>
                               </Col>
                               <Col xs={3}>
                                 <Form.Group controlId={`news.${index}.source`}>
-                                  <Field
-                                    as={Form.Control}
-                                    type="text"
-                                    size="sm"
-                                    name={`news.${index}.source`}
-                                    label="Source"
-                                    placeholder="Source"
-                                    isInvalid={
-                                      errors.news &&
-                                      errors.news[index] &&
-                                      errors.news[index].source
-                                    }
-                                  />
-                                  <Form.Control.Feedback type="invalid">
-                                    {errors.news &&
-                                      errors.news[index] &&
-                                      errors.news[index].source}
-                                  </Form.Control.Feedback>
+                                  <InputGroup size="sm">
+                                    <Field
+                                      as={Form.Control}
+                                      type="text"
+                                      size="sm"
+                                      name={`news.${index}.source`}
+                                      label="Source"
+                                      placeholder="Source"
+                                      isInvalid={
+                                        errors.news &&
+                                        errors.news[index] &&
+                                        errors.news[index].source
+                                      }
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                      {errors.news &&
+                                        errors.news[index] &&
+                                        errors.news[index].source}
+                                    </Form.Control.Feedback>
+                                  </InputGroup>
                                 </Form.Group>
                               </Col>
                               <Col>
                                 <Form.Group controlId={`news.${index}.url`}>
-                                  <InputGroup>
+                                  <InputGroup size="sm">
                                     <Form.Control
                                       as={Field}
                                       type="url"
@@ -129,7 +133,7 @@ const NewsField = ({ initialValues, onSubmit }) => {
                                   size="sm"
                                   onClick={() => remove(index)}
                                 >
-                                  X
+                                  Delete
                                 </Button>
                               </Col>
                             </Form.Row>
@@ -141,7 +145,7 @@ const NewsField = ({ initialValues, onSubmit }) => {
                             onClick={() => push({ title: '', source: '', url: '' })}
                             disabled={!!errors.news}
                           >
-                            <StyledFormIcon $iconName="plus" $size="1x" />
+                            <StyledFormIcon $iconName="plus" />
                             Add
                           </StyledFormButton>
                         </Col>

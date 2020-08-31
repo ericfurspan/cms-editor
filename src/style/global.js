@@ -17,10 +17,10 @@ const GlobalStyle = createGlobalStyle`
       props.theme.mode === 'light'
         ? `
       background-color: var(--white-darker);
-      color: var(--primary);
+      color: var(--black);
     `
         : `
-      background-color: var(--primary-dark);
+      background-color: var(--primary);
       color: var(--white);
     `}
   }
@@ -29,32 +29,9 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
     overflow: hidden;
-    font-family: Helvetica, -apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,sans-serif,Roboto,SegoeUI,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, Ubuntu, sans-serif;
   }
 
-  h1 {
-    font-size: 2.75rem;
-  }
-  h2 {
-    font-size: 2rem;
-    font-weight: 400;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-  h4 {
-    font-size: 1.25rem;
-    font-weight: 400;
-  }
-  h5 {
-    font-size: 1rem;
-  }
-  h6 {
-    font-size: 0.875rem;
-  }
-  pre {
-    font-size: 0.75rem;
-  }
   label {
     font-size: 0.875rem;
     color: var(${(props) => (props.theme.mode === 'light' ? '--gray-dark' : '--gray')});
@@ -82,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
 
     .dropdown-item.active, .dropdown-item:active {
       color: var(--white);
-      background-color: var(--info-dark);
+      background-color: var(--link);
     }
   }
 
@@ -114,31 +91,32 @@ const GlobalStyle = createGlobalStyle`
       props.theme.mode === 'light' ? '--gray-light' : '--primary-light'});
     border-style: solid;
     border-width: 1px;
-    font-size: max(16px, 1em);
+    border-radius: 0 !important;
+    font-size: max(16px, 1rem);
 
     &:focus {
       color: inherit;
       box-shadow: none;
       border-width: 2px;
-      border-color: var(--info-dark);
+      border-color: var(--link);
       background-color: var(${(props) =>
         props.theme.mode === 'light' ? '--white' : '--primary'});
+    }
+
+    &::placeholder {
+      font-size: 0.875rem;
     }
   }
 
   .form-control-plaintext {
     resize: none;
-    padding: 2px 4px;
-    transition all 0.2s;
+    padding: 0;
+    transition padding 0.3s;
 
     &:focus {
       padding: 6px 12px;
       resize: vertical;
     }
-  }
-
-  .invalid-feedback {
-    position: absolute;
   }
 
   .custom-file-input {

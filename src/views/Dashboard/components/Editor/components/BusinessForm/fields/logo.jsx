@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadSpinner } from '../../../../../../../components';
 import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
@@ -84,7 +85,16 @@ const LogoField = ({ initialValues, onSubmit }) => {
                         </>
                       )}
                       {!values.logo && (
-                        <Form.Text className="m-4">Click to select a file</Form.Text>
+                        <>
+                          <FontAwesomeIcon
+                            icon={['fas', 'image']}
+                            size="4x"
+                            color="var(--gray-dark)"
+                          />
+                          <Form.Text className="mt-2">
+                            Click to select an asset or drag &amp; drop a file in this area
+                          </Form.Text>
+                        </>
                       )}
                     </>
                   )}

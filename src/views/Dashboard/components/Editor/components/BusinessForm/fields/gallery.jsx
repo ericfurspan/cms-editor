@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadSpinner, ImageCarousel } from '../../../../../../../components';
 import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
@@ -77,7 +78,18 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                   ) : (
                     <>
                       {remoteImages && <ImageCarousel images={remoteImages} />}
-                      {!remoteImages && <Form.Text>Click to select a file</Form.Text>}
+                      {!remoteImages && (
+                        <>
+                          <FontAwesomeIcon
+                            icon={['fas', 'images']}
+                            size="4x"
+                            color="var(--gray-dark)"
+                          />
+                          <Form.Text className="mt-2">
+                            Click to select an asset or drag &amp; drop a file in this area
+                          </Form.Text>
+                        </>
+                      )}
                     </>
                   )}
                   <StyledAbsContainer

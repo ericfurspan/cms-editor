@@ -68,17 +68,13 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
                               onChange={handleChange}
                               value={values.web_links[platformName]}
                               isInvalid={errors.web_links && errors.web_links[platformName]}
-                              plaintext={!!values.web_links[platformName]}
                             />
                             <InputGroup.Append>
                               <InputGroup.Text>
                                 <FontAwesomeIcon icon={['fas', 'link']} />
                               </InputGroup.Text>
                             </InputGroup.Append>
-                            <Form.Control.Feedback
-                              type="invalid"
-                              style={{ position: 'static' }}
-                            >
+                            <Form.Control.Feedback type="invalid">
                               {errors.web_links && errors.web_links[platformName]}
                             </Form.Control.Feedback>
                           </InputGroup>

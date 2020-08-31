@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import BREAKPOINTS from '../../utils/breakpoints';
 
 export const StyledPageWrapper = styled(Row)`
@@ -7,7 +7,7 @@ export const StyledPageWrapper = styled(Row)`
   overflow: hidden;
 `;
 
-export const StyledContentWrapper = styled(Col)`
+export const StyledContentWrapper = styled.div`
   padding: 0;
   margin-bottom: 2rem;
   border-radius: 6px;

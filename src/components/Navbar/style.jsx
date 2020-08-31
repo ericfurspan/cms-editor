@@ -35,6 +35,7 @@ export const StyledSidebar = styled(Col)`
       @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
         max-width: 100%;
         position: absolute;
+        background: transparent;
       }
   `}
 `;
@@ -65,9 +66,10 @@ export const StyledNavHeader = styled.div`
   `}
 `;
 
-export const StyledToggleButton = styled(Button)`
+export const StyledMenuButton = styled(Button)`
   box-shadow: none !important;
   z-index: 2;
+  font-size: 1.25rem;
 `;
 
 export const StyledNavToggle = styled.div`
@@ -75,14 +77,14 @@ export const StyledNavToggle = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-left: 16px;
+  margin-left: 14px;
   font-weight: 300;
   font-size: 0.875rem;
 
   #brand-name {
     display: none;
     position: absolute;
-    left: 58px;
+    left: 64px;
   }
   ${(props) =>
     props.$isExpanded &&
@@ -94,6 +96,8 @@ export const StyledNavToggle = styled.div`
 `;
 
 export const StyledNav = styled(Nav)`
+  padding-top: 0.75rem;
+
   @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
     display: none;
   }
@@ -102,7 +106,6 @@ export const StyledNav = styled(Nav)`
     props.$isExpanded &&
     `
     border-top: 1px solid rgb(0 0 0 / 10%);
-    padding-top: 0.75rem;
 
     @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
       align-items: center;

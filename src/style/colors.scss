@@ -1,22 +1,19 @@
 /* custom colors */
 $primary: #151f2b;
 $primary-light: #253341;
-$primary-dark: #151f2b;
-$primary-darkest: #19172c;
 $secondary: #edeff1;
 $info: #1c90da;
-$info-dark: #5771ce;
+$link: #0066cc;
 $danger: #b00020;
 $success: #008000;
 $warning: #ffc107;
-$link: #06c;
 $gray: #8493a5;
 $gray-light: #dadce0;
 $gray-lightest: #f4f8fb;
 $gray-dark: #606060;
 $gray-darkest: #303030;
 $white: #ffffff;
-$white-darker: #f9fafc;
+$white-darker: #fafafa;
 $black: #212121;
 $brand-light: #8ffbdb;
 
@@ -24,13 +21,10 @@ $brand-light: #8ffbdb;
 $theme-colors: (
   'primary': $primary,
   'primary-light': $primary-light,
-  'primary-dark': $primary-dark,
-  'primary-darkest': $primary-darkest,
   'secondary': $secondary,
   'light': $white-darker,
   'dark': $gray-dark,
   'info': $info,
-  'info-dark': $info-dark,
   'link': $link,
   'danger': $danger,
   'success': $success,
