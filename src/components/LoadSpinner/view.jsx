@@ -3,7 +3,9 @@ import { StyledSpinnerContainer, StyledSpinner } from './style';
 
 const LoadSpinner = ({ inline }) => (
   <StyledSpinnerContainer inline={inline}>
-    <StyledSpinner animation="border" />
+    <StyledSpinner animation="border" role="status">
+      <span className="sr-only">Loading...</span>
+    </StyledSpinner>
   </StyledSpinnerContainer>
 );
 
