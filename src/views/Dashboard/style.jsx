@@ -10,7 +10,6 @@ export const StyledPageWrapper = styled(Row)`
 export const StyledContentWrapper = styled.div`
   padding: 0;
   margin-bottom: 2rem;
-  border-radius: 6px;
   background-color:
     ${(props) => (props.theme.mode === 'light' ? 'var(--white)' : 'inherit')};
   ${(props) =>

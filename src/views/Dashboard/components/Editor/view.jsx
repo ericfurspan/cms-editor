@@ -8,10 +8,10 @@ const Editor = ({ content, onUpdateComplete }) => {
   const lastUpdated = new Date(content.updated_at).toDateString();
 
   return (
-    <Col lg={{ span: 8, offset: 2 }} xl={{ span: 6, offset: 3 }}>
+    <Col lg={{ span: 8, offset: 2 }}>
       <div className="mb-3 ml-1">
         <h1>Editor</h1>
-        <span className="text-gray">Manage your website content</span>
+        <span className="text-gray">Describe your content</span>
       </div>
       <StyledContentWrapper $withShadow $marginTop>
         {content && content.id ? (

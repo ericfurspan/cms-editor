@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { LoadSpinner } from '../../../../../../../components';
+import { LoadSpinner, FileUploadPlaceholder } from '../../../../../../../components';
 import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
 
@@ -65,7 +64,7 @@ const LogoField = ({ initialValues, onSubmit }) => {
                   name="logo"
                   label="Logo"
                   custom
-                  className="h-100 w-100 mb-1 text-center"
+                  className="h-100 w-100 mb-2 text-center"
                 >
                   {blobPreview ? (
                     <Figure.Image
@@ -89,18 +88,7 @@ const LogoField = ({ initialValues, onSubmit }) => {
                           />
                         </>
                       )}
-                      {!values.logo && (
-                        <>
-                          <FontAwesomeIcon
-                            icon={['fas', 'image']}
-                            size="3x"
-                            color="var(--gray-light)"
-                          />
-                          <Form.Text muted>
-                            Click to select an asset or drag &amp; drop a file in this area
-                          </Form.Text>
-                        </>
-                      )}
+                      {!values.logo && <FileUploadPlaceholder icon="image" />}
                     </>
                   )}
                   <StyledAbsContainer

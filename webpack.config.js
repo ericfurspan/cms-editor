@@ -64,7 +64,7 @@ module.exports = () => ({
   devServer: inProduction
     ? undefined
     : { hot: true, historyApiFallback: true, contentBase: './public' },
-  devtool: inProduction && 'source-map',
+  devtool: inProduction && 'nosources-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [path.resolve(SRC_DIR), 'node_modules'],

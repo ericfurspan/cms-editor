@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     font-size: 0.875rem;
-    color: var(${(props) => (props.theme.mode === 'light' ? '--gray-dark' : '--gray')});
+    color: var(--gray);
     margin-bottom: 2px;
   }
   summary {
@@ -92,7 +92,7 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: none !important;
     outline: 0 !important;
     border-color: var(${(props) =>
-      props.theme.mode === 'light' ? '--gray-light' : '--primary-light'});
+      props.theme.mode === 'light' ? '--gray' : '--primary-light'});
     border-style: solid;
     border-width: 1px;
     border-radius: 0 !important;
@@ -114,7 +114,7 @@ const GlobalStyle = createGlobalStyle`
 
   .form-control-plaintext {
     resize: none;
-    padding: 0;
+    padding: 6px 0;
     transition padding 0.3s;
 
     &:focus {

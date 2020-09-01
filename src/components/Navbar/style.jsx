@@ -4,7 +4,7 @@ import BREAKPOINTS from '../../utils/breakpoints';
 
 export const StyledSidebar = styled(Col)`
   height: 100vh;
-  padding-top: 56px;
+  padding-top: 52px;
   background-color: var(
     ${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')}
   );
@@ -47,18 +47,14 @@ export const StyledNavHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-right: 28px;
-  height: 56px;
+  height: 52px;
   z-index: 2;
+  background-color: var(--primary-light);
 
-  & button,
-  a {
-    svg {
-      color: var(--gray);
-    }
-  }
-
-  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
-    background-color: var(--primary-light);
+  & button > svg,
+  a > svg,
+  #brand-name {
+    color: var(--gray);
   }
 
   ${(props) =>
@@ -89,6 +85,7 @@ export const StyledNavToggle = styled.div`
     display: none;
     position: absolute;
     left: 64px;
+    font-weight: 500;
   }
   ${(props) =>
     props.$isExpanded &&
@@ -128,71 +125,68 @@ export const StyledNavItem = styled(Nav.Item)`
 export const StyledNavLink = styled(Nav.Link)`
   ${(props) => `
   
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  padding: 1rem;
-  border-radius: inherit;
-  color: var(--gray);
-  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 1rem;
+    border-radius: inherit;
+    color: var(--gray);
+    position: relative;
 
-  &.active {
-    color: var(${props.theme.mode === 'light' ? '--primary' : '--secondary'});
-    background-color: var(${
-      props.theme.mode === 'light' ? '--gray-lightest' : '--primary-light'
-    });
-    &:before {
-      content: ' ';
-      position: absolute;
-      display: block;
-      transform-origin: center center;
-      height: 100%;
-      transform: scaleY(1);
-      width: 100%;
-      left: 0;
-      top: 0;
-      box-shadow: inset 3px 0 0 0 var(--info);
-      pointer-events: none;
+    &.active {
+      color: var(${props.theme.mode === 'light' ? '--primary-light' : '--gray-light'});
+      background-color: var(${
+        props.theme.mode === 'light' ? '--white-darker' : '--primary-light'
+      });
+    
+      &:before {
+        content: ' ';
+        position: absolute;
+        display: block;
+        transform-origin: center center;
+        height: 100%;
+        transform: scaleY(1);
+        width: 100%;
+        left: 0;
+        top: 0;
+        box-shadow: inset 3px 0 0 0 var(--brand);
+        pointer-events: none;
+      }
     }
-  }
-  &:hover:not(.active) {
-    color: var(
-      ${props.theme.mode === 'light' ? '--primary' : '--gray-light'}
-    ) !important;
-  }
-
-  span {
-    display: none;
-  }
-
-  ${
-    props.$isExpanded &&
-    `
-    flex-direction: row;
-    padding-left: 28px;
+    &:hover:not(.active) {
+      color: var(
+        ${props.theme.mode === 'light' ? '--primary' : '--gray-light'}
+      ) !important;
+    }
 
     span {
-      display: initial;
-      font-size: 14px;
+      display: none;
     }
-    svg {
-      margin-right: 1rem;
-    }
-  `
-  };
 
-  ${
-    !props.$isExpanded &&
-    `
-    span {
-      font-size: 10.5px;
-      letter-spacing: 0.5px;
-    }
-    svg {
-      margin-bottom: 0.375rem;
-    }
-  `
-  }
+    ${
+      props.$isExpanded
+        ? `
+      flex-direction: row;
+      padding-left: 28px;
+
+      span {
+        display: initial;
+        font-size: 14px;
+      }
+      svg {
+        margin-right: 1rem;
+      }
+      `
+        : `
+      span {
+        font-size: 10.5px;
+        letter-spacing: 0.5px;
+      }
+      svg {
+        margin-bottom: 0.375rem;
+      }
+      `
+    };
   `}
 `;

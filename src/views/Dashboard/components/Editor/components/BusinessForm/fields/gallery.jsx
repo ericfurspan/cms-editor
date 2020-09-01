@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { LoadSpinner, ImageCarousel } from '../../../../../../../components';
+import {
+  LoadSpinner,
+  ImageCarousel,
+  FileUploadPlaceholder,
+} from '../../../../../../../components';
 import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
 
@@ -65,7 +68,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                   name="gallery"
                   label="Gallery"
                   custom
-                  className="h-100 w-100 mb-1 text-center"
+                  className="h-100 w-100 mb-2 text-center"
                 >
                   {blobPreview ? (
                     <Figure.Image
@@ -78,18 +81,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                   ) : (
                     <>
                       {remoteImages && <ImageCarousel images={remoteImages} />}
-                      {!remoteImages && (
-                        <>
-                          <FontAwesomeIcon
-                            icon={['fas', 'images']}
-                            size="3x"
-                            color="var(--gray-light)"
-                          />
-                          <Form.Text muted>
-                            Click to select an asset or drag &amp; drop a file in this area
-                          </Form.Text>
-                        </>
-                      )}
+                      {!remoteImages && <FileUploadPlaceholder icon="images" />}
                     </>
                   )}
                   <StyledAbsContainer

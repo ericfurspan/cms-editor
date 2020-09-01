@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import sortBy from 'lodash/sortBy';
 import { FETCH_BUSINESSES } from '../../graphql/business';
 import { Navbar, LoadSpinner } from '../../components';
-import { Editor, Users, Home } from './components';
+import { Editor, AppsHome } from './components';
 import { StyledPageWrapper } from './style';
 
 const DashboardPage = ({ uid }) => {
@@ -54,14 +54,11 @@ const DashboardPage = ({ uid }) => {
               <LoadSpinner />
             ) : (
               <Tab.Content className="h-100 pt-5 overflow-auto">
-                <Tab.Pane eventKey="home">
-                  <Home />
+                <Tab.Pane eventKey="apps">
+                  <AppsHome />
                 </Tab.Pane>
                 <Tab.Pane eventKey="editor">
                   <Editor content={activeContentData} onUpdateComplete={refreshContent} />
-                </Tab.Pane>
-                <Tab.Pane eventKey="users">
-                  <Users />
                 </Tab.Pane>
               </Tab.Content>
             )}

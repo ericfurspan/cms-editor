@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import ContentLoader from 'react-content-loader';
 
 export const StyledLoader = styled(ContentLoader).attrs((props) => ({
-  backgroundColor: props.theme.mode === 'light' ? 'var(--gray-lightest)' : 'var(--primary)',
-  foregroundColor: props.theme.mode === 'light' ? 'var(--gray-light)' : 'var(--primary-light)',
+  title: props.title,
 }))`
   margin: 1rem;
   padding: 2rem;

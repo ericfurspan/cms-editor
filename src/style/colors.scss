@@ -1,27 +1,27 @@
 /* custom colors */
 $primary: #151f2b;
 $primary-light: #253341;
-$secondary: #edeff1;
-$info: #1c90da;
-$link: #0066cc;
+$gray: #8493a5;
+$gray-dark: #5F6A78;
+$gray-light: #C3DDEB;
+$gray-lighter: #edeff1;
+$white-darker: #fafafa;
+$white: #ffffff;
+$black: #212121;
+$black-light: #303030;
+$brand: #68D7C1;
+$brand-light: #8ffbdb;
 $danger: #b00020;
 $success: #008000;
 $warning: #ffc107;
-$gray: #8493a5;
-$gray-light: #dadce0;
-$gray-lightest: #f4f8fb;
-$gray-dark: #606060;
-$gray-darkest: #303030;
-$white: #ffffff;
-$white-darker: #fafafa;
-$black: #212121;
-$brand-light: #8ffbdb;
+$info: #1c90da;
+$link: #0066cc;
 
 /* sets css variables, overriding any from Bootstrap */
 $theme-colors: (
   'primary': $primary,
   'primary-light': $primary-light,
-  'secondary': $secondary,
+  'secondary': $gray-lighter,
   'light': $white-darker,
   'dark': $gray-dark,
   'info': $info,
@@ -31,12 +31,12 @@ $theme-colors: (
   'warning': $warning,
   'gray': $gray,
   'gray-light': $gray-light,
-  'gray-lightest': $gray-lightest,
   'gray-dark': $gray-dark,
-  'gray-darkest': $gray-darkest,
   'white': $white,
   'white-darker': $white-darker,
   'black': $black,
+  'black-light': $black-light,
+  'brand': $brand,
   'brand-light': $brand-light,
 );
 

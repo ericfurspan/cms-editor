@@ -1,17 +1,14 @@
+// useful icons: [cloud, rocket, sitemap, th-large, layer-group]
+
 export const navigationConfig = [
   {
-    eventKey: 'home',
-    faIconName: 'home',
-    text: 'Home',
+    eventKey: 'apps',
+    faIconName: 'sitemap',
+    text: 'Apps',
   },
   {
     eventKey: 'editor',
-    faIconName: 'pencil-alt',
+    faIconName: 'edit',
     text: 'Editor',
-  },
-  {
-    eventKey: 'users',
-    faIconName: 'users',
-    text: 'Users',
   },
 ];
