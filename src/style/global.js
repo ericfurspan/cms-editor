@@ -32,10 +32,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, Ubuntu, sans-serif;
   }
 
+  h1 {
+    margin-bottom: 0;
+  }
+
   label {
     font-size: 0.875rem;
     color: var(${(props) => (props.theme.mode === 'light' ? '--gray-dark' : '--gray')});
-    margin-bottom: 0.25rem;
+    margin-bottom: 2px;
   }
   summary {
     width: max-content;

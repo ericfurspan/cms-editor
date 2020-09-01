@@ -57,6 +57,10 @@ export const StyledNavHeader = styled.div`
     }
   }
 
+  @media only screen and (max-width: ${BREAKPOINTS.MEDIUM}) {
+    background-color: var(--primary-light);
+  }
+
   ${(props) =>
     props.$isExpanded &&
     `

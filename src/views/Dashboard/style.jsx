@@ -35,25 +35,12 @@ export const StyledContentBanner = styled.div`
   align-items: flex-start;
   border-top-right-radius: inherit;
   border-top-left-radius: inherit;
-  padding: 1rem 0;
+  padding: 1rem 1rem 0;
 `;
 
 export const StyledMetaContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
-`;
-
-export const StyledMeta = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
-  white-space: normal;
-
-  h6 {
-    font-weight: 400;
-    margin: 0 0.375rem;
-    margin-bottom: 0;
-  }
 `;

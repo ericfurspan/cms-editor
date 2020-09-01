@@ -82,10 +82,10 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                         <>
                           <FontAwesomeIcon
                             icon={['fas', 'images']}
-                            size="4x"
-                            color="var(--gray-dark)"
+                            size="3x"
+                            color="var(--gray-light)"
                           />
-                          <Form.Text className="mt-2">
+                          <Form.Text muted>
                             Click to select an asset or drag &amp; drop a file in this area
                           </Form.Text>
                         </>
@@ -99,7 +99,9 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                   />
                 </Form.File>
 
-                <Form.Text muted>Supported file types: PNG, JPEG, GIF, SVG</Form.Text>
+                <Form.Text muted className="font-italic">
+                  supported files: PNG, JPEG, GIF, SVG
+                </Form.Text>
               </Form.Group>
               {isLoading && <LoadSpinner inline />}
             </StyledForm>

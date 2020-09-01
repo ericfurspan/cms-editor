@@ -1,11 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import {
-  StyledContentWrapper,
-  StyledContentBanner,
-  StyledMetaContainer,
-  StyledMeta,
-} from '../../style';
+import { StyledContentWrapper, StyledContentBanner, StyledMetaContainer } from '../../style';
 import { BusinessForm } from './components';
 import { ContentLoader } from '../../../../components';
 
@@ -16,21 +11,17 @@ const Editor = ({ content, onUpdateComplete }) => {
     <Col lg={{ span: 8, offset: 2 }} xl={{ span: 6, offset: 3 }}>
       <div className="mb-3 ml-1">
         <h1>Editor</h1>
-        <span>Manage your website content</span>
+        <span className="text-gray">Manage your website content</span>
       </div>
       <StyledContentWrapper $withShadow $marginTop>
         {content && content.id ? (
           <>
             <StyledContentBanner>
               <StyledMetaContainer>
-                <StyledMeta>
-                  <h6>Content:</h6>
-                  <span>{content.__typename}</span>
-                </StyledMeta>
-                <StyledMeta>
-                  <h6>Last edit:</h6>
+                <small className="text-gray">
+                  <span>Last modified:&nbsp;</span>
                   <span>{lastUpdated}</span>
-                </StyledMeta>
+                </small>
               </StyledMetaContainer>
             </StyledContentBanner>
 

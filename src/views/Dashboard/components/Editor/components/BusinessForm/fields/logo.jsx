@@ -61,7 +61,12 @@ const LogoField = ({ initialValues, onSubmit }) => {
                   <Col as={Form.Label}>Logo</Col>
                   {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
-                <Form.File name="logo" label="Logo" custom className="h-100 w-100 text-center">
+                <Form.File
+                  name="logo"
+                  label="Logo"
+                  custom
+                  className="h-100 w-100 mb-1 text-center"
+                >
                   {blobPreview ? (
                     <Figure.Image
                       alt="Selected image file"
@@ -88,10 +93,10 @@ const LogoField = ({ initialValues, onSubmit }) => {
                         <>
                           <FontAwesomeIcon
                             icon={['fas', 'image']}
-                            size="4x"
-                            color="var(--gray-dark)"
+                            size="3x"
+                            color="var(--gray-light)"
                           />
-                          <Form.Text className="mt-2">
+                          <Form.Text muted>
                             Click to select an asset or drag &amp; drop a file in this area
                           </Form.Text>
                         </>
@@ -105,7 +110,9 @@ const LogoField = ({ initialValues, onSubmit }) => {
                   />
                 </Form.File>
 
-                <Form.Text muted>Supported file types: PNG, JPEG, GIF, SVG</Form.Text>
+                <Form.Text muted className="font-italic">
+                  supported files: PNG, JPEG, GIF, SVG
+                </Form.Text>
               </Form.Group>
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
