@@ -9,7 +9,7 @@ export const StyledCol = styled(Col)`
 
 export const StyledButton = styled(Button)`
   margin: ${(props) => (props.$noMargin ? '0' : '0 0 0 0.5rem')};
-  min-width: ${(props) => (props.$iconOnly ? '36px' : '64px')};
+  min-width: ${(props) => (props.$iconOnly ? '32px' : '64px')};
   ${(props) =>
     props.$color &&
     `
