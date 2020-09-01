@@ -50,6 +50,8 @@ const PROD_PLUGINS = [
   new GenerateSW({
     cleanupOutdatedCaches: true,
     exclude: [/_redirects/],
+    clientsClaim: true,
+    skipWaiting: true,
   }),
 ];
 
