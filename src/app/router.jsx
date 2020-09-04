@@ -76,11 +76,7 @@ const AppRouter = ({ handleLogout }) => {
         }}
       />
 
-      <Route
-        render={() =>
-          isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <Redirect to="/login" />
-        }
-      />
+      <Route render={() => (isLoggedIn && uid ? <DashboardRoutes uid={uid} /> : <Redirect to="/login" />)} />
     </Switch>
   );
 };

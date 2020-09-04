@@ -25,9 +25,7 @@ const DashboardPage = ({ uid }) => {
 
   const refreshContent = (updated) => {
     const newActive = { ...activeContentData, ...updated };
-    const newAvailable = availableContent.map((obj) =>
-      obj.id === newActive.id ? newActive : obj
-    );
+    const newAvailable = availableContent.map((obj) => (obj.id === newActive.id ? newActive : obj));
     setActiveContentData(newActive);
     setAvailableContent(sortBy(newAvailable, 'name'));
   };

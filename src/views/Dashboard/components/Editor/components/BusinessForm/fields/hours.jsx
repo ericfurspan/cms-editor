@@ -53,27 +53,16 @@ const OperatingHoursField = ({ initialValues, onSubmit }) => {
       enableReinitialize
       onSubmit={onSubmit}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        handleReset,
-        isSubmitting,
-        isValidating,
-        values,
-        errors,
-        dirty,
-      }) => {
+      {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, errors, dirty }) => {
         const isLoading = isSubmitting || isValidating;
-        const hasExistingValues = Object.values(values.operating_hours).find(
-          (val) => val.length > 0
-        );
+        const hasExistingValues = Object.values(values.operating_hours).find((val) => val.length > 0);
 
         return (
           <Col className="mb-4">
             <StyledForm onSubmit={handleSubmit}>
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
                 <Form.Group>
-                  <Form.Row className="mb-2 align-items-center">
+                  <Form.Row className="mb-2 align-items-center position-relative">
                     <Col as={Form.Label}>
                       <ContextAwareToggle eventKey="0">Operating Hours</ContextAwareToggle>
                     </Col>
@@ -87,9 +76,7 @@ const OperatingHoursField = ({ initialValues, onSubmit }) => {
                           <Form.Row key={fieldName}>
                             {idx % 2 === 0 && (
                               <Col>
-                                <Form.Label as="small">
-                                  {cleanOperatingHourLabel(fieldName)}
-                                </Form.Label>
+                                <Form.Label as="small">{cleanOperatingHourLabel(fieldName)}</Form.Label>
                               </Col>
                             )}
                             <Col md="auto" className="mb-2">

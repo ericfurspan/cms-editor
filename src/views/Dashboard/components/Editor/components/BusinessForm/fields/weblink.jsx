@@ -28,16 +28,7 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
       enableReinitialize
       onSubmit={onSubmit}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        handleReset,
-        isSubmitting,
-        isValidating,
-        values,
-        errors,
-        dirty,
-      }) => {
+      {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, errors, dirty }) => {
         const isLoading = isSubmitting || isValidating;
         const platformKeys = Object.keys(values.web_links);
         const hasExistingValues = platformKeys.filter((k) => !!values.web_links[k]).length > 0;
@@ -47,7 +38,7 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
             <StyledForm onSubmit={handleSubmit}>
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
                 <Form.Group>
-                  <Form.Row className="mb-2 align-items-center">
+                  <Form.Row className="mb-2 align-items-center position-relative">
                     <Col as={Form.Label}>
                       <ContextAwareToggle eventKey="0">Web Links</ContextAwareToggle>
                     </Col>

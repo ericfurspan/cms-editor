@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const StyledCol = styled(Col)`
   margin-bottom: 0.25rem;
   text-align: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 
 export const StyledButton = styled(Button)`

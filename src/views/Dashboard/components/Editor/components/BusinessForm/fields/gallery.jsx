@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import {
-  LoadSpinner,
-  ImageCarousel,
-  FileUploadPlaceholder,
-} from '../../../../../../../components';
+import { LoadSpinner, ImageCarousel, FileUploadPlaceholder } from '../../../../../../../components';
 import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
 
@@ -27,19 +23,14 @@ const GalleryField = ({ initialValues, onSubmit }) => {
   };
 
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      enableReinitialize
-    >
+    <Formik validationSchema={validationSchema} initialValues={initialValues} enableReinitialize>
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
         const blobPreview = selectedImageBlob.url && selectedImageBlob;
         const remoteImages =
           values.gallery.length > 0 &&
           values.gallery.map((img) => {
-            const src =
-              process.env.NODE_ENV !== 'production' ? process.env.API_URL + img.url : img.url;
+            const src = process.env.NODE_ENV !== 'production' ? process.env.API_URL + img.url : img.url;
             return { src, ...img };
           });
 
@@ -54,22 +45,14 @@ const GalleryField = ({ initialValues, onSubmit }) => {
         return (
           <Col className="mb-4">
             <StyledForm onSubmit={handleSubmit}>
-              <Form.Group
-                controlId="gallery"
-                className="d-flex flex-column w-100 align-items-center"
-              >
-                <Form.Row className="w-100">
+              <Form.Group controlId="gallery" className="d-flex flex-column w-100 align-items-center">
+                <Form.Row className="w-100 position-relative">
                   <Col as={Form.Label} className="p-0">
                     Gallery
                   </Col>
                   {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
-                <Form.File
-                  name="gallery"
-                  label="Gallery"
-                  custom
-                  className="h-100 w-100 mb-2 text-center"
-                >
+                <Form.File name="gallery" label="Gallery" custom className="h-100 w-100 mb-1 text-center">
                   {blobPreview ? (
                     <Figure.Image
                       className="d-block m-auto"

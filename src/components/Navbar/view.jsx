@@ -43,6 +43,7 @@ const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableC
 
           {/* right-side */}
           <Row className="align-items-center">
+            <ThemeToggle />
             {availableContent.length > 1 && (
               <ContentDropdown
                 activeContent={activeContent}
@@ -55,10 +56,6 @@ const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableC
                 <FontAwesomeIcon icon={['fas', 'cog']} fixedWidth />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item className="pl-3">
-                  <ThemeToggle />
-                </Dropdown.Item>
-                <Dropdown.Divider />
                 <Dropdown.Item as={Link} to="/logout">
                   <FontAwesomeIcon icon={['fas', 'sign-out-alt']} className="mr-2" />
                   <span>Sign out</span>

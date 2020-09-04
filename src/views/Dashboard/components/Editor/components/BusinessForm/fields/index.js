@@ -7,3 +7,5 @@ export { default as Hours } from './hours';
 export { default as WebLink } from './weblink';
 export { default as Gallery } from './gallery';
 export { default as News } from './news';
+export { default as Banner } from './banner';
+export { default as Promotions } from './promotions';

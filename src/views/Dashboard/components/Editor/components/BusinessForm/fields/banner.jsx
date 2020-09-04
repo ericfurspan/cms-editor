@@ -7,10 +7,10 @@ import { SaveUndoRow } from '../../SaveUndoRow';
 import { StyledForm } from '../style';
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email('Must be a valid email'),
+  banner: yup.string().nullable().default(''),
 });
 
-const EmailField = ({ initialValues, onSubmit }) => {
+const BannerField = ({ initialValues, onSubmit }) => {
   return (
     <Formik
       validationSchema={validationSchema}
@@ -24,22 +24,22 @@ const EmailField = ({ initialValues, onSubmit }) => {
         return (
           <Col className="mb-4">
             <StyledForm onSubmit={handleSubmit}>
-              <Form.Group controlId="email">
+              <Form.Group controlId="banner">
                 <Form.Row className="align-items-center position-relative">
-                  <Col as={Form.Label}>Email</Col>
+                  <Col as={Form.Label}>Banner</Col>
                   {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
 
                 <Form.Control
-                  type="email"
-                  name="email"
-                  value={values.email}
+                  type="text"
+                  name="banner"
+                  value={values.banner || ''}
                   onChange={handleChange}
-                  plaintext={!!values.email}
-                  isInvalid={!!errors.email}
                   disabled={isLoading}
+                  isInvalid={!!errors.banner}
+                  plaintext={!!values.banner}
                 />
-                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors.banner}</Form.Control.Feedback>
               </Form.Group>
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
@@ -50,4 +50,4 @@ const EmailField = ({ initialValues, onSubmit }) => {
   );
 };
 
-export default EmailField;
+export default BannerField;

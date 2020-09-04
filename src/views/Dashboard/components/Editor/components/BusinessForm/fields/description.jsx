@@ -18,23 +18,14 @@ const MissionField = ({ initialValues, onSubmit }) => {
       enableReinitialize
       onSubmit={onSubmit}
     >
-      {({
-        handleSubmit,
-        handleChange,
-        handleReset,
-        isSubmitting,
-        isValidating,
-        values,
-        dirty,
-        errors,
-      }) => {
+      {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, dirty, errors }) => {
         const isLoading = isSubmitting || isValidating;
 
         return (
           <Col className="mb-4">
             <StyledForm onSubmit={handleSubmit}>
               <Form.Group controlId="description">
-                <Form.Row className="align-items-center">
+                <Form.Row className="align-items-center position-relative">
                   <Col as={Form.Label}>Description</Col>
                   {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
@@ -48,9 +39,7 @@ const MissionField = ({ initialValues, onSubmit }) => {
                   isInvalid={!!errors.description}
                   plaintext={!!values.description}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors.description}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors.description}</Form.Control.Feedback>
               </Form.Group>
               {isLoading && <LoadSpinner inline />}
             </StyledForm>

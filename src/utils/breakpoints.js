@@ -1,5 +1,4 @@
-const getBreakpoint = (value) =>
-  window.getComputedStyle(document.documentElement).getPropertyValue(value);
+const getBreakpoint = (value) => window.getComputedStyle(document.documentElement).getPropertyValue(value);
 
 export default {
   SMALL: getBreakpoint('--breakpoint-sm'),

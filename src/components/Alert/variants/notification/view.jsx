@@ -1,12 +1,6 @@
 import React from 'react';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import {
-  StyledIcon,
-  StyledTitleRow,
-  StyledTitleText,
-  StyledContent,
-  StyledContentText,
-} from '../style';
+import { StyledIcon, StyledTitleRow, StyledTitleText, StyledContent, StyledContentText } from '../style';
 
 /**
  * Returns a sweetalert2 configuration object tailored for a Notification alert

@@ -24,7 +24,6 @@ const COMMON_PLUGINS = [
   new CopyWebpackPlugin({
     patterns: [
       { from: 'static/img/*', toType: 'dir' },
-      { from: 'static/json/*', toType: 'dir' },
       { from: 'robots.txt', to: 'robots.txt', toType: 'file' },
       { from: '_redirects', to: '_redirects', toType: 'file' },
     ],
@@ -61,9 +60,7 @@ module.exports = () => ({
   entry: 'app/index.entry.jsx',
   bail: true,
   plugins: [...COMMON_PLUGINS, ...(inProduction ? PROD_PLUGINS : DEV_PLUGINS)],
-  devServer: inProduction
-    ? undefined
-    : { hot: true, historyApiFallback: true, contentBase: './public' },
+  devServer: inProduction ? undefined : { hot: true, historyApiFallback: true, contentBase: './public' },
   devtool: inProduction && 'nosources-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],

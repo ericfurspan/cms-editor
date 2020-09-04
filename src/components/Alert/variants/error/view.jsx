@@ -18,13 +18,7 @@ import {
  * @param {Function} closeCallback optional callback to call onAfterClose
  * @returns {Object} sweetalert2 config object https://sweetalert2.github.io/#configuration
  */
-const ErrorAlertConfig = ({
-  title,
-  errorCode = '',
-  errorMessage = '',
-  helpText,
-  closeCallback,
-}) => {
+const ErrorAlertConfig = ({ title, errorCode = '', errorMessage = '', helpText, closeCallback }) => {
   const errorDescription = `${errorCode} \n ${errorMessage}`;
 
   const TitleBar = () => (

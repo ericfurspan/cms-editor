@@ -13,10 +13,7 @@ const ContextAwareToggle = ({ children, eventKey, callback }) => {
   return (
     <summary onClick={decoratedOnClick}>
       {children}
-      <FontAwesomeIcon
-        icon={isCurrentEventKey ? 'caret-down' : 'caret-right'}
-        className="ml-2"
-      />
+      <FontAwesomeIcon icon={isCurrentEventKey ? 'caret-down' : 'caret-right'} className="ml-2" />
     </summary>
   );
 };

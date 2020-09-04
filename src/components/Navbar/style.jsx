@@ -5,11 +5,8 @@ import BREAKPOINTS from '../../utils/breakpoints';
 export const StyledSidebar = styled(Col)`
   height: 100vh;
   padding-top: 52px;
-  background-color: var(
-    ${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')}
-  );
-  border-right: ${(props) =>
-    props.theme.mode === 'light' ? '1px solid var(--secondary)' : '0'};
+  background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});
+  border-right: ${(props) => (props.theme.mode === 'light' ? '1px solid var(--secondary)' : '0')};
 
   ${(props) =>
     props.$isExpanded
@@ -136,9 +133,7 @@ export const StyledNavLink = styled(Nav.Link)`
 
     &.active {
       color: var(${props.theme.mode === 'light' ? '--primary-light' : '--gray-light'});
-      background-color: var(${
-        props.theme.mode === 'light' ? '--white-darker' : '--primary-light'
-      });
+      background-color: var(${props.theme.mode === 'light' ? '--white-darker' : '--primary-light'});
     
       &:before {
         content: ' ';

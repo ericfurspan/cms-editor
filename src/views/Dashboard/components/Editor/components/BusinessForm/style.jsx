@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BREAKPOINTS from '../../../../../../utils/breakpoints';
 
 export const StyledWrapper = styled.div`
-  padding: 2rem;
+  padding: 1rem 2rem;
   position: relative;
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
@@ -72,6 +72,16 @@ export const StyledActionButton = styled(Button)`
 `;
 
 export const StyledFileSubmitBtn = styled(Button)`
+  & svg {
+    margin-right: 0.375rem;
+  }
+`;
+
+export const StyledDeleteFileBtn = styled(Button)`
+  position: absolute;
+  right: 0;
+  top: 50%;
+
   & svg {
     margin-right: 0.375rem;
   }

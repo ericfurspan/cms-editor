@@ -7,8 +7,10 @@ const businessFragment = gql`
     name
     caption
     description
+    banner
     email
     web_links
+    promotions
     events
     news
     logo {
@@ -16,11 +18,13 @@ const businessFragment = gql`
       url
       alternativeText
       width
+      id
     }
     gallery {
       name
       url
       alternativeText
+      id
     }
     operating_hours {
       monday_start

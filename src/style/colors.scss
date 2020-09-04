@@ -2,14 +2,14 @@
 $primary: #151f2b;
 $primary-light: #253341;
 $gray: #8493a5;
-$gray-dark: #5F6A78;
-$gray-light: #C3DDEB;
+$gray-dark: #5f6a78;
+$gray-light: #c3ddeb;
 $gray-lighter: #edeff1;
 $white-darker: #fafafa;
 $white: #ffffff;
 $black: #212121;
 $black-light: #303030;
-$brand: #68D7C1;
+$brand: #68d7c1;
 $brand-light: #8ffbdb;
 $danger: #b00020;
 $success: #008000;
@@ -21,23 +21,24 @@ $link: #0066cc;
 $theme-colors: (
   'primary': $primary,
   'primary-light': $primary-light,
-  'secondary': $gray-lighter,
-  'light': $white-darker,
-  'dark': $gray-dark,
-  'info': $info,
-  'link': $link,
-  'danger': $danger,
-  'success': $success,
-  'warning': $warning,
   'gray': $gray,
-  'gray-light': $gray-light,
   'gray-dark': $gray-dark,
-  'white': $white,
+  'gray-light': $gray-light,
+  'gray-lighter': $gray-lighter,
   'white-darker': $white-darker,
+  'white': $white,
   'black': $black,
   'black-light': $black-light,
   'brand': $brand,
   'brand-light': $brand-light,
+  'danger': $danger,
+  'success': $success,
+  'warning': $warning,
+  'info': $info,
+  'link': $link,
+  'secondary': $gray-lighter,
+  'light': $white-darker,
+  'dark': $gray-dark,
 );
 
 @import '~bootstrap/scss/bootstrap';

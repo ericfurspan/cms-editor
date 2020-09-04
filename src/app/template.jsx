@@ -9,7 +9,6 @@ import { LoadSpinner } from '../components';
 import history from './history';
 import GlobalStyle from '../style/global';
 import '../style/colors.scss';
-import '../style/fonts.scss';
 
 const Application = () => {
   const client = createApolloClient();

@@ -8,11 +8,7 @@ const ThemeModeToggle = () => (
   <ThemeModeContext.Consumer>
     {({ themeMode, toggleTheme }) => (
       <Button variant="transparent" name="theme-toggle" size="sm" onClick={toggleTheme}>
-        <FontAwesomeIcon
-          icon={['fas', themeMode === 'light' ? 'moon' : 'sun']}
-          className="mr-2"
-        />
-        <span>{themeMode === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+        <FontAwesomeIcon icon={['fas', themeMode === 'light' ? 'moon' : 'sun']} />
       </Button>
     )}
   </ThemeModeContext.Consumer>

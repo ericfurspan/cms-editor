@@ -11,7 +11,11 @@ export const StyledCarousel = styled(Carousel)`
     object-position: center center;
   }
 
-  .carousel-item {
-    background-color: var(--black);
-  }
+  ${(props) =>
+    props.theme.mode === 'light' &&
+    `
+    .carousel-item {
+      background-color: var(--primary);
+    }
+  `}
 `;

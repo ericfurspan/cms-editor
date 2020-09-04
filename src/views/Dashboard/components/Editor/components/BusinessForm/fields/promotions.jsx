@@ -8,17 +8,17 @@ import { SaveUndoRow } from '../../SaveUndoRow';
 import { StyledForm, StyledFormButton, StyledFormIcon } from '../style';
 
 const validationSchema = yup.object().shape({
-  news: yup.array().of(
+  promotions: yup.array().of(
     yup.object().shape({
-      title: yup.string().required('Required'),
-      source: yup.string(),
       url: yup.string().url('Must be a valid URL').required('Required'),
+      title: yup.string().required('Required'),
+      description: yup.string(),
     })
   ),
 });
 
-const NewsField = ({ initialValues, onSubmit }) => {
-  const hasExistingValues = initialValues.news && initialValues.news.length > 0;
+const PromotionsField = ({ initialValues, onSubmit }) => {
+  const hasExistingValues = initialValues.promotions && initialValues.promotions.length > 0;
 
   return (
     <Formik
@@ -34,96 +34,96 @@ const NewsField = ({ initialValues, onSubmit }) => {
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
                 <Form.Row className="mb-3 align-items-baseline position-relative">
                   <Col as={Form.Label}>
-                    <ContextAwareToggle eventKey="0">News</ContextAwareToggle>
+                    <ContextAwareToggle eventKey="0">Promotions</ContextAwareToggle>
                   </Col>
                   {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
                 <Accordion.Collapse eventKey="0">
-                  <FieldArray name="news">
+                  <FieldArray name="promotions">
                     {({ _insert, remove, push }) => (
                       <Col className="pb-4">
-                        {values.news &&
-                          values.news.length > 0 &&
-                          values.news.map((_, index) => (
+                        {values.promotions &&
+                          values.promotions.length > 0 &&
+                          values.promotions.map((_, index) => (
                             <Form.Row className="align-items-center pb-2" key={index}>
                               <Col xs={10}>
-                                <Form.Group controlId={`news.${index}.title`}>
+                                <Form.Group controlId={`promotions.${index}.title`}>
                                   <InputGroup size="sm">
                                     <Field
                                       as={Form.Control}
                                       type="text"
                                       size="sm"
-                                      name={`news.${index}.title`}
+                                      name={`promotions.${index}.title`}
                                       label="Title"
                                       placeholder="Title"
                                       isInvalid={
                                         dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].title &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].title
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].title &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].title
                                       }
                                     />
                                     <Form.Control.Feedback type="invalid">
                                       {dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].title &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].title}
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].title &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].title}
                                     </Form.Control.Feedback>
                                   </InputGroup>
                                 </Form.Group>
-                                <Form.Group controlId={`news.${index}.source`}>
+                                <Form.Group controlId={`promotions.${index}.description`}>
                                   <InputGroup size="sm">
                                     <Field
                                       as={Form.Control}
                                       type="text"
                                       size="sm"
-                                      name={`news.${index}.source`}
-                                      label="Source"
-                                      placeholder="Source"
+                                      name={`promotions.${index}.description`}
+                                      label="Description"
+                                      placeholder="Description"
                                       isInvalid={
                                         dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].source &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].source
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].description &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].description
                                       }
                                     />
                                     <Form.Control.Feedback type="invalid">
                                       {dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].source &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].source}
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].description &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].description}
                                     </Form.Control.Feedback>
                                   </InputGroup>
                                 </Form.Group>
-                                <Form.Group controlId={`news.${index}.url`}>
+                                <Form.Group controlId={`promotions.${index}.url`}>
                                   <InputGroup size="sm">
                                     <Form.Control
                                       as={Field}
                                       type="url"
                                       size="sm"
-                                      name={`news.${index}.url`}
+                                      name={`promotions.${index}.url`}
                                       label="URL"
                                       placeholder="URL"
                                       isInvalid={
                                         dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].url &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].url
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].url &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].url
                                       }
                                     />
                                     <InputGroup.Append>
@@ -133,12 +133,12 @@ const NewsField = ({ initialValues, onSubmit }) => {
                                     </InputGroup.Append>
                                     <Form.Control.Feedback type="invalid">
                                       {dirty &&
-                                        touched.news &&
-                                        touched.news[index] &&
-                                        touched.news[index].url &&
-                                        errors.news &&
-                                        errors.news[index] &&
-                                        errors.news[index].url}
+                                        touched.promotions &&
+                                        touched.promotions[index] &&
+                                        touched.promotions[index].url &&
+                                        errors.promotions &&
+                                        errors.promotions[index] &&
+                                        errors.promotions[index].url}
                                     </Form.Control.Feedback>
                                   </InputGroup>
                                 </Form.Group>
@@ -154,8 +154,8 @@ const NewsField = ({ initialValues, onSubmit }) => {
                           <StyledFormButton
                             size="sm"
                             variant="secondary"
-                            onClick={() => push({ title: '', source: '', url: '' })}
-                            disabled={!!errors.news}
+                            onClick={() => push({ title: '', description: '', url: '' })}
+                            disabled={!!errors.promotions}
                           >
                             <StyledFormIcon $iconName="plus" />
                             Add
@@ -174,4 +174,4 @@ const NewsField = ({ initialValues, onSubmit }) => {
   );
 };
 
-export default NewsField;
+export default PromotionsField;

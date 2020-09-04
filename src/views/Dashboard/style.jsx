@@ -39,7 +39,8 @@ export const StyledContentBanner = styled.div`
 
 export const StyledMetaContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0.25rem;
 `;

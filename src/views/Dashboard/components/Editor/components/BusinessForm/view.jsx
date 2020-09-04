@@ -3,7 +3,18 @@ import { useMutation } from '@apollo/client';
 import omitDeep from 'omit-deep-lodash';
 import { UPDATE_BUSINESS, UPLOAD_SINGLE_FILE } from '../../../../../../graphql';
 import { StyledWrapper } from './style';
-import { Name, Email, Logo, Caption, Description, WebLink, Gallery, News } from './fields';
+import {
+  Name,
+  Email,
+  Logo,
+  Caption,
+  Description,
+  Banner,
+  WebLink,
+  Gallery,
+  News,
+  Promotions,
+} from './fields';
 import { Alert } from '../../../../../../components';
 
 const BusinessForm = ({ business, onUpdateComplete }) => {
@@ -13,17 +24,24 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     },
   });
 
-  const [uploadSingleFile] = useMutation(UPLOAD_SINGLE_FILE, {
+  const [uploadLogo] = useMutation(UPLOAD_SINGLE_FILE, {
     onCompleted: (data) => {
       onUpdateComplete({ logo: data.upload });
+    },
+  });
+
+  const [uploadGallery] = useMutation(UPLOAD_SINGLE_FILE, {
+    onCompleted: (data) => {
+      onUpdateComplete({ gallery: [...business.gallery, data.upload] });
     },
   });
 
   const handleFileUpload = (fieldName, { files, validity }) => {
     if (validity.valid) {
       if (files.length > 0) {
+        const mutationFn = fieldName === 'logo' ? uploadLogo : uploadGallery;
         try {
-          uploadSingleFile({
+          mutationFn({
             variables: {
               file: files[0],
               ref: 'business',
@@ -36,6 +54,28 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
           Alert('error', { title: 'Uh oh...', message: e.message });
         }
       }
+    }
+  };
+
+  const handleDeleteFile = async (fieldName, fileId) => {
+    const url = `${process.env.API_URL}/upload/files/${fileId}`;
+    const token = localStorage.getItem('token');
+
+    try {
+      await fetch(url, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (fieldName === 'logo') {
+        onUpdateComplete({ logo: null });
+      } else if (fieldName === 'gallery') {
+        const updated = business.gallery.filter((g) => g.id !== fileId);
+        onUpdateComplete({ gallery: updated });
+      }
+      Alert('notification', { title: 'Deleted file' });
+    } catch (e) {
+      Alert('error', { title: 'Uh oh...', message: e.message });
     }
   };
 
@@ -59,23 +99,14 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     <StyledWrapper>
       <Name initialValues={{ name: business.name }} onSubmit={handleBusinessUpdate} />
       <Email initialValues={{ email: business.email }} onSubmit={handleBusinessUpdate} />
-      <Logo initialValues={{ logo: business.logo }} onSubmit={handleFileUpload} />
+      <Logo initialValues={{ logo: business.logo }} onSubmit={handleFileUpload} onDelete={handleDeleteFile} />
       <Caption initialValues={{ caption: business.caption }} onSubmit={handleBusinessUpdate} />
-      <Description
-        initialValues={{ description: business.description }}
-        onSubmit={handleBusinessUpdate}
-      />
+      <Banner initialValues={{ banner: business.banner }} onSubmit={handleBusinessUpdate} />
+      <Description initialValues={{ description: business.description }} onSubmit={handleBusinessUpdate} />
+      <WebLink initialValues={{ web_links: business.web_links }} onSubmit={handleBusinessUpdate} />
+      <Promotions initialValues={{ promotions: business.promotions }} onSubmit={handleBusinessUpdate} />
       <News initialValues={{ news: business.news }} onSubmit={handleBusinessUpdate} />
-      <WebLink
-        initialValues={{ web_links: business.web_links }}
-        onSubmit={handleBusinessUpdate}
-      />
       <Gallery initialValues={{ gallery: business.gallery }} onSubmit={handleFileUpload} />
-
-      {/* <Hours
-        initialValues={{ operating_hours: business.operating_hours || {} }}
-        onSubmit={handleBusinessUpdate}
-      /> */}
     </StyledWrapper>
   );
 };

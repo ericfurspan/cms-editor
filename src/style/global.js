@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     font-size: 0.875rem;
-    color: var(--gray);
+    color: var(--gray-dark);
     margin-bottom: 2px;
   }
   summary {
@@ -80,19 +80,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input:disabled, input[readonly] {
-    background: var(${(props) =>
-      props.theme.mode === 'light' ? '--secondary' : '--primary'}) !important;
+    background: var(${(props) => (props.theme.mode === 'light' ? '--secondary' : '--primary')}) !important;
     border: 0;
   }
 
   input, textarea, .form-control, .react-json-view {
     color: inherit !important;
-    background-color: var(${(props) =>
-      props.theme.mode === 'light' ? '--white' : '--primary'});;
+    background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});;
     box-shadow: none !important;
     outline: 0 !important;
-    border-color: var(${(props) =>
-      props.theme.mode === 'light' ? '--gray' : '--primary-light'});
+    border-color: var(${(props) => (props.theme.mode === 'light' ? '--gray-lighter' : '--primary-light')});
     border-style: solid;
     border-width: 1px;
     border-radius: 0 !important;
@@ -102,9 +99,8 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
       box-shadow: none;
       border-width: 2px;
-      border-color: var(--link);
-      background-color: var(${(props) =>
-        props.theme.mode === 'light' ? '--white' : '--primary'});
+      border-color: var(--info);
+      background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});
     }
 
     &::placeholder {
@@ -115,7 +111,7 @@ const GlobalStyle = createGlobalStyle`
   .form-control-plaintext {
     resize: none;
     padding: 6px 0;
-    transition padding 0.3s;
+    transition: padding 0.3s;
 
     &:focus {
       padding: 6px 12px;
@@ -128,6 +124,10 @@ const GlobalStyle = createGlobalStyle`
     margin-right: auto;
     width: auto;
     cursor: copy;
+  }
+
+  .swal2-popup {
+    box-shadow: 0 0 0.15em var(--white-darker) !important;
   }
 `;
 

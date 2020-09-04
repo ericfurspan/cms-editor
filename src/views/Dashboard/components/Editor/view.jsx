@@ -5,7 +5,7 @@ import { BusinessForm } from './components';
 import { ContentLoader } from '../../../../components';
 
 const Editor = ({ content, onUpdateComplete }) => {
-  const lastUpdated = new Date(content.updated_at).toDateString();
+  const lastUpdated = new Date(content.updated_at).toLocaleDateString();
 
   return (
     <Col lg={{ span: 8, offset: 2 }}>
@@ -19,8 +19,10 @@ const Editor = ({ content, onUpdateComplete }) => {
             <StyledContentBanner>
               <StyledMetaContainer>
                 <small className="text-gray">
-                  <span>Last modified:&nbsp;</span>
-                  <span>{lastUpdated}</span>
+                  <span>{content.__typename}</span>
+                </small>
+                <small className="text-gray">
+                  <span>Last edit was {lastUpdated}</span>
                 </small>
               </StyledMetaContainer>
             </StyledContentBanner>

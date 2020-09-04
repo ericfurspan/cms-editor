@@ -14,7 +14,7 @@ const FileUploadPlaceholder = ({ icon = 'image' }) => {
   return (
     <StyledContainer>
       <FontAwesomeIcon icon={['fas', icon]} size="5x" />
-      <FormText className="w-50 m-auto text-dark">
+      <FormText className="w-50 m-auto pt-1 text-dark">
         Click to select an asset or drag &amp; drop a file in this area
       </FormText>
     </StyledContainer>

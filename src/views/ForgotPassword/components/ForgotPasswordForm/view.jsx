@@ -17,12 +17,7 @@ const ForgotPasswordForm = () => {
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="changePasswordEmail">
         <Form.Label>Email Address</Form.Label>
-        <Form.Control
-          type="text"
-          label="Email Address"
-          placeholder="name@example.com"
-          required
-        />
+        <Form.Control type="text" label="Email Address" placeholder="name@example.com" required />
         {emailSubmitted && (
           <Form.Text as="h6" className="mt-2 p-2 bg-success text-white">
             Check your email for instructions

@@ -1,6 +1,6 @@
 {
   "name": "cms",
-  "version": "0.2.0-beta.3",
+  "version": "0.2.0-beta.4",
   "private": true,
   "scripts": {
     "build:dev": "webpack --mode=development --config ./webpack.config.js --debug",
@@ -13,7 +13,10 @@
     "go": "npm run build && npm run copy && npm run start",
     "test": "jest",
     "lint": "eslint --ext .jsx --ext .js ./src",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "build:prod:stats": "NODE_ENV=production webpack --mode production --profile --config ./webpack.config.js --json > stats.json",
+    "inspectpack:duplicates": "inspectpack -s stats.json -a duplicates",
+    "inspectpack:versions": "inspectpack -s stats.json -a versions"
   },
   "dependencies": {
     "@apollo/client": "^3.1.3",
