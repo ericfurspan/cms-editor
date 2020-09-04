@@ -7,7 +7,7 @@ import { ThemeModeContext } from './context';
 const ThemeModeToggle = () => (
   <ThemeModeContext.Consumer>
     {({ themeMode, toggleTheme }) => (
-      <Button variant="transparent" name="theme-toggle" size="sm" onClick={toggleTheme}>
+      <Button variant="transparent" name="theme-toggle" onClick={toggleTheme}>
         <FontAwesomeIcon icon={['fas', themeMode === 'light' ? 'moon' : 'sun']} />
       </Button>
     )}
