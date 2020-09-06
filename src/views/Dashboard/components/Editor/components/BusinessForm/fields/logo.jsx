@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { Form, Col, Figure } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { LoadSpinner, FileUploadPlaceholder } from '../../../../../../../components';
-import { StyledForm, StyledAbsContainer, StyledDeleteFileBtn } from '../style';
+import { LoadSpinner, FileUploadPlaceholder, FileDeleteButton } from '../../../../../../../components';
+import { StyledForm, StyledAbsContainer } from '../style';
 import { SaveUndoRow } from '../../SaveUndoRow';
 
 const validationSchema = yup.object().shape({
   logo: yup.object(),
 });
 
-const LogoField = ({ initialValues, onSubmit, onDelete }) => {
+const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
   const [selectedImageBlob, setSelectedImageBlob] = useState({});
 
   const handleFileInput = (event) => {
@@ -55,7 +55,7 @@ const LogoField = ({ initialValues, onSubmit, onDelete }) => {
                   <Col as={Form.Label}>Logo</Col>
                   {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
-                <Form.File name="logo" label="Logo" custom className="h-100 w-100 mb-1 text-center">
+                <Form.File name="logo" label="Logo" custom className="h-100 w-auto mb-1 text-center">
                   {blobPreview ? (
                     <Figure.Image
                       alt="Selected image file"
@@ -70,13 +70,9 @@ const LogoField = ({ initialValues, onSubmit, onDelete }) => {
                       {values.logo && (
                         <>
                           <Figure.Image alt="Logo image" src={remoteImage} width={150} height={150} rounded />
-                          <StyledDeleteFileBtn
-                            variant="outline-danger"
-                            size="sm"
-                            onClick={() => onDelete('logo', values.logo.id)}
-                          >
-                            Delete this file
-                          </StyledDeleteFileBtn>
+                          <div style={{ position: 'absolute', right: -16, top: -16, zIndex: 5 }}>
+                            <FileDeleteButton onDelete={() => onDeleteFile('logo', values.logo.id)} />
+                          </div>
                         </>
                       )}
                       {!values.logo && <FileUploadPlaceholder icon="image" />}

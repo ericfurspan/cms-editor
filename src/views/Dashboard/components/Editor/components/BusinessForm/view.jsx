@@ -99,14 +99,22 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
     <StyledWrapper>
       <Name initialValues={{ name: business.name }} onSubmit={handleBusinessUpdate} />
       <Email initialValues={{ email: business.email }} onSubmit={handleBusinessUpdate} />
-      <Logo initialValues={{ logo: business.logo }} onSubmit={handleFileUpload} onDelete={handleDeleteFile} />
+      <Logo
+        initialValues={{ logo: business.logo }}
+        onSubmit={handleFileUpload}
+        onDeleteFile={handleDeleteFile}
+      />
       <Caption initialValues={{ caption: business.caption }} onSubmit={handleBusinessUpdate} />
       <Banner initialValues={{ banner: business.banner }} onSubmit={handleBusinessUpdate} />
       <Description initialValues={{ description: business.description }} onSubmit={handleBusinessUpdate} />
       <WebLink initialValues={{ web_links: business.web_links }} onSubmit={handleBusinessUpdate} />
       <Promotions initialValues={{ promotions: business.promotions }} onSubmit={handleBusinessUpdate} />
       <News initialValues={{ news: business.news }} onSubmit={handleBusinessUpdate} />
-      <Gallery initialValues={{ gallery: business.gallery }} onSubmit={handleFileUpload} />
+      <Gallery
+        initialValues={{ gallery: business.gallery }}
+        onSubmit={handleFileUpload}
+        onDeleteFile={handleDeleteFile}
+      />
     </StyledWrapper>
   );
 };
