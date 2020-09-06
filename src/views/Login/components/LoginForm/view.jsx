@@ -51,6 +51,7 @@ const LoginForm = ({ login }) => {
           onChange={onChangeField}
           isInvalid={formError}
           required
+          autocomplete="username"
         />
       </Form.Group>
       <Form.Group controlId="password">
@@ -62,6 +63,7 @@ const LoginForm = ({ login }) => {
           onChange={onChangeField}
           isInvalid={formError}
           required
+          autocomplete="current-password"
         />
         {formError && (
           <Form.Control.Feedback className="mt-1 mb-1" type="invalid">
