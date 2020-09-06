@@ -10,7 +10,7 @@ const validationSchema = yup.object().shape({
   gallery: yup.array(),
 });
 
-const GalleryField = ({ initialValues, onSubmit }) => {
+const GalleryField = ({ initialValues, onSubmit, onDeleteFile }) => {
   const [selectedImageBlob, setSelectedImageBlob] = useState({});
 
   const handleFileInput = (event) => {
@@ -63,7 +63,7 @@ const GalleryField = ({ initialValues, onSubmit }) => {
                     />
                   ) : (
                     <>
-                      {remoteImages && <ImageCarousel images={remoteImages} />}
+                      {remoteImages && <ImageCarousel images={remoteImages} onRemoveImage={onDeleteFile} />}
                       {!remoteImages && <FileUploadPlaceholder icon="images" />}
                     </>
                   )}
