@@ -7,3 +7,4 @@ export { Navbar } from './Navbar';
 export { Alert } from './Alert';
 export { ContentLoader } from './ContentLoader';
 export { FileUploadPlaceholder } from './FileUploadPlaceholder';
+export { FileDeleteButton } from './FileDeleteButton';
