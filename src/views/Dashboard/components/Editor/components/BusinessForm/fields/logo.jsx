@@ -23,12 +23,7 @@ const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
   };
 
   return (
-    <Formik
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      enableReinitialize
-      className="mb-4"
-    >
+    <Formik validationSchema={validationSchema} initialValues={initialValues} enableReinitialize>
       {({ isSubmitting, isValidating, values }) => {
         const isLoading = isSubmitting || isValidating;
         const blobPreview = selectedImageBlob.url && selectedImageBlob;
@@ -48,12 +43,11 @@ const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
         };
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit} name="logo">
               <Form.Group controlId="logo" className="d-flex flex-column align-items-center w-100">
-                <Form.Row className="w-100 align-items-center position-relative">
+                <Form.Row className="w-100 align-items-center">
                   <Col as={Form.Label}>Logo</Col>
-                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
                 <Form.File name="logo" label="Logo" custom className="h-100 w-auto mb-1 text-center">
                   {blobPreview ? (
@@ -89,6 +83,7 @@ const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
                   supported files: PNG, JPEG, GIF, SVG
                 </Form.Text>
               </Form.Group>
+              {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
           </Col>

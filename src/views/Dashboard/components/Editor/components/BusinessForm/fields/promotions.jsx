@@ -29,141 +29,143 @@ const PromotionsField = ({ initialValues, onSubmit }) => {
     >
       {({ handleSubmit, handleReset, values, touched, dirty, errors }) => {
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
-                <Form.Row className="mb-3 align-items-baseline position-relative">
+                <Form.Row className="mb-3 align-items-baseline">
                   <Col as={Form.Label}>
                     <ContextAwareToggle eventKey="0">Promotions</ContextAwareToggle>
                   </Col>
-                  {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
                 <Accordion.Collapse eventKey="0">
-                  <FieldArray name="promotions">
-                    {({ _insert, remove, push }) => (
-                      <Col className="pb-4">
-                        {values.promotions &&
-                          values.promotions.length > 0 &&
-                          values.promotions.map((_, index) => (
-                            <Form.Row className="align-items-center pb-2" key={index}>
-                              <Col xs={10}>
-                                <Form.Group controlId={`promotions.${index}.title`}>
-                                  <InputGroup size="sm">
-                                    <Field
-                                      as={Form.Control}
-                                      type="text"
-                                      size="sm"
-                                      name={`promotions.${index}.title`}
-                                      label="Title"
-                                      placeholder="Title"
-                                      isInvalid={
-                                        dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].title &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].title
-                                      }
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                      {dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].title &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].title}
-                                    </Form.Control.Feedback>
-                                  </InputGroup>
-                                </Form.Group>
-                                <Form.Group controlId={`promotions.${index}.description`}>
-                                  <InputGroup size="sm">
-                                    <Field
-                                      as={Form.Control}
-                                      type="text"
-                                      size="sm"
-                                      name={`promotions.${index}.description`}
-                                      label="Description"
-                                      placeholder="Description"
-                                      isInvalid={
-                                        dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].description &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].description
-                                      }
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                      {dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].description &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].description}
-                                    </Form.Control.Feedback>
-                                  </InputGroup>
-                                </Form.Group>
-                                <Form.Group controlId={`promotions.${index}.url`}>
-                                  <InputGroup size="sm">
-                                    <Form.Control
-                                      as={Field}
-                                      type="url"
-                                      size="sm"
-                                      name={`promotions.${index}.url`}
-                                      label="URL"
-                                      placeholder="URL"
-                                      isInvalid={
-                                        dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].url &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].url
-                                      }
-                                    />
-                                    <InputGroup.Append>
-                                      <InputGroup.Text>
-                                        <FontAwesomeIcon icon={['fas', 'link']} />
-                                      </InputGroup.Text>
-                                    </InputGroup.Append>
-                                    <Form.Control.Feedback type="invalid">
-                                      {dirty &&
-                                        touched.promotions &&
-                                        touched.promotions[index] &&
-                                        touched.promotions[index].url &&
-                                        errors.promotions &&
-                                        errors.promotions[index] &&
-                                        errors.promotions[index].url}
-                                    </Form.Control.Feedback>
-                                  </InputGroup>
-                                </Form.Group>
-                              </Col>
-                              <Col className="text-right mb-3">
-                                <Button variant="outline-danger" size="sm" onClick={() => remove(index)}>
-                                  Delete
-                                </Button>
-                              </Col>
-                            </Form.Row>
-                          ))}
-                        <Col>
-                          <StyledFormButton
-                            size="sm"
-                            variant="secondary"
-                            onClick={() => push({ title: '', description: '', url: '' })}
-                            disabled={!!errors.promotions}
-                          >
-                            <StyledFormIcon $iconName="plus" />
-                            Add
-                          </StyledFormButton>
+                  <>
+                    <FieldArray name="promotions">
+                      {({ _insert, remove, push }) => (
+                        <Col className="pb-4">
+                          {values.promotions &&
+                            values.promotions.length > 0 &&
+                            values.promotions.map((_, index) => (
+                              <Form.Row className="align-items-center pb-2" key={index}>
+                                <Col xs={10}>
+                                  <Form.Group controlId={`promotions.${index}.title`}>
+                                    <InputGroup size="sm">
+                                      <Field
+                                        as={Form.Control}
+                                        type="text"
+                                        size="sm"
+                                        name={`promotions.${index}.title`}
+                                        label="Title"
+                                        placeholder="Title"
+                                        isInvalid={
+                                          dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].title &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].title
+                                        }
+                                      />
+                                      <Form.Control.Feedback type="invalid">
+                                        {dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].title &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].title}
+                                      </Form.Control.Feedback>
+                                    </InputGroup>
+                                  </Form.Group>
+                                  <Form.Group controlId={`promotions.${index}.description`}>
+                                    <InputGroup size="sm">
+                                      <Field
+                                        as={Form.Control}
+                                        type="text"
+                                        size="sm"
+                                        name={`promotions.${index}.description`}
+                                        label="Description"
+                                        placeholder="Description"
+                                        isInvalid={
+                                          dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].description &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].description
+                                        }
+                                      />
+                                      <Form.Control.Feedback type="invalid">
+                                        {dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].description &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].description}
+                                      </Form.Control.Feedback>
+                                    </InputGroup>
+                                  </Form.Group>
+                                  <Form.Group controlId={`promotions.${index}.url`}>
+                                    <InputGroup size="sm">
+                                      <Form.Control
+                                        as={Field}
+                                        type="url"
+                                        size="sm"
+                                        name={`promotions.${index}.url`}
+                                        label="URL"
+                                        placeholder="URL"
+                                        isInvalid={
+                                          dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].url &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].url
+                                        }
+                                      />
+                                      <InputGroup.Append>
+                                        <InputGroup.Text>
+                                          <FontAwesomeIcon icon={['fas', 'link']} />
+                                        </InputGroup.Text>
+                                      </InputGroup.Append>
+                                      <Form.Control.Feedback type="invalid">
+                                        {dirty &&
+                                          touched.promotions &&
+                                          touched.promotions[index] &&
+                                          touched.promotions[index].url &&
+                                          errors.promotions &&
+                                          errors.promotions[index] &&
+                                          errors.promotions[index].url}
+                                      </Form.Control.Feedback>
+                                    </InputGroup>
+                                  </Form.Group>
+                                  <Col className="text-right">
+                                    <Button variant="outline-danger" size="sm" onClick={() => remove(index)}>
+                                      Delete
+                                    </Button>
+                                  </Col>
+                                </Col>
+                              </Form.Row>
+                            ))}
+                          <Col>
+                            <StyledFormButton
+                              size="sm"
+                              variant="secondary"
+                              onClick={() => push({ title: '', description: '', url: '' })}
+                              disabled={!!errors.promotions}
+                            >
+                              <StyledFormIcon $iconName="plus" />
+                              Add
+                            </StyledFormButton>
+                          </Col>
                         </Col>
-                      </Col>
-                    )}
-                  </FieldArray>
+                      )}
+                    </FieldArray>
+                    {dirty && <SaveUndoRow onUndo={handleReset} />}
+                  </>
                 </Accordion.Collapse>
               </Accordion>
             </StyledForm>

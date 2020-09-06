@@ -22,12 +22,11 @@ const EmailField = ({ initialValues, onSubmit }) => {
         const isLoading = isSubmitting || isValidating;
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Form.Group controlId="email">
-                <Form.Row className="align-items-center position-relative">
+                <Form.Row className="align-items-center">
                   <Col as={Form.Label}>Email</Col>
-                  {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
 
                 <Form.Control
@@ -41,6 +40,7 @@ const EmailField = ({ initialValues, onSubmit }) => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
               </Form.Group>
+              {dirty && <SaveUndoRow onUndo={handleReset} />}
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
           </Col>

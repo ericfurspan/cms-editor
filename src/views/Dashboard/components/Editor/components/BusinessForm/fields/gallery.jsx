@@ -43,14 +43,13 @@ const GalleryField = ({ initialValues, onSubmit, onDeleteFile }) => {
         };
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Form.Group controlId="gallery" className="d-flex flex-column w-100 align-items-center">
-                <Form.Row className="w-100 position-relative">
+                <Form.Row className="w-100">
                   <Col as={Form.Label} className="p-0">
                     Gallery
                   </Col>
-                  {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
                 </Form.Row>
                 <Form.File name="gallery" label="Gallery" custom className="h-100 w-100 mb-1 text-center">
                   {blobPreview ? (
@@ -78,6 +77,7 @@ const GalleryField = ({ initialValues, onSubmit, onDeleteFile }) => {
                   supported files: PNG, JPEG, GIF, SVG
                 </Form.Text>
               </Form.Group>
+              {blobPreview && <SaveUndoRow onUndo={() => setSelectedImageBlob({})} />}
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
           </Col>

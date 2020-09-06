@@ -22,12 +22,11 @@ const BannerField = ({ initialValues, onSubmit }) => {
         const isLoading = isSubmitting || isValidating;
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Form.Group controlId="banner">
-                <Form.Row className="align-items-center position-relative">
+                <Form.Row className="align-items-center">
                   <Col as={Form.Label}>Banner</Col>
-                  {dirty && <SaveUndoRow onUndo={handleReset} />}
                 </Form.Row>
 
                 <Form.Control
@@ -41,6 +40,7 @@ const BannerField = ({ initialValues, onSubmit }) => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.banner}</Form.Control.Feedback>
               </Form.Group>
+              {dirty && <SaveUndoRow onUndo={handleReset} />}
               {isLoading && <LoadSpinner inline />}
             </StyledForm>
           </Col>

@@ -7,7 +7,6 @@ export const StyledCol = styled(Col)`
   text-align: right;
   position: absolute;
   right: 0;
-  bottom: 0;
 `;
 
 export const StyledButton = styled(Button)`

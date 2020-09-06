@@ -22,91 +22,65 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
     ),
   });
 
-  const submitHandler = (e) => {
-    onSubmit(e);
-    setSelectedPlatform('');
-  };
-
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
       enableReinitialize
-      onSubmit={submitHandler}
+      onSubmit={onSubmit}
     >
       {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, errors, dirty }) => {
         const isLoading = isSubmitting || isValidating;
         const platformKeys = Object.keys(initialValues.web_links);
         const hasExistingValues = platformKeys.filter((k) => !!initialValues.web_links[k]).length > 0;
-        const usedPlatformKeys = platformKeys.filter((k) => initialValues.web_links[k].length > 0);
-        const unusedPlatformKeys = platformKeys.filter((k) => initialValues.web_links[k].length === 0);
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
-                <Form.Group>
-                  <Form.Row className="mb-2 align-items-center position-relative">
-                    <Col as={Form.Label}>
-                      <ContextAwareToggle eventKey="0">Web Links</ContextAwareToggle>
-                    </Col>
+                <Form.Row className="mb-2 align-items-center">
+                  <Col as={Form.Label}>
+                    <ContextAwareToggle eventKey="0">Web Links</ContextAwareToggle>
+                  </Col>
+                </Form.Row>
+                <Accordion.Collapse eventKey="0">
+                  <>
+                    <Form.Row className="align-items-center mb-3">
+                      <Col xs="3">
+                        <Form.Label>Platforms</Form.Label>
+                        <Form.Control
+                          as="select"
+                          onChange={({ target }) => setSelectedPlatform(target.value)}
+                        >
+                          <option value="" disabled>
+                            Select a platform
+                          </option>
+                          {platformKeys.map((platformName) => (
+                            <option key={platformName} value={platformName}>
+                              {cleanLabel(platformName)}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+
+                      <Col>
+                        <Form.Label>URL</Form.Label>
+                        <Form.Control
+                          type="url"
+                          name={`web_links.${selectedPlatform}`}
+                          onChange={handleChange}
+                          value={values.web_links[selectedPlatform] || ''}
+                          isInvalid={errors.web_links && errors.web_links[selectedPlatform]}
+                        />
+                      </Col>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.web_links && errors.web_links[selectedPlatform]}
+                      </Form.Control.Feedback>
+                    </Form.Row>
                     {dirty && <SaveUndoRow onUndo={handleReset} />}
-                  </Form.Row>
-                  <Accordion.Collapse eventKey="0">
-                    <>
-                      {/* display existing platform links */}
-                      {usedPlatformKeys.map((platformName, index) => (
-                        <Form.Row key={index} className="mb-2 align-items-center">
-                          <Col>
-                            <Form.Label>{cleanLabel(platformName)}</Form.Label>
-                            <Form.Control
-                              type="url"
-                              name={`web_links.${platformName}`}
-                              onChange={handleChange}
-                              value={values.web_links[platformName]}
-                              plaintext
-                              isInvalid={errors.web_links && errors.web_links[platformName]}
-                            />
-                          </Col>
-
-                          <Form.Control.Feedback type="invalid">
-                            {errors.web_links && errors.web_links[platformName]}
-                          </Form.Control.Feedback>
-                        </Form.Row>
-                      ))}
-
-                      {/* adding a new platform */}
-                      {unusedPlatformKeys.length > 0 && (
-                        <Form.Row className="align-items-center justify-content-end">
-                          {selectedPlatform && (
-                            <Col xs="6">
-                              <Form.Label>URL</Form.Label>
-                              <Form.Control
-                                type="url"
-                                name={`web_links.${selectedPlatform}`}
-                                onChange={handleChange}
-                                value={values.web_links[selectedPlatform]}
-                                isInvalid={errors.web_links && errors.web_links[selectedPlatform]}
-                              />
-                            </Col>
-                          )}
-                          <Col xs="4">
-                            <Form.Label>Add a Platform</Form.Label>
-                            <Form.Control
-                              as="select"
-                              onChange={({ target }) => setSelectedPlatform(target.value)}
-                            >
-                              {unusedPlatformKeys.map((platformName) => (
-                                <option key={platformName}>{cleanLabel(platformName)}</option>
-                              ))}
-                            </Form.Control>
-                          </Col>
-                        </Form.Row>
-                      )}
-                    </>
-                  </Accordion.Collapse>
-                </Form.Group>
-                {isLoading && <LoadSpinner inline />}
+                    {isLoading && <LoadSpinner inline />}
+                  </>
+                </Accordion.Collapse>
               </Accordion>
             </StyledForm>
           </Col>

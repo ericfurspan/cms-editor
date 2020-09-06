@@ -15,7 +15,9 @@ export const StyledWrapper = styled.div`
   }
 `;
 
-export const StyledForm = styled(Form)``;
+export const StyledForm = styled(Form)`
+  padding-bottom: 3rem;
+`;
 
 export const StyledFormButton = styled(Button)`
   margin: ${(props) => (props.$noMargin ? '0' : '0 0 0 0.5rem')};

@@ -58,15 +58,14 @@ const OperatingHoursField = ({ initialValues, onSubmit }) => {
         const hasExistingValues = Object.values(values.operating_hours).find((val) => val.length > 0);
 
         return (
-          <Col className="mb-4">
+          <Col>
             <StyledForm onSubmit={handleSubmit}>
               <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
                 <Form.Group>
-                  <Form.Row className="mb-2 align-items-center position-relative">
+                  <Form.Row className="mb-2 align-items-center">
                     <Col as={Form.Label}>
                       <ContextAwareToggle eventKey="0">Operating Hours</ContextAwareToggle>
                     </Col>
-                    {dirty && <SaveUndoRow onUndo={handleReset} />}
                   </Form.Row>
 
                   <Accordion.Collapse eventKey="0">
@@ -96,8 +95,9 @@ const OperatingHoursField = ({ initialValues, onSubmit }) => {
                         ))}
                       </StyledColGrid>
                     </Form.Group>
+                    {dirty && <SaveUndoRow onUndo={handleReset} />}
+                    {isLoading && <LoadSpinner inline />}
                   </Accordion.Collapse>
-                  {isLoading && <LoadSpinner inline />}
                 </Form.Group>
               </Accordion>
             </StyledForm>
