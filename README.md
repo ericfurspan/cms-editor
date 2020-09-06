@@ -1,68 +1,149 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CMS Editor
 
-## Available Scripts
+A React frontend for editing Strapi content
 
-In the project directory, you can run:
+## Table of Contents
 
-### `yarn start`
+- [Prerequisites](#Prerequisites)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [Environment variables](#Environment-variables)
+- [Tooling](#Tooling)
+- [Webpack](#Webpack)
+- [Helpful scripts](#Helpful-scripts)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***********************************************
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Prerequisites
 
-### `yarn test`
+Ensure the following before you start
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. [Node.js](https://nodejs.org/) installed locally and at a recent stable version.
 
-### `yarn build`
+2. A running local instance of the supporting strapi service, listening for requests on a TCP port. You will need to provide this service's root url as an environment variable.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+***********************************************
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  Clone the repository
 
-### `yarn eject`
+  ```plaintext
+  git clone https://github.com/Quanda/cms-editor.git
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  Change to the app directory
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ```plaintext
+  cd cms-editor
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  Install dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  ```plaintext
+  npm install
+  ```
 
-## Learn More
+***********************************************
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Running the app in Development
 
-### Code Splitting
+#### The local development app is served using [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+  Start the development server
 
-### Analyzing the Bundle Size
+  ```plaintext
+  npm run start:dev
+  ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+  Open the app in your browser
 
-### Making a Progressive Web App
+  ```plaintext
+  http://localhost:8080/
+  ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+***********************************************
 
-### Advanced Configuration
+### Running the app in Production
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+#### The production app is served from an Express server, see `./express.js`
 
-### Deployment
+  Build the app
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+  Create a build
 
-### `yarn build` fails to minify
+  ```plaintext
+  npm run build
+  ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  Copy express server to the build directory
+
+  ```plaintext
+  npm run copy
+  ```
+
+  OR, run both scripts with one command
+
+  ```plaintext
+  npm run build:copy
+  ```
+
+  Lastly, start the express server
+
+  ```plaintext
+  npm run start
+  ```
+
+***********************************************
+
+## Environment variables
+
+Environment variables are exposed to `process.env` through [dotenv-webpack](https://github.com/mrsteele/dotenv-webpack). These values must be correct for the application to run succesfully.
+
+***********************************************
+
+## Tooling
+
+A list of the primary tools used in this project.
+
+- [`React.js`](https://reactjs.org/)
+- [`Apollo GraphQL`](https://www.apollographql.com/)
+- [`react-bootstrap`](https://react-bootstrap.github.io/)
+- [`styled-components`](https://www.styled-components.com/docs)
+- [`webpack`](https://webpack.js.org/configuration/)
+- [`eslint`](https://eslint.org/docs/user-guide/getting-started)
+- [`babeljs`](https://babeljs.io/docs/en/)
+
+### See `package.json` for full a list of dependencies and devDependencies.
+
+***********************************************
+
+## Webpack
+
+This application gets built with [Webpack](https://webpack.js.org/configuration/) and has several of the options set. See `webpack.config.js` for configuration specifics, and `package.json` for the build scripts which kick off the webpack process.
+
+***********************************************
+
+## Helpful scripts
+
+### Webpack analysis
+
+Run a production build and output a `stats.json`.
+
+```js
+npm run build:prod:stats
+```
+
+Report on any modules which should be de-duplicated but are not, leading to potentially inflated bundle sizes.
+
+```js
+npm run inspectpack:duplicates
+```
+
+Report on multiple versions of packages installed in the `node_modules` tree which have version skews and also have 2+ files included in the bundle under inspection.
+
+```js
+npm run inspectpack:versions
+```
