@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     font-size: 0.875rem;
-    color: var(--gray-dark);
+    color: var(--gray);
     margin-bottom: 2px;
   }
   summary {
