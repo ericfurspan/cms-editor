@@ -1,14 +1,15 @@
-import React from 'react';
-import { Form, Col, Accordion, InputGroup } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form, Col, Accordion } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LoadSpinner, ContextAwareToggle } from '../../../../../../../components';
 import { SaveUndoRow } from '../../SaveUndoRow';
 import { StyledForm } from '../style';
 import { cleanLabel } from '../utils';
 
 const WebLinkField = ({ initialValues, onSubmit }) => {
+  const [selectedPlatform, setSelectedPlatform] = useState('');
+
   const validationSchema = yup.object().shape({
     web_links: yup.object().shape(
       Object.keys(initialValues.web_links).reduce(
@@ -21,17 +22,24 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
     ),
   });
 
+  const submitHandler = (e) => {
+    onSubmit(e);
+    setSelectedPlatform('');
+  };
+
   return (
     <Formik
       validationSchema={validationSchema}
       initialValues={initialValues}
       enableReinitialize
-      onSubmit={onSubmit}
+      onSubmit={submitHandler}
     >
       {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, errors, dirty }) => {
         const isLoading = isSubmitting || isValidating;
-        const platformKeys = Object.keys(values.web_links);
-        const hasExistingValues = platformKeys.filter((k) => !!values.web_links[k]).length > 0;
+        const platformKeys = Object.keys(initialValues.web_links);
+        const hasExistingValues = platformKeys.filter((k) => !!initialValues.web_links[k]).length > 0;
+        const usedPlatformKeys = platformKeys.filter((k) => initialValues.web_links[k].length > 0);
+        const unusedPlatformKeys = platformKeys.filter((k) => initialValues.web_links[k].length === 0);
 
         return (
           <Col className="mb-4">
@@ -46,31 +54,55 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
                   </Form.Row>
                   <Accordion.Collapse eventKey="0">
                     <>
-                      {platformKeys.map((platformName, index) => (
+                      {/* display existing platform links */}
+                      {usedPlatformKeys.map((platformName, index) => (
                         <Form.Row key={index} className="mb-2 align-items-center">
-                          <InputGroup size="sm">
-                            <InputGroup.Prepend>
-                              <InputGroup.Text>{cleanLabel(platformName)}</InputGroup.Text>
-                            </InputGroup.Prepend>
-
+                          <Col>
+                            <Form.Label>{cleanLabel(platformName)}</Form.Label>
                             <Form.Control
                               type="url"
                               name={`web_links.${platformName}`}
                               onChange={handleChange}
                               value={values.web_links[platformName]}
+                              plaintext
                               isInvalid={errors.web_links && errors.web_links[platformName]}
                             />
-                            <InputGroup.Append>
-                              <InputGroup.Text>
-                                <FontAwesomeIcon icon={['fas', 'link']} />
-                              </InputGroup.Text>
-                            </InputGroup.Append>
-                            <Form.Control.Feedback type="invalid">
-                              {errors.web_links && errors.web_links[platformName]}
-                            </Form.Control.Feedback>
-                          </InputGroup>
+                          </Col>
+
+                          <Form.Control.Feedback type="invalid">
+                            {errors.web_links && errors.web_links[platformName]}
+                          </Form.Control.Feedback>
                         </Form.Row>
                       ))}
+
+                      {/* adding a new platform */}
+                      {unusedPlatformKeys.length > 0 && (
+                        <Form.Row className="align-items-center justify-content-end">
+                          {selectedPlatform && (
+                            <Col xs="6">
+                              <Form.Label>URL</Form.Label>
+                              <Form.Control
+                                type="url"
+                                name={`web_links.${selectedPlatform}`}
+                                onChange={handleChange}
+                                value={values.web_links[selectedPlatform]}
+                                isInvalid={errors.web_links && errors.web_links[selectedPlatform]}
+                              />
+                            </Col>
+                          )}
+                          <Col xs="4">
+                            <Form.Label>Add a Platform</Form.Label>
+                            <Form.Control
+                              as="select"
+                              onChange={({ target }) => setSelectedPlatform(target.value)}
+                            >
+                              {unusedPlatformKeys.map((platformName) => (
+                                <option key={platformName}>{cleanLabel(platformName)}</option>
+                              ))}
+                            </Form.Control>
+                          </Col>
+                        </Form.Row>
+                      )}
                     </>
                   </Accordion.Collapse>
                 </Form.Group>
