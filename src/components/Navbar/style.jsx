@@ -5,7 +5,7 @@ import BREAKPOINTS from '../../utils/breakpoints';
 export const StyledSidebar = styled(Col)`
   height: 100vh;
   padding-top: 52px;
-  background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});
+  background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary-dark')});
   border-right: ${(props) => (props.theme.mode === 'light' ? '1px solid var(--secondary)' : '0')};
 
   ${(props) =>
@@ -46,7 +46,7 @@ export const StyledNavHeader = styled.div`
   padding-right: 28px;
   height: 52px;
   z-index: 2;
-  background-color: var(--primary-light);
+  background-color: var(--primary);
 
   & button > svg,
   a > svg,
@@ -124,8 +124,8 @@ export const StyledNavLink = styled(Nav.Link)`
     position: relative;
 
     &.active {
-      color: var(${props.theme.mode === 'light' ? '--primary-light' : '--gray-light'});
-      background-color: var(${props.theme.mode === 'light' ? '--white-darker' : '--primary-light'});
+      color: var(${props.theme.mode === 'light' ? '--primary' : '--gray-light'});
+      background-color: var(${props.theme.mode === 'light' ? '--white-darker' : '--primary'});
     
       &:before {
         content: ' ';

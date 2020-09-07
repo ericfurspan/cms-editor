@@ -16,14 +16,9 @@ export const StyledContentWrapper = styled.div`
   ${(props) => props.$marginTop && `margin-top: 1rem;`}
 
   ${(props) =>
-    props.$withShadow === true &&
+    props.$withBorder === true &&
     `
-    border: ${props.theme.mode === 'light' ? '0' : '1px solid var(--primary-light)'};
-    box-shadow: ${
-      props.theme.mode === 'light'
-        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
-        : '0 2px 4px 0 rgba(31,45,61,.07);'
-    };
+    border: ${props.theme.mode === 'light' ? '1px solid var(--secondary)' : '1px solid var(--primary)'};
   `}
 
   @media only screen and (max-width: ${BREAKPOINTS.LARGE}) {

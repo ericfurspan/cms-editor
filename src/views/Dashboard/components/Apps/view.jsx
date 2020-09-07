@@ -58,7 +58,7 @@ const Apps = ({ uid, changePane }) => {
                         <Card.Text as="label">Admin Users</Card.Text>
                         <div className="flex justify-content-center">
                           {app.users.map((adminUser) => (
-                            <Badge variant="secondary" pill key={adminUser.id}>
+                            <Badge variant="secondary" className="mr-1" pill key={adminUser.id}>
                               {startCase(adminUser.username)}
                             </Badge>
                           ))}
@@ -79,7 +79,7 @@ const Apps = ({ uid, changePane }) => {
                     )}
                   </Card.Body>
                   {app.deploy_hook_url && (
-                    <div className="pb-2">
+                    <Card.Footer className="pb-2">
                       <Button
                         variant="transparent"
                         onClick={() => tryDeploy(app.deploy_hook_url)}
@@ -88,7 +88,7 @@ const Apps = ({ uid, changePane }) => {
                       >
                         <img src={NetlifyDeploySvg} alt="Netlify deploy" />
                       </Button>
-                    </div>
+                    </Card.Footer>
                   )}
                 </Card>
               </Col>

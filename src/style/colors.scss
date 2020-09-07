@@ -1,6 +1,6 @@
 /* custom colors */
-$primary: #151f2b;
-$primary-light: #253341;
+$primary: #253341;
+$primary-dark: #151f2b;
 $gray: #8493a5;
 $gray-dark: #5f6a78;
 $gray-light: #c3ddeb;
@@ -19,7 +19,7 @@ $link: #0066cc;
 /* sets css variables, overriding any from Bootstrap */
 $theme-colors: (
   'primary': $primary,
-  'primary-light': $primary-light,
+  'primary-dark': $primary-dark,
   'gray': $gray,
   'gray-dark': $gray-dark,
   'gray-light': $gray-light,
@@ -37,7 +37,7 @@ $theme-colors: (
   'link': $link,
   'secondary': $gray-lighter,
   'light': $white-darker,
-  'dark': $gray-dark,
+  'dark': $primary,
 );
 
 @import '~bootstrap/scss/bootstrap';

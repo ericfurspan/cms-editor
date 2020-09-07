@@ -17,10 +17,10 @@ const GlobalStyle = createGlobalStyle`
       props.theme.mode === 'light'
         ? `
       background-color: var(--white-darker);
-      color: var(--black);
+      color: var(--primary-dark);
     `
         : `
-      background-color: var(--primary);
+      background-color: var(--primary-dark);
       color: var(--white);
     `}
   }
@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     overflow: hidden;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, Ubuntu, sans-serif;
+  }
+
+  h1 {
+    font-size: 3rem;
   }
 
   h1, h2 {
@@ -55,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
     ${(props) =>
       props.theme.mode === 'dark' &&
       `
-      background-color: var(--primary-light);
+      background-color: var(--primary-dark);
       border-color: var(--primary);
     `}
 
@@ -100,7 +104,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .btn:focus {
-    box-shadow: 0 0 0 0.1rem rgba(21, 31, 43, 0.25);
+    box-shadow: none;
+    outline: 0;
   }
 
   .btn.disabled, button:disabled {
@@ -117,7 +122,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});;
     box-shadow: none !important;
     outline: 0 !important;
-    border-color: var(${(props) => (props.theme.mode === 'light' ? '--gray-lighter' : '--primary-light')});
+    border-color: var(${(props) => (props.theme.mode === 'light' ? '--gray-lighter' : '--primary')});
     border-style: solid;
     border-width: 1px;
     border-radius: 0 !important;

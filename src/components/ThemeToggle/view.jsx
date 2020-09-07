@@ -13,7 +13,7 @@ const ThemeModeToggle = () => (
         onClick={toggleTheme}
         className="pl-4 w-100 text-left"
       >
-        <FontAwesomeIcon icon={['fas', themeMode === 'light' ? 'moon' : 'sun']} className="mr-2" block />
+        <FontAwesomeIcon icon={['fas', themeMode === 'light' ? 'moon' : 'sun']} className="mr-2" />
         <span>{themeMode === 'light' ? 'Dark' : 'Light'} Mode</span>
       </Button>
     )}

@@ -53,7 +53,7 @@ const Businesses = ({ uid }) => {
                 businesses.map((business) => (
                   <Col key={business.name} className="mb-3">
                     <Card
-                      border={activeBusiness.id === business.id ? 'dark' : null}
+                      border={activeBusiness.id === business.id ? 'primary' : null}
                       className={activeBusiness.id === business.id ? 'active' : 'clickable'}
                       onClick={() => setActiveBusiness(business)}
                     >
@@ -82,10 +82,10 @@ const Businesses = ({ uid }) => {
             <div className="mt-3">
               <h2>Editor</h2>
               {activeBusiness && activeBusiness.id ? (
-                <StyledContentWrapper $withShadow $marginTop>
+                <StyledContentWrapper $withBorder $marginTop>
                   <StyledContentBanner>
                     <StyledMetaContainer>
-                      <Badge variant="link" pill>
+                      <Badge variant="primary" pill>
                         {activeBusiness.name}
                       </Badge>
                       <small className="text-gray">
@@ -99,7 +99,7 @@ const Businesses = ({ uid }) => {
                   )}
                 </StyledContentWrapper>
               ) : (
-                <MissingPlaceholder icon="edit" text="Select a content above to start editing.">
+                <MissingPlaceholder icon="edit" text="Select a content from above to start editing.">
                   <ContentLoader animate={false} />
                 </MissingPlaceholder>
               )}
