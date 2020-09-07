@@ -53,7 +53,7 @@ const Businesses = ({ uid }) => {
                 businesses.map((business) => (
                   <Col key={business.name} className="mb-3">
                     <Card
-                      border={activeBusiness.id === business.id ? 'primary' : null}
+                      border={activeBusiness.id === business.id ? 'link' : null}
                       className={activeBusiness.id === business.id ? 'active' : 'clickable'}
                       onClick={() => setActiveBusiness(business)}
                     >
@@ -85,7 +85,7 @@ const Businesses = ({ uid }) => {
                 <StyledContentWrapper $withBorder $marginTop>
                   <StyledContentBanner>
                     <StyledMetaContainer>
-                      <Badge variant="primary" pill>
+                      <Badge variant="link" pill>
                         {activeBusiness.name}
                       </Badge>
                       <small className="text-gray">

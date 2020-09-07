@@ -98,7 +98,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
 
   return (
     <StyledWrapper>
-      <Row>
+      <Row xs="1" lg="2">
         <Name initialValues={{ name: business.name }} onSubmit={handleBusinessUpdate} />
         <Email initialValues={{ email: business.email }} onSubmit={handleBusinessUpdate} />
       </Row>
@@ -107,7 +107,7 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
         onSubmit={handleFileUpload}
         onDeleteFile={handleDeleteFile}
       />
-      <Row>
+      <Row xs="1" lg="2">
         <Caption initialValues={{ caption: business.caption }} onSubmit={handleBusinessUpdate} />
         <Banner initialValues={{ banner: business.banner }} onSubmit={handleBusinessUpdate} />
       </Row>
