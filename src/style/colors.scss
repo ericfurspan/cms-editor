@@ -14,7 +14,6 @@ $brand-light: #8ffbdb;
 $danger: #b00020;
 $success: #008000;
 $warning: #ffc107;
-$info: #1c90da;
 $link: #0066cc;
 
 /* sets css variables, overriding any from Bootstrap */
@@ -34,7 +33,7 @@ $theme-colors: (
   'danger': $danger,
   'success': $success,
   'warning': $warning,
-  'info': $info,
+  'info': $brand-light,
   'link': $link,
   'secondary': $gray-lighter,
   'light': $white-darker,

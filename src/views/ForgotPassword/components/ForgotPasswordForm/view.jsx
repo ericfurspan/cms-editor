@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import { StyledSubmitBtn, StyledLinkButton } from './style';
 
 const ForgotPasswordForm = () => {
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [emailSubmitted, /* setEmailSubmitted */] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     // todo: finish me
 
-    event.preventDefault();
-    setEmailSubmitted(true);
+    // eslint-disable-next-line no-alert
+    alert('This feature is coming soon. If you need help logging in, please contact admin@quanda.dev.');
+    // setEmailSubmitted(true);
   };
 
   return (

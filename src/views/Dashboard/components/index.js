@@ -1,2 +1,2 @@
-export { Editor } from './Editor';
-export { AppsHome } from './AppsHome';
+export { Apps } from './Apps';
+export { Businesses } from './Businesses';

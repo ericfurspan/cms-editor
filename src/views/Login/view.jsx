@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Card, Row, Col } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { USER_ID, LOGIN, IS_LOGGED_IN } from '../../graphql/user';
 import { LoginForm } from './components';
@@ -22,16 +22,16 @@ const LoginPage = () => {
   });
 
   return (
-    <Col>
-      <Container className="mt-5">
-        <Row className="m-1">
-          <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
+    <Container className="mt-5">
+      <Row>
+        <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
+          <Card bg="white" className="p-4">
             <h3 className="mb-4 text-center">Login to CMS</h3>
             <LoginForm login={login} />
-          </Col>
-        </Row>
-      </Container>
-    </Col>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -8,3 +8,4 @@ export { Alert } from './Alert';
 export { ContentLoader } from './ContentLoader';
 export { FileUploadPlaceholder } from './FileUploadPlaceholder';
 export { FileDeleteButton } from './FileDeleteButton';
+export { MissingPlaceholder } from './MissingPlaceholder';

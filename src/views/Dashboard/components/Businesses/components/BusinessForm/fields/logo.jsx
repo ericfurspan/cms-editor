@@ -45,8 +45,8 @@ const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
         return (
           <Col>
             <StyledForm onSubmit={handleSubmit} name="logo">
-              <Form.Group controlId="logo" className="d-flex flex-column align-items-center w-100">
-                <Form.Row className="w-100 align-items-center">
+              <Form.Group controlId="logo" className="d-flex flex-column align-items-center">
+                <Form.Row className="align-items-center">
                   <Col as={Form.Label}>Logo</Col>
                 </Form.Row>
                 <Form.File name="logo" label="Logo" custom className="h-100 w-auto mb-1 text-center">

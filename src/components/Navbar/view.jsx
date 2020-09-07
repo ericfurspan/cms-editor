@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { navigationConfig } from './config';
 import { ThemeToggle } from '..';
-import { ContentDropdown } from './components';
 import {
   StyledNavHeader,
   StyledNavToggle,
@@ -15,7 +14,7 @@ import {
   StyledNavLink,
 } from './style';
 
-const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableContent }) => {
+const Navbar = ({ onSelectNavLink }) => {
   const [isExpanded, setExpanded] = useState(false);
 
   const selectNavLinkHandler = (key, e) => {
@@ -44,13 +43,6 @@ const Navbar = ({ onSelectNavLink, activeContent, onSelectNewContent, availableC
           {/* right-side */}
           <Row className="align-items-center">
             <ThemeToggle />
-            {availableContent.length > 1 && (
-              <ContentDropdown
-                activeContent={activeContent}
-                availableContent={availableContent}
-                onSelectItem={onSelectNewContent}
-              />
-            )}
             <Dropdown drop="up">
               <Dropdown.Toggle id="profile-toggle" variant="transparent">
                 <FontAwesomeIcon icon={['fas', 'cog']} fixedWidth />

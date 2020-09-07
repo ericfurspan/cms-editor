@@ -79,18 +79,10 @@ export const StyledNavToggle = styled.div`
   font-size: 0.875rem;
 
   #brand-name {
-    display: none;
     position: absolute;
     left: 64px;
     font-weight: 500;
   }
-  ${(props) =>
-    props.$isExpanded &&
-    `
-    #brand-name {
-      display: initial;
-    }
-  `}
 `;
 
 export const StyledNav = styled(Nav)`

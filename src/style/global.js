@@ -32,13 +32,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Roboto, Ubuntu, sans-serif;
   }
 
-  h1 {
+  h1, h2 {
     margin-bottom: 0;
   }
 
   label {
     font-size: 0.875rem;
-    color: var(--gray);
+    color: var(--gray-dark);
     margin-bottom: 2px;
   }
   summary {
@@ -47,6 +47,26 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     color: var(--link);
+  }
+
+  .card {
+    min-height: 275px;
+  
+    ${(props) =>
+      props.theme.mode === 'dark' &&
+      `
+      background-color: var(--primary-light);
+      border-color: var(--primary);
+    `}
+
+    &.clickable {
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
 
   .dropdown,
@@ -99,7 +119,7 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
       box-shadow: none;
       border-width: 2px;
-      border-color: var(--info);
+      border-color: var(--link);
       background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});
     }
 

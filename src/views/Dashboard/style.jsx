@@ -12,6 +12,9 @@ export const StyledContentWrapper = styled.div`
   margin-bottom: 2rem;
   background-color:
     ${(props) => (props.theme.mode === 'light' ? 'var(--white)' : 'inherit')};
+
+  ${(props) => props.$marginTop && `margin-top: 1rem;`}
+
   ${(props) =>
     props.$withShadow === true &&
     `

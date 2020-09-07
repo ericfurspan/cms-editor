@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import omitDeep from 'omit-deep-lodash';
 import { UPDATE_BUSINESS, UPLOAD_SINGLE_FILE } from '../../../../../../graphql';
@@ -97,24 +98,38 @@ const BusinessForm = ({ business, onUpdateComplete }) => {
 
   return (
     <StyledWrapper>
-      <Name initialValues={{ name: business.name }} onSubmit={handleBusinessUpdate} />
-      <Email initialValues={{ email: business.email }} onSubmit={handleBusinessUpdate} />
+      <Row>
+        <Name initialValues={{ name: business.name }} onSubmit={handleBusinessUpdate} />
+        <Email initialValues={{ email: business.email }} onSubmit={handleBusinessUpdate} />
+      </Row>
       <Logo
         initialValues={{ logo: business.logo }}
         onSubmit={handleFileUpload}
         onDeleteFile={handleDeleteFile}
       />
-      <Caption initialValues={{ caption: business.caption }} onSubmit={handleBusinessUpdate} />
-      <Banner initialValues={{ banner: business.banner }} onSubmit={handleBusinessUpdate} />
-      <Description initialValues={{ description: business.description }} onSubmit={handleBusinessUpdate} />
-      <WebLink initialValues={{ web_links: business.web_links }} onSubmit={handleBusinessUpdate} />
-      <Promotions initialValues={{ promotions: business.promotions }} onSubmit={handleBusinessUpdate} />
-      <News initialValues={{ news: business.news }} onSubmit={handleBusinessUpdate} />
-      <Gallery
-        initialValues={{ gallery: business.gallery }}
-        onSubmit={handleFileUpload}
-        onDeleteFile={handleDeleteFile}
-      />
+      <Row>
+        <Caption initialValues={{ caption: business.caption }} onSubmit={handleBusinessUpdate} />
+        <Banner initialValues={{ banner: business.banner }} onSubmit={handleBusinessUpdate} />
+      </Row>
+      <Row>
+        <Description initialValues={{ description: business.description }} onSubmit={handleBusinessUpdate} />
+      </Row>
+      <Row>
+        <WebLink initialValues={{ web_links: business.web_links }} onSubmit={handleBusinessUpdate} />
+      </Row>
+      <Row>
+        <Promotions initialValues={{ promotions: business.promotions }} onSubmit={handleBusinessUpdate} />
+      </Row>
+      <Row>
+        <News initialValues={{ news: business.news }} onSubmit={handleBusinessUpdate} />
+      </Row>
+      <Row>
+        <Gallery
+          initialValues={{ gallery: business.gallery }}
+          onSubmit={handleFileUpload}
+          onDeleteFile={handleDeleteFile}
+        />
+      </Row>
     </StyledWrapper>
   );
 };

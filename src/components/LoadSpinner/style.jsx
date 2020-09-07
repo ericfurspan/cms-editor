@@ -22,5 +22,5 @@ export const StyledSpinner = styled(Spinner)`
   width: 2rem;
   height: 2rem;
 
-  color: var(--info);
+  color: var(--link);
 `;
