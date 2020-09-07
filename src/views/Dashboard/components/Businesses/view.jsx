@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Col, Row, Container, Card, Badge } from 'react-bootstrap';
 import sortBy from 'lodash/sortBy';
@@ -29,6 +29,12 @@ const Businesses = ({ uid }) => {
 
   const lastUpdated = activeBusiness && new Date(activeBusiness.updated_at).toLocaleDateString();
 
+  useEffect(() => {
+    if (businesses.length === 1 && !activeBusiness.id) {
+      setActiveBusiness(businesses[0]);
+    }
+  }, [businesses, activeBusiness.id]);
+
   if (businessesAreLoading) {
     return <ContentLoader />;
   }
@@ -37,7 +43,7 @@ const Businesses = ({ uid }) => {
     <Col lg={{ span: 10, offset: 1 }}>
       <div className="mb-3 ml-1">
         <h1>Content</h1>
-        <span className="text-gray">Manage your collections</span>
+        <span className="text-gray">Your collections</span>
       </div>
       <Container>
         {businesses.length > 0 ? (
@@ -47,8 +53,8 @@ const Businesses = ({ uid }) => {
                 businesses.map((business) => (
                   <Col key={business.name} className="mb-3">
                     <Card
-                      border={activeBusiness.id === business.id ? 'link' : null}
-                      className={activeBusiness.id === business.id ? '' : 'clickable'}
+                      border={activeBusiness.id === business.id ? 'dark' : null}
+                      className={activeBusiness.id === business.id ? 'active' : 'clickable'}
                       onClick={() => setActiveBusiness(business)}
                     >
                       {business.logo && (
@@ -65,7 +71,7 @@ const Businesses = ({ uid }) => {
                       <Card.Body>
                         <Card.Text>{business.name}</Card.Text>
                         <Card.Text as="small">
-                          Content Type: <i>Business</i>
+                          Type: <i>Business</i>
                         </Card.Text>
                       </Card.Body>
                     </Card>

@@ -42,15 +42,16 @@ const Navbar = ({ onSelectNavLink }) => {
 
           {/* right-side */}
           <Row className="align-items-center">
-            <ThemeToggle />
             <Dropdown drop="up">
-              <Dropdown.Toggle id="profile-toggle" variant="transparent">
+              <Dropdown.Toggle id="settings-toggle" variant="transparent">
                 <FontAwesomeIcon icon={['fas', 'cog']} fixedWidth />
               </Dropdown.Toggle>
               <Dropdown.Menu>
+                <Dropdown.Item as={ThemeToggle} />
+                <Dropdown.Divider />
                 <Dropdown.Item as={Link} to="/logout">
                   <FontAwesomeIcon icon={['fas', 'sign-out-alt']} className="mr-2" />
-                  <span>Sign out</span>
+                  <span style={{ fontSize: '1rem' }}>Sign out</span>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

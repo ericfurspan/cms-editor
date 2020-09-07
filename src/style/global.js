@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1, h2 {
-    margin-bottom: 0;
+    margin-bottom: 0.25rem;
   }
 
   label {
@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .card {
-    min-height: 275px;
+    min-height: 200px;
   
     ${(props) =>
       props.theme.mode === 'dark' &&
@@ -67,6 +67,14 @@ const GlobalStyle = createGlobalStyle`
         transform: scale(1.1);
       }
     }
+
+    .card-img-top {
+      border-radius: unset;
+    }
+  }
+
+  .list-group-item {
+    padding: 0.5rem 1rem;
   }
 
   .dropdown,

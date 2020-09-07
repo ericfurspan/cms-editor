@@ -25,7 +25,7 @@ const LoginPage = () => {
     <Container className="mt-5">
       <Row>
         <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
-          <Card bg="white" className="p-4">
+          <Card className="p-4">
             <h3 className="mb-4 text-center">Login to CMS</h3>
             <LoginForm login={login} />
           </Card>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Container, Row, Col, Card, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Alert, Badge } from 'react-bootstrap';
 import startCase from 'lodash/startCase';
 import NetlifyDeploySvg from '../../../../static/img/deploy-netlify.svg';
 import { MissingPlaceholder, ContentLoader, LoadSpinner } from '../../../../components';
@@ -39,7 +39,7 @@ const Apps = ({ uid, changePane }) => {
           <Row xs="1" md="2" xl="3">
             {applications.map((app) => (
               <Col key={app.name} className="mb-3">
-                <Card>
+                <Card className="text-center">
                   <Card.Header className="text-center position-relative">
                     {app.deploy_status_url ? (
                       <Card.Link href={app.deploy_panel_url}>
@@ -52,20 +52,28 @@ const Apps = ({ uid, changePane }) => {
                   </Card.Header>
 
                   <Card.Body>
-                    <Card.Title>{app.name}</Card.Title>
+                    <Card.Title as="h2">{app.name}</Card.Title>
                     {app.users.length > 0 && (
-                      <Card.Text>
-                        Admins:&nbsp;
-                        <i>{app.users.map((adminUser) => startCase(adminUser.username)).join(', ')}</i>
-                      </Card.Text>
+                      <div className="mb-3 mt-3">
+                        <Card.Text as="label">Admin Users</Card.Text>
+                        <div className="flex justify-content-center">
+                          {app.users.map((adminUser) => (
+                            <Badge variant="secondary" pill key={adminUser.id}>
+                              {startCase(adminUser.username)}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     )}
+
                     {app.business ? (
-                      <Card.Text as="span">
-                        Content:&nbsp;
+                      <>
+                        <Card.Text as="label">Related Content</Card.Text>
+                        <br />
                         <Card.Link href="#" onClick={() => changePane('content')}>
-                          <i>{app.business.name}</i>
+                          {app.business.name}
                         </Card.Link>
-                      </Card.Text>
+                      </>
                     ) : (
                       <Alert variant="warning">This app is not assigned to any content.</Alert>
                     )}

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BREAKPOINTS from '../../../../../../utils/breakpoints';
 
 export const StyledWrapper = styled.div`
-  padding: 2rem;
+  padding: 1rem 2rem;
   position: relative;
 
   @media only screen and (max-width: ${BREAKPOINTS.SMALL}) {
