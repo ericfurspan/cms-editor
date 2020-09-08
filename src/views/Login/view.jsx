@@ -36,7 +36,7 @@ const LoginPage = () => {
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
               <Alert variant="warning" className="mt-2">
-                <b>Sandbox environment credentials</b>
+                <b>Sandbox credentials</b>
                 <div className="font-italic">playground / playground0env</div>
               </Alert>
             </Accordion.Collapse>

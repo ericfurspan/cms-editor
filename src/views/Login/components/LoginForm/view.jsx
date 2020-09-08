@@ -71,7 +71,10 @@ const LoginForm = ({ login }) => {
           </Form.Control.Feedback>
         )}
 
-        <label htmlFor="toggle-pw-visibility" className="d-flex align-items-center justify-content-end mt-1">
+        <label
+          htmlFor="toggle-pw-visibility"
+          className="d-flex align-items-center justify-content-end mt-1 user-select-none"
+        >
           <input
             type="checkbox"
             name="toggle-pw-visibility"
