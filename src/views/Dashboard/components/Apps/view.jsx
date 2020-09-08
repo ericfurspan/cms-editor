@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Container, Row, Col, Card, Button, Alert, Badge } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import startCase from 'lodash/startCase';
 import NetlifyDeploySvg from '../../../../static/img/deploy-netlify.svg';
 import { MissingPlaceholder, ContentLoader, LoadSpinner, Alert as Swal } from '../../../../components';
@@ -65,7 +66,14 @@ const Apps = ({ uid, changePane }) => {
                   </Card.Header>
 
                   <Card.Body>
-                    <Card.Title as="h2">{app.name}</Card.Title>
+                    <Card.Title className="d-flex align-items-center justify-content-between">
+                      <h2>{app.name}</h2>
+                      {app.live_url && (
+                        <Card.Link href={app.live_url} target="_blank" rel="noreferrer noopener">
+                          <FontAwesomeIcon icon={['fas', 'external-link-alt']} />
+                        </Card.Link>
+                      )}
+                    </Card.Title>
                     {app.users.length > 0 && (
                       <div className="mt-3">
                         <Card.Text as="label">Admin Users</Card.Text>
