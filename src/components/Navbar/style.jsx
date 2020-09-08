@@ -124,7 +124,7 @@ export const StyledNavLink = styled(Nav.Link)`
     position: relative;
 
     &.active {
-      color: var(${props.theme.mode === 'light' ? '--primary' : '--gray-light'});
+      color: var(${props.theme.mode === 'light' ? '--primary' : '--primary-light'});
       background-color: var(${props.theme.mode === 'light' ? '--white-darker' : '--primary'});
     
       &:before {
@@ -143,7 +143,7 @@ export const StyledNavLink = styled(Nav.Link)`
     }
     &:hover:not(.active) {
       color: var(
-        ${props.theme.mode === 'light' ? '--primary' : '--gray-light'}
+        ${props.theme.mode === 'light' ? '--primary' : '--primary-light'}
       ) !important;
     }
 

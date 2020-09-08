@@ -42,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
 
   label {
     font-size: 0.875rem;
+    font-weight: 500;
     color: var(--gray-dark);
     margin-bottom: 2px;
   }
@@ -122,7 +123,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(${(props) => (props.theme.mode === 'light' ? '--white' : '--primary')});;
     box-shadow: none !important;
     outline: 0 !important;
-    border-color: var(${(props) => (props.theme.mode === 'light' ? '--gray-lighter' : '--primary')});
+    border-color: var(${(props) => (props.theme.mode === 'light' ? '--gray-light' : '--primary')});
     border-style: solid;
     border-width: 1px;
     border-radius: 0 !important;

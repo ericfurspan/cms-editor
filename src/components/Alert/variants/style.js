@@ -46,7 +46,7 @@ export const StyledDetailContent = styled.div`
   border-radius: 4px;
 
   code {
-    background-color: var(--gray-light);
+    background-color: var(--primary-light);
     padding: 0.875rem;
   }
 `;

@@ -5,7 +5,7 @@ import { FormText, Container } from 'react-bootstrap';
 
 export const StyledContainer = styled(Container)`
   svg {
-    color: var(--gray-light);
+    color: var(--primary-light);
     opacity: 0.4;
   }
 `;
