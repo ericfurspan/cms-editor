@@ -16,6 +16,9 @@ const applicationFragment = gql`
     business {
       id
       name
+      users {
+        id
+      }
     }
   }
 `;

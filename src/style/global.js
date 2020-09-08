@@ -162,6 +162,10 @@ const GlobalStyle = createGlobalStyle`
   .swal2-popup {
     box-shadow: 0 0 0.15em var(--white-darker) !important;
   }
+
+  .swal2-cancel {
+    margin-right: 0.75rem;
+  }
 `;
 
 export default GlobalStyle;

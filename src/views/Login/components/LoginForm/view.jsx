@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { StyledSubmitBtn, StyledLinkButton } from './style';
+import { StyledSubmitBtn } from './style';
 
 const LoginForm = ({ login }) => {
   const [formError, setFormError] = useState(false);
   const [validated, setValidated] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formFields, setFormField] = useState({
     identifier: '',
     password: '',
@@ -57,7 +57,7 @@ const LoginForm = ({ login }) => {
       <Form.Group controlId="password">
         <Form.Label>Password</Form.Label>
         <Form.Control
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           name="password"
           label="Password"
           onChange={onChangeField}
@@ -70,17 +70,29 @@ const LoginForm = ({ login }) => {
             {formError}
           </Form.Control.Feedback>
         )}
+
+        <label htmlFor="toggle-pw-visibility" className="d-flex align-items-center justify-content-end mt-1">
+          <input
+            type="checkbox"
+            name="toggle-pw-visibility"
+            id="toggle-pw-visibility"
+            className="mr-1"
+            onClick={() => setShowPassword(!showPassword)}
+          />
+          Show Password
+        </label>
       </Form.Group>
+
       <Form.Group className="mt-4 m-1">
         <StyledSubmitBtn type="submit" size="lg" block>
           Login
         </StyledSubmitBtn>
       </Form.Group>
-      <div className="text-center mt-5">
+      {/* <div className="text-center mt-5">
         <Link to="/forgot-password">
           <StyledLinkButton size="sm">Forgot password</StyledLinkButton>
         </Link>
-      </div>
+      </div> */}
     </Form>
   );
 };
