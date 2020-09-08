@@ -12,7 +12,6 @@ library.add(fas);
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 0.5,
   environment: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 });
 
