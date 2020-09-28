@@ -18,8 +18,6 @@ const validationSchema = yup.object().shape({
 });
 
 const PromotionsField = ({ initialValues, onSubmit }) => {
-  const hasExistingValues = initialValues.promotions && initialValues.promotions.length > 0;
-
   return (
     <Formik
       validationSchema={validationSchema}
@@ -31,7 +29,7 @@ const PromotionsField = ({ initialValues, onSubmit }) => {
         return (
           <Col>
             <StyledForm onSubmit={handleSubmit}>
-              <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
+              <Accordion>
                 <Form.Row className="mb-3 align-items-baseline">
                   <Col as={Form.Label}>
                     <ContextAwareToggle eventKey="0">Promotions</ContextAwareToggle>
@@ -46,9 +44,10 @@ const PromotionsField = ({ initialValues, onSubmit }) => {
                             values.promotions.length > 0 &&
                             values.promotions.map((_, index) => (
                               <Form.Row className="align-items-center pb-2" key={index}>
-                                <Col xs={10}>
+                                <Col xs={12} md={10}>
                                   <Form.Group controlId={`promotions.${index}.title`}>
-                                    <InputGroup size="sm">
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">Title</Form.Label>
                                       <Field
                                         as={Form.Control}
                                         type="text"
@@ -78,7 +77,8 @@ const PromotionsField = ({ initialValues, onSubmit }) => {
                                     </InputGroup>
                                   </Form.Group>
                                   <Form.Group controlId={`promotions.${index}.description`}>
-                                    <InputGroup size="sm">
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">Text</Form.Label>
                                       <Field
                                         as={Form.Control}
                                         type="text"
@@ -108,7 +108,8 @@ const PromotionsField = ({ initialValues, onSubmit }) => {
                                     </InputGroup>
                                   </Form.Group>
                                   <Form.Group controlId={`promotions.${index}.url`}>
-                                    <InputGroup size="sm">
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">URL</Form.Label>
                                       <Form.Control
                                         as={Field}
                                         type="url"

@@ -32,12 +32,11 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
       {({ handleSubmit, handleChange, handleReset, isSubmitting, isValidating, values, errors, dirty }) => {
         const isLoading = isSubmitting || isValidating;
         const platformKeys = Object.keys(initialValues.web_links);
-        const hasExistingValues = platformKeys.filter((k) => !!initialValues.web_links[k]).length > 0;
 
         return (
           <Col>
             <StyledForm onSubmit={handleSubmit}>
-              <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
+              <Accordion>
                 <Form.Row className="mb-2 align-items-center">
                   <Col as={Form.Label}>
                     <ContextAwareToggle eventKey="0">Web Links</ContextAwareToggle>
@@ -47,7 +46,7 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
                   <>
                     <Form.Row className="align-items-center mb-3">
                       <Col xs="3">
-                        <Form.Label>Platforms</Form.Label>
+                        <Form.Label className="text-gray">Platforms</Form.Label>
                         <Form.Control
                           as="select"
                           onChange={({ target }) => setSelectedPlatform(target.value)}
@@ -64,7 +63,7 @@ const WebLinkField = ({ initialValues, onSubmit }) => {
                       </Col>
 
                       <Col>
-                        <Form.Label>URL</Form.Label>
+                        <Form.Label className="text-gray">URL</Form.Label>
                         <Form.Control
                           type="url"
                           name={`web_links.${selectedPlatform}`}

@@ -14,7 +14,7 @@ export const StyledTitleRow = styled.div`
 
 export const StyledTitleText = styled.p`
   margin: 0.5rem 1.5rem;
-  font-size: 32px;
+  font-size: 24px;
 `;
 
 export const StyledContent = styled.div`

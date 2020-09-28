@@ -18,7 +18,7 @@ const DashboardPage = ({ uid }) => {
                 <Businesses uid={uid} />
               </Tab.Pane>
               <Tab.Pane eventKey="apps">
-                <Apps uid={uid} changePane={setActivePaneKey} />
+                <Apps uid={uid} />
               </Tab.Pane>
             </Tab.Content>
           </Col>

@@ -64,7 +64,7 @@ const LogoField = ({ initialValues, onSubmit, onDeleteFile }) => {
                       {values.logo && (
                         <>
                           <Figure.Image alt="Logo image" src={remoteImage} width={150} height={150} rounded />
-                          <div style={{ position: 'absolute', right: -16, top: -16, zIndex: 5 }}>
+                          <div style={{ position: 'absolute', right: -32, top: -16, zIndex: 5 }}>
                             <FileDeleteButton onDelete={() => onDeleteFile('logo', values.logo.id)} />
                           </div>
                         </>

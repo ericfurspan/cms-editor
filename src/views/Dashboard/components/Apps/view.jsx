@@ -7,7 +7,7 @@ import NetlifyDeploySvg from '../../../../static/img/deploy-netlify.svg';
 import { MissingPlaceholder, ContentLoader, LoadSpinner, Alert as Swal } from '../../../../components';
 import { FETCH_APPLICATIONS } from '../../../../graphql';
 
-const Apps = ({ uid, changePane }) => {
+const Apps = ({ uid }) => {
   const [applications, setApplications] = useState([]);
   const [isBuildStarting, setIsBuildStarting] = useState(false);
 
@@ -93,9 +93,7 @@ const Apps = ({ uid, changePane }) => {
                       {app.business &&
                       app.business.users &&
                       app.business.users.find((user) => user.id === uid) ? (
-                        <Card.Link href="#" onClick={() => changePane('content')}>
-                          {app.business.name}
-                        </Card.Link>
+                        <Card.Text>{app.business.name}</Card.Text>
                       ) : (
                         <Alert variant="warning">
                           You have not been assigned to any content for <i>{app.name}</i>.

@@ -18,8 +18,6 @@ const validationSchema = yup.object().shape({
 });
 
 const NewsField = ({ initialValues, onSubmit }) => {
-  const hasExistingValues = initialValues.news && initialValues.news.length > 0;
-
   return (
     <Formik
       validationSchema={validationSchema}
@@ -31,7 +29,7 @@ const NewsField = ({ initialValues, onSubmit }) => {
         return (
           <Col>
             <StyledForm onSubmit={handleSubmit}>
-              <Accordion defaultActiveKey={hasExistingValues ? '0' : null}>
+              <Accordion>
                 <Form.Row className="mb-3 align-items-baseline">
                   <Col as={Form.Label}>
                     <ContextAwareToggle eventKey="0">News</ContextAwareToggle>
@@ -46,9 +44,10 @@ const NewsField = ({ initialValues, onSubmit }) => {
                             values.news.length > 0 &&
                             values.news.map((_, index) => (
                               <Form.Row className="align-items-center pb-2" key={index}>
-                                <Col xs={10}>
+                                <Col xs={12} md={10}>
                                   <Form.Group controlId={`news.${index}.title`}>
-                                    <InputGroup size="sm">
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">Title</Form.Label>
                                       <Field
                                         as={Form.Control}
                                         type="text"
@@ -77,38 +76,9 @@ const NewsField = ({ initialValues, onSubmit }) => {
                                       </Form.Control.Feedback>
                                     </InputGroup>
                                   </Form.Group>
-                                  <Form.Group controlId={`news.${index}.source`}>
-                                    <InputGroup size="sm">
-                                      <Field
-                                        as={Form.Control}
-                                        type="text"
-                                        size="sm"
-                                        name={`news.${index}.source`}
-                                        label="Source"
-                                        placeholder="Source"
-                                        isInvalid={
-                                          dirty &&
-                                          touched.news &&
-                                          touched.news[index] &&
-                                          touched.news[index].source &&
-                                          errors.news &&
-                                          errors.news[index] &&
-                                          errors.news[index].source
-                                        }
-                                      />
-                                      <Form.Control.Feedback type="invalid">
-                                        {dirty &&
-                                          touched.news &&
-                                          touched.news[index] &&
-                                          touched.news[index].source &&
-                                          errors.news &&
-                                          errors.news[index] &&
-                                          errors.news[index].source}
-                                      </Form.Control.Feedback>
-                                    </InputGroup>
-                                  </Form.Group>
                                   <Form.Group controlId={`news.${index}.url`}>
-                                    <InputGroup size="sm">
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">URL</Form.Label>
                                       <Form.Control
                                         as={Field}
                                         type="url"
@@ -139,6 +109,37 @@ const NewsField = ({ initialValues, onSubmit }) => {
                                           errors.news &&
                                           errors.news[index] &&
                                           errors.news[index].url}
+                                      </Form.Control.Feedback>
+                                    </InputGroup>
+                                  </Form.Group>
+                                  <Form.Group controlId={`news.${index}.source`}>
+                                    <InputGroup size="sm" as={Form.Row}>
+                                      <Form.Label className="mr-2 font-italic text-gray">Source</Form.Label>
+                                      <Field
+                                        as={Form.Control}
+                                        type="text"
+                                        size="sm"
+                                        name={`news.${index}.source`}
+                                        label="Source"
+                                        placeholder="Source"
+                                        isInvalid={
+                                          dirty &&
+                                          touched.news &&
+                                          touched.news[index] &&
+                                          touched.news[index].source &&
+                                          errors.news &&
+                                          errors.news[index] &&
+                                          errors.news[index].source
+                                        }
+                                      />
+                                      <Form.Control.Feedback type="invalid">
+                                        {dirty &&
+                                          touched.news &&
+                                          touched.news[index] &&
+                                          touched.news[index].source &&
+                                          errors.news &&
+                                          errors.news[index] &&
+                                          errors.news[index].source}
                                       </Form.Control.Feedback>
                                     </InputGroup>
                                   </Form.Group>
