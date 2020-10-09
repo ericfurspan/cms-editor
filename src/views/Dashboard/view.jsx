@@ -5,7 +5,7 @@ import { Businesses, Apps } from './components';
 import { StyledPageWrapper } from './style';
 
 const DashboardPage = ({ uid }) => {
-  const [activePaneKey, setActivePaneKey] = useState('apps');
+  const [activePaneKey, setActivePaneKey] = useState('content');
 
   return (
     <Col className="p-0 h-100">

@@ -2,13 +2,13 @@
 
 export const navigationConfig = [
   {
-    eventKey: 'apps',
-    faIconName: 'rocket',
-    text: 'Apps',
-  },
-  {
     eventKey: 'content',
     faIconName: 'layer-group',
     text: 'Content',
+  },
+  {
+    eventKey: 'apps',
+    faIconName: 'rocket',
+    text: 'Apps',
   },
 ];
