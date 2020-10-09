@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Row, Col, Alert, Accordion, Button } from 'react-bootstrap';
+import { Container, Row, Col, Alert, Accordion, Button } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { USER_ID, LOGIN, IS_LOGGED_IN } from '../../graphql/user';
 import { LoginForm } from './components';
@@ -25,10 +25,8 @@ const LoginPage = () => {
     <Container className="mt-5">
       <Row>
         <Col lg={{ span: 4, offset: 4 }} md={{ span: 6, offset: 3 }}>
-          <Card className="p-4">
-            <h3 className="mb-4 text-center">Login to CMS</h3>
-            <LoginForm login={login} />
-          </Card>
+          <h3 className="mb-4 text-center">Login to CMS</h3>
+          <LoginForm login={login} />
 
           <Accordion className="text-center mt-3">
             <Accordion.Toggle as={Button} variant="secondary" eventKey="0">
