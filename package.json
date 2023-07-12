@@ -40,7 +40,7 @@
     "dotenv-webpack": "^1.8.0",
     "eslint": "^7.1.0",
     "express": "^4.17.1",
-    "favicons-webpack-plugin": "^4.2.0",
+    "favicons-webpack-plugin": "^6.0.0",
     "file-loader": "6.0.0",
     "formik": "^2.1.4",
     "framer-motion": "^1.11.1",
